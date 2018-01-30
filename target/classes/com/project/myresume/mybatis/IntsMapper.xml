@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ints">
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="intsDto">
+		DELETE FROM tb_ints
+		WHERE id=#{id} and num=#{num}
+	</delete>
+	<!-- 수정 -->
+	<update id="update" parameterType="intsDto">
+		UPDATE tb_ints
+		SET ints_nm=#{ints_nm},ints_exp=#{ints_exp}
+		WHERE id=#{id} and num=#{num}
+	</update>
+	<!-- 정보 리턴 -->
+	<select id="getList" parameterType="java.lang.String"
+		resultType="intsDto">
+		SELECT id,ints_nm,ints_exp,num
+		FROM tb_ints
+		WHERE id=#{id}
+	</select>
+	<!-- 추가 -->
+	<insert id="insert" parameterType="intsDto">
+		INSERT INTO tb_ints
+		(id,ints_nm,ints_exp, num)
+		VALUES(#{id}, #{ints_nm}, #{ints_exp},ints_seq.NEXTVAL)
+	</insert>
+	<!-- getData -->
+	<select id="getData" parameterType="intsDto"
+		resultType="intsDto">
+		SELECT id,ints_nm,ints_exp,num
+		FROM tb_ints
+		WHERE id=#{id} and num=#{num}
+	</select>
+</mapper>

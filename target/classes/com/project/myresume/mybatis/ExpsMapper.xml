@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="exps">
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="expsDto">
+		DELETE FROM tb_exps
+		WHERE num = #{num} AND id = #{id}
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="update" parameterType="expsDto">
+		UPDATE tb_exps
+		SET position = #{position}, place = #{place}, ex_exp = #{ex_exp}, start_date = #{start_date}, end_date = #{end_date}
+		WHERE num = #{num} AND id = #{id}
+	</update>
+	
+	<!-- 목록 리턴 -->
+	<select id="getList" parameterType="String"
+		resultType="expsDto">
+		SELECT num, id, position, place, ex_exp, TO_CHAR(start_date, 'YYYY-MM-DD') start_date, TO_CHAR(end_date,'YYYY-MM-DD') end_date
+		FROM tb_exps
+		WHERE id = #{id}
+	</select>
+	
+	<!-- 추가 -->
+	<insert id="insert" parameterType="expsDto">
+		INSERT INTO tb_exps
+		(num, id, position, place, ex_exp, start_date, end_date)
+		VALUES(exps_seq.NEXTVAL, #{id}, #{position}, #{place}, #{ex_exp}, #{start_date}, #{end_date})
+	</insert>
+	<!-- getData -->
+	<select id="getData" parameterType="expsDto"
+		resultType="expsDto">
+		SELECT num, id, position, place, ex_exp, TO_CHAR(start_date, 'YYYY-MM-DD') start_date, TO_CHAR(end_date,'YYYY-MM-DD') end_date
+		FROM tb_exps
+		WHERE id=#{id} and num=#{num}
+	</select>
+</mapper>
+
+
+

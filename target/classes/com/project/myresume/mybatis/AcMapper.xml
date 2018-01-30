@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ac">
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="acDto">
+		DELETE FROM tb_ac
+		WHERE num = #{num} AND id = #{id}
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="update" parameterType="acDto">
+		UPDATE tb_ac
+		SET ac_nm=#{ac_nm},ac_exp=#{ac_exp},ac_date=#{ac_date}
+		WHERE num = #{num} AND id=#{id}
+	</update>
+	
+	<!-- 정보 리턴 -->
+	<select id="getList" parameterType="java.lang.String"
+		resultType="acDto">
+		SELECT id,ac_nm,ac_exp,TO_CHAR(ac_date,'YYYY-MM-DD') ac_date ,num
+		FROM tb_ac
+		WHERE id=#{id}
+	</select>
+
+	<!-- 추가 -->
+	<insert id="insert" parameterType="acDto">
+		INSERT INTO tb_ac
+		(num, id,ac_nm,ac_exp,ac_date)
+		VALUES(ac_seq.NEXTVAL, #{id}, #{ac_nm}, #{ac_exp}, #{ac_date})
+	</insert>
+	
+	<!-- getData -->
+	<select id="getData" parameterType="acDto"
+		resultType="acDto">
+		SELECT id,num,ac_nm,ac_exp,TO_CHAR(ac_date,'YYYY-MM-DD') ac_date
+		FROM tb_ac
+		WHERE id=#{id} and num=#{num}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

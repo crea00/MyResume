@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="skills">
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="skillsDto">
+		DELETE FROM tb_skills
+		WHERE id=#{id} and num=#{num}
+	</delete>
+	<!-- 수정 -->
+	<update id="update" parameterType="skillsDto">
+		UPDATE tb_skills
+		SET skill_nm=#{skill_nm},skill_exp=#{skill_exp}
+		WHERE id=#{id} and num=#{num}
+	</update>
+	<!-- 정보 리스트 -->
+	<select id="getList" parameterType="java.lang.String"
+		resultType="skillsDto">
+		SELECT num,id,skill_nm,skill_exp
+		FROM tb_skills
+		WHERE id=#{id}
+	</select>
+	<!-- getData -->
+	<select id="getData" parameterType="skillsDto"
+		resultType="skillsDto">
+		SELECT id,skill_nm,skill_exp,num
+		FROM tb_skills
+		WHERE id=#{id} and num=#{num}
+	</select>
+	<!-- 추가 -->
+	<insert id="insert" parameterType="skillsDto">
+		INSERT INTO tb_skills
+		(id,skill_nm,skill_exp,num)
+		VALUES(#{id}, #{skill_nm}, #{skill_exp},skills_seq.NEXTVAL)
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
