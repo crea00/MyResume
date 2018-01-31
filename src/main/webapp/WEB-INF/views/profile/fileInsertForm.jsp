@@ -46,12 +46,12 @@
 								enctype="multipart/form-data">
 								<table>
 									<tr>
-										<th><label for="myFile">프로필 사진 업로드</label></th>
+										<th><label for="file">프로필 사진 업로드</label></th>
 
 										<th></th>
 									</tr>
 									<tr>
-										<td><input type="file" name="myFile" id="myFile"
+										<td><input type="file" name="file" id="file"
 											class="form-control" /></td>
 										<td><button type="submit" class="btn">확인</button></td>
 									</tr>

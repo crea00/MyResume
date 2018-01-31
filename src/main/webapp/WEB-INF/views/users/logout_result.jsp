@@ -9,6 +9,6 @@
 </head>
 <body>
 <p>로그 아웃 되었습니다.</p>
-<a href="${pageContext.request.contextPath }/">확인</a>
+<a href="${pageContext.request.contextPath }/home.do">확인</a>
 </body>
 </html>
