@@ -18,8 +18,12 @@ public class UsersServiceImpl implements UsersService {
 	
 	@Override
 	public ModelAndView signup(UsersDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// Dao를 이용해서 Db에 저장
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("id", dto.getId());
+		
+		return mv;
 	}
 
 	@Override
