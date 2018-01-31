@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="file">
+	<delete id="delete" parameterType="String">
+		DELETE FROM tb_file
+		WHERE id=#{id}
+	</delete>
+
+	<select id="getData" parameterType="String"
+		resultType="fileDto">
+		SELECT num,id,orgFileName,saveFileName,fileSize
+		FROM tb_file
+		WHERE id=#{id}
+	</select>
+	
+	
+
+	<insert id="insert" parameterType="fileDto">
+		INSERT INTO tb_file
+		(num,id,orgFileName,saveFileName,fileSize)
+		VALUES(file_seq.NEXTVAL,#{id},
+		#{orgFileName},#{saveFileName},#{fileSize})
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
