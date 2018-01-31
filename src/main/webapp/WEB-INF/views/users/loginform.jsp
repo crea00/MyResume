@@ -38,9 +38,7 @@
 	            	<c:when test="${url eq null}">
 	                <form id="sign_in" action="login.do?url=login.do" method="POST">
 	                </c:when>  
-	                <c:otherwise>
-	                <form id="sign_in" action="login.do?url=login.do" method="POST">  
-	                </c:otherwise>
+
                 </c:choose>    
                     <div class="msg">로그인 후 나의 이력서를 만들어 보세요!</div>
                     <div class="input-group">

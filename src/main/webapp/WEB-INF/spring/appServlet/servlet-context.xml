@@ -71,6 +71,9 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.project.myresume" />
+	
+	<!-- com.project.myresume.users 하위 패키지 스캔 -->
+	<context:component-scan base-package="com.project.myresume.users.*" />
 			
 </beans:beans>
 

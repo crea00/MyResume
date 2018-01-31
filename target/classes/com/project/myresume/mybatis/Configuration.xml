@@ -4,8 +4,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+	<!-- 타입의 별칭 정의하기 -->
+	<typeAliases>
+		<typeAlias type="com.project.myresume.users.dto.UsersDto"/>
+	</typeAliases>
 	
-	
+	<!-- sql문을 정의하고있는 xml문서 -->
+	<mappers>
+		<mapper resource="com/project/myresume/mybatis/UsersMapper.xml"/>
+	</mappers>
 </configuration>
 
 
