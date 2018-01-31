@@ -34,6 +34,7 @@
         </div>
         <div class="card">
             <div class="body">
+
 	                <form id="sign_in" action="login.do" method="POST">
   
                     <div class="msg">로그인 후 나의 이력서를 만들어 보세요!</div>

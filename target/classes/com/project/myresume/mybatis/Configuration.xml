@@ -3,17 +3,19 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-		<!-- Mapper 에서 사용할 Dto 별칭 정의하기-->
+
+	<!-- 타입의 별칭 정의하기 -->
 	<typeAliases>
+		<typeAlias type="com.project.myresume.users.dto.UsersDto"/>
 		<typeAlias type="com.project.myresume.file.dto.FileDto" alias="fileDto"/>
 	</typeAliases>
+
 	
-	<!-- sql 문을 정의하고 있는 xml 문서 -->
+	<!-- sql문을 정의하고있는 xml문서 -->
 	<mappers>
+		<mapper resource="com/project/myresume/mybatis/UsersMapper.xml"/>
 		<mapper resource="com/project/myresume/mybatis/FileMapper.xml"/>
-	</mappers>	
-	
-	
+	</mappers>
 </configuration>
 
 
