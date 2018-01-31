@@ -16,8 +16,8 @@ public class UsersDaoImpl implements UsersDao {
 	
 	@Override
 	public void insert(UsersDto dto) {
-		// TODO Auto-generated method stub
 		
+		session.insert("users.insert", dto);
 	}
 
 	@Override

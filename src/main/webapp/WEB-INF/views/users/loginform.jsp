@@ -15,16 +15,16 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-    <link href="/resources/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/plugins/bootstrap/css/bootstrap.css" rel="stylesheet"> 
 
     <!-- Waves Effect Css -->
-    <link href="/resources/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath }/resources/plugins/node-waves/waves.css" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="/resources/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath }/resources/plugins/animate-css/animate.css" rel="stylesheet" />
 
     <!-- Custom Css -->
-    <link href="/resources/css/style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet">
 </head>
 <body class="login-page">
     <div class="login-box">
@@ -78,19 +78,19 @@
     </div>
 
     <!-- Jquery Core Js -->
-    <script src="/resources/plugins/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src="/resources/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="/resources/plugins/node-waves/waves.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/plugins/node-waves/waves.js"></script>
 
     <!-- Validation Plugin Js -->
-    <script src="/resources/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/plugins/jquery-validation/jquery.validate.js"></script>
 
     <!-- Custom Js -->
-    <script src="/resources/js/admin.js"></script>
-    <script src="/resources/js/pages/examples/sign-in.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/admin.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/pages/examples/sign-in.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.project.myresume.users.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,11 +43,31 @@ public class UsersController {
 		return mv;		
 	}
 	
+	// 로그아웃 요청 처리
+	@RequestMapping("users/logout")
+	public ModelAndView logout(HttpSession session, ModelAndView mv){
+		String id = (String)session.getAttribute("id");
+		// 세션초기화
+		session.invalidate();
+		mv.addObject("msg", id+" 님 로그 아웃 되었습니다.");
+		mv.setViewName("users/logout_result");
+		return mv;
+	}
 	
+	// 회원가입 폼 요청 처리
 	@RequestMapping("/users/signup_form")
 	public String signup_form() {
 		
 		return "users/signup_form";
+	}
+	
+	// 회원가입 요청 처리
+	@RequestMapping("/users/signup")
+	public ModelAndView signup(@ModelAttribute UsersDto dto){
+		// 전달되는 인자에 회원가입 정보가 들어있다.
+		ModelAndView mv = usersService.signup(dto);
+		mv.setViewName("users/signup_result");
+		return mv;
 	}
 	
 	@RequestMapping("/users/list")
