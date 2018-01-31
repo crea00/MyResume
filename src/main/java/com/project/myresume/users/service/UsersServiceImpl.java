@@ -34,31 +34,36 @@ public class UsersServiceImpl implements UsersService {
 		UsersDto resultDto = usersDao.getData(dto.getId());
 		
 		//아이디, 비밀번호가 유효한지 여부
-		boolean isValid = true;
+		boolean isValid = false;
 		
 		if(resultDto != null){
-			/* 일단 그냥 로그인 */
-			// DB에 입력한 아이디가 존재한다면 비밀번호를 확인한다.
 			boolean isMatch = true;
 			if(isMatch){
 				isValid = true;
 			}
-		} 
+		}
+
 		
 		// 원래 이동해야할 url
 		String url = request.getParameter("url");
-
+		System.out.println("url" + url);
+		
 		ModelAndView mv = new ModelAndView();
 		if(isValid){
 			// 만약 아이디와 비밀번호가 일치한다면 로그인 처리
 			request.getSession().setAttribute("id", dto.getId());
+		
 			mv.addObject("msg", dto.getId() + "님 로그인되었습니다.");
-			mv.addObject("url", url);
+			mv.addObject("home.do", url);
+			mv.addObject("isValid", isValid);
+			System.out.println("id" + dto.getId());
+			System.out.println("isValid가 true인데 " + isValid);
 		} else {
 			// 아이디 혹은 비밀번호가 틀린경우
 			mv.addObject("msg", "아이디 혹은 비밀번호가 틀려요.");
 			String location = request.getContextPath() + "/users/loginform.do?url=" + url;
 			mv.addObject("url", location);
+			System.out.println("isValid가 false인데 " + isValid);
 		}
 		return mv;
 	}

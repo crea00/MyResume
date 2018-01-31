@@ -11,10 +11,11 @@
 <c:choose>
 	<c:when test="${isValid }">
 		<p><strong>${id }</strong>님 로그인중...</p>
-		<a href="${url}">확인</a>
+		<a href="${url }">확인</a>
 	</c:when>
 	<c:otherwise>
 		<p>아이디 혹은 비밀번호 확인해 주세요</p>
+		<p>${isValid }는 뭘까요</p>
 		<a href="loginform.do?url=${url }">로그인</a>
 	</c:otherwise>
 </c:choose>

@@ -33,8 +33,8 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Override
 	public boolean isValid(UsersDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+	
+		return session.selectOne("users.isValid", dto);
 	}
 
 	@Override

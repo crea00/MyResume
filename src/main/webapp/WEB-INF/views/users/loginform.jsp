@@ -34,12 +34,12 @@
         </div>
         <div class="card">
             <div class="body">
-            	<c:choose>
-	            	<c:when test="${url eq null}">
-	                <form id="sign_in" action="login.do?url=login.do" method="POST">
-	                </c:when>  
+         
+	            
+	                <form id="sign_in" action="login.do?url=home.do" method="POST">
+	           
 
-                </c:choose>    
+          
                     <div class="msg">로그인 후 나의 이력서를 만들어 보세요!</div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -54,7 +54,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="비밀번호" required>
+                            <input type="password" class="form-control" name="pwd" placeholder="비밀번호" required>
 
                           	
                         </div> 
