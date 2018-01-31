@@ -106,7 +106,7 @@ public class FileServiceImpl implements FileService{
 		FileDto dto=fileDao.getData(id);
 		//ModelAndView 객체에 담아서 
 		ModelAndView mView=new ModelAndView();
-		mView.addObject("dto", dto);
+		mView.addObject("myDto", dto);
 		//리턴한다. 
 		return mView;
 	}
