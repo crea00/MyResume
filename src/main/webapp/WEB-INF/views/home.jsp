@@ -70,13 +70,19 @@
         <div class="intro-text">
           <div class="intro-lead-in">나만의 이력서를 만들어 보세요!</div>
           <div class="intro-heading text-uppercase">Welcome to My Resume.</div>
-          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="users/loginform.do">이력서 서비스 이용하기</a>
+          <c:choose>
+          	<c:when test="${id eq null }">
+          		 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="users/loginform.do">이력서 서비스 이용하기</a>
+          	</c:when>
+          	<c:otherwise>
+          		 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="users/list.do">이력서 서비스 이용하기</a>
+          	</c:otherwise>
+          </c:choose>
         </div>
       </div>
     </header>
 
-    
-
+ 
     <!-- Resume -->
     <section class="bg-light" id="resume">
       <div class="container">
