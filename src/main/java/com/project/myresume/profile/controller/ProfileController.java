@@ -14,4 +14,10 @@ public class ProfileController {
 		
 		return "profile/detail";
 	}
+	
+	@RequestMapping("/profile/fileInsertForm")
+	public String fileInsertform() {
+		
+		return "profile/fileInsertForm";
+	}
 }
