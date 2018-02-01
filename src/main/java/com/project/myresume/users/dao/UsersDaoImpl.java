@@ -49,9 +49,10 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	@Override
-	public List<UsersDto> getList(UsersDto dto) {
-		List<UsersDto> list = session.selectList("users.getList", dto);
-		return list;
+	public List<UsersDto> getList() {
+		//회원 전체의 정보 가져오기
+		return session.selectList("users.getList");
+
 	}
 
 	@Override

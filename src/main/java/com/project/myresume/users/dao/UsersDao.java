@@ -9,7 +9,7 @@ public interface UsersDao {
 	public boolean canUseId(String id);
 	public UsersDto getData(String id);
 	public boolean isValid(UsersDto dto);
-	public List<UsersDto> getList(UsersDto dto);
+	public List<UsersDto> getList();
 	public void delete(String id);
 	public void update(UsersDto dto);
 	

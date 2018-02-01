@@ -20,10 +20,10 @@
         <span class="d-block d-lg-none">Start Bootstrap</span>
         <span class="d-none d-lg-block">
         
-        <c:if test="${not empty userDto.saveFileName }">
-          <img style="width: 225px; height: 225px;" class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/upload/${userDto.saveFileName }" alt="">
+        <c:if test="${not empty resumeDto.saveFileName }">
+          <img style="width: 225px; height: 225px;" class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/upload/${resumeDto.saveFileName }" alt="">
 	    </c:if>
-        <c:if test="${empty userDto.saveFileName }">	            
+        <c:if test="${empty resume.saveFileName }">	            
 			<img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${pageContext.request.contextPath}/resources/img/profile.jpg" alt="">
 			
 	    </c:if>
@@ -60,10 +60,10 @@
 	
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto">
-          <h1 class="mb-0">${userDto.name }
+          <h1 class="mb-0">${resumeDto.name }
           </h1>
-          <div class="subheading mb-5">${userDto.phone_no } ·
-            <a href="mailto:name@email.com">${userDto.email }</a>
+          <div class="subheading mb-5">${resumeDto.phone_no } ·
+            <a href="mailto:name@email.com">${resumeDto.email }</a>
           <c:forEach var="tmp" items="${expsList }">
           <br />
           <span style="color:#9E9E9E;">
@@ -97,7 +97,7 @@
         <div class="my-auto">
           <h2 class="mb-5">Education</h2>
 			<!-- education select  -->
-			<c:forEach var="tmp" items="${list }">
+			<c:forEach var="tmp" items="${eduList }">
 			<div class="resume-item d-flex flex-column flex-md-row mb-5">
 	            <div class="resume-content mr-auto">
 	              <h3 class="mb-0">${tmp.place }</h3>

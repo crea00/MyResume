@@ -1,5 +1,7 @@
 package com.project.myresume.users.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -59,7 +61,7 @@ public class UsersServiceImpl implements UsersService {
 		if(isValid){
 			// 만약 아이디와 비밀번호가 일치한다면 로그인 처리
 			request.getSession().setAttribute("id", dto.getId());
-		
+			request.getSession().setAttribute("myDto", usersDao.getData(dto.getId()));
 			mv.addObject("msg", dto.getId() + "님 로그인되었습니다.");
 			mv.addObject("home.do", url);
 			mv.addObject("isValid", isValid);
@@ -92,19 +94,23 @@ public class UsersServiceImpl implements UsersService {
 		return mv;
 	}
 
+	//회원 한명의 정보 리턴
 	@Override
 	public ModelAndView getData(String id) {
 		UsersDto dto =usersDao.getData(id);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("myDto", dto);
+		mv.addObject("resumeDto", dto);
 		return mv;
 	}
 
+	//회원 전체의 정보 리턴
 	@Override
-	public ModelAndView detail(String id) {
-
+	public ModelAndView getList() {
+		List<UsersDto> list = usersDao.getList();
 		ModelAndView mv = new ModelAndView();
-		
+		mv.addObject("userList", list);
+
 		return mv;
 	}
 

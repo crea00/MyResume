@@ -59,6 +59,9 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="profile/detail.do">edu 목록</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -97,12 +100,12 @@
 	          <div class="col-sm-4">          
 	            <div class="team-member">
 	            <c:if test="${not empty tmp.saveFileName }">	            
-	              <img class="mx-auto rounded-circle" src="/upload/${tmp.saveFileName }" alt="">
+	              <img class="mx-auto rounded-circle" src="${pageContext.request.contextPath}/upload/${tmp.saveFileName }" alt="">
 	            </c:if>
 	            <c:if test="${empty tmp.saveFileName }">	            
-	              <img class="mx-auto rounded-circle" src="/resources/img/team/2.jpg" alt="">
+	              <img class="mx-auto rounded-circle" src="${pageContext.request.contextPath}/resources/img/team/2.jpg" alt="">
 	            </c:if>
-	              <h4><a href="/select.do?id=${tmp.id }">${tmp.name }</a></h4>
+	              <h4><a href="profile/resume.do?id=${tmp.id }">${tmp.name }</a></h4>
 	              <p class="text-muted">${tmp.email }</p>
 	            </div>
 	          </div>
