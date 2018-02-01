@@ -17,9 +17,10 @@ import com.project.myresume.file.service.FileService;
 
 import com.project.myresume.profile.dto.AcDto;
 import com.project.myresume.profile.dto.EduDto;
+import com.project.myresume.profile.dto.ExpsDto;
 import com.project.myresume.profile.service.AcService;
 import com.project.myresume.profile.service.EduService;
-
+import com.project.myresume.profile.service.ExpsService;
 import com.project.myresume.users.service.UsersService;
 
 @Controller
@@ -34,6 +35,9 @@ public class ProfileController {
 
 	@Autowired
 	private AcService acService;
+	
+	@Autowired
+	private ExpsService exService;
 
 	@Autowired
 	private UsersService usersService;
@@ -70,13 +74,15 @@ public class ProfileController {
 		ModelAndView mView = new ModelAndView();
 		List<AcDto> acList = acService.getList(request);
 		List<EduDto> eduList = eduService.getList(request);
+		List<ExpsDto> exList = exService.getList(request);
 		mView.addObject("acList", acList);
 		mView.addObject("eduList", eduList);
+		mView.addObject("exList", exList);
 		mView.setViewName("profile/detail");
 		return mView;
 	}
 
-	// 회원 이력서 출력 페이지
+	// 회원 이력서 출력 페이지 
 	@RequestMapping("/profile/resume")
 	public ModelAndView resume(HttpServletRequest request, @RequestParam String id) {
 		ModelAndView mv = usersService.getData(id);
@@ -162,7 +168,18 @@ public class ProfileController {
 	// ac InsertForm
 	@RequestMapping("/profile/acInsertForm")
 	public ModelAndView acInsertForm() {
-		return new ModelAndView("redirect:/profile/acInsertForm.do");
+		return new ModelAndView("profile/acInsertForm");
+	}
+	
+	// ac Insert
+	@RequestMapping("/profile/acInsert")
+	public ModelAndView acInsert(HttpServletRequest request,
+			@ModelAttribute AcDto dto){
+		String id=(String)request.getSession().getAttribute("id");
+		acService.insert(dto);
+		ModelAndView mView=new ModelAndView();
+		mView.setViewName("redirect:/profile/detail.do");
+		return mView;
 	}
 
 }

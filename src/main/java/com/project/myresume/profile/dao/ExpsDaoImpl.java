@@ -15,32 +15,29 @@ public class ExpsDaoImpl implements ExpsDao{
 	
 	@Override
 	public void insert(ExpsDto dto) {
-		// TODO Auto-generated method stub
-		
+		session.insert("exps.insert",dto);
 	}
 
 	@Override
 	public void update(ExpsDto dto) {
-		// TODO Auto-generated method stub
-		
+		session.update("exps.update",dto);
 	}
 
 	@Override
 	public void delete(ExpsDto dto) {
-		// TODO Auto-generated method stub
-		
+		session.delete("exps.delete",dto);
 	}
 
 	@Override
 	public List<ExpsDto> getList(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return session.selectList("exps.getList",id);
 	}
 
 	@Override
-	public ExpsDto getData(ExpsDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public ExpsDto getData(int num) {
+
+		return session.selectOne("exps.getData",num);
 	}
 
 }

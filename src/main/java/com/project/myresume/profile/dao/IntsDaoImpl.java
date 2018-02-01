@@ -15,31 +15,28 @@ public class IntsDaoImpl implements IntsDao {
 
 	@Override
 	public void insert(IntsDto dto) {
-		// TODO Auto-generated method stub
-
+		session.insert("ints.insert",dto);
 	}
 
 	@Override
 	public void update(IntsDto dto) {
-		// TODO Auto-generated method stub
-
+		session.update("ints.update",dto);
 	}
 
 	@Override
 	public void delete(IntsDto dto) {
-		// TODO Auto-generated method stub
-
+		session.delete("ints.delete",dto);
 	}
 
 	@Override
 	public List<IntsDto> getList(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return session.selectList("ints.getList",id);
 	}
 
 	@Override
-	public IntsDto getData(IntsDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public IntsDto getData(int num) {
+	
+		return session.selectOne("inst.getData",num);
 	}
 }
