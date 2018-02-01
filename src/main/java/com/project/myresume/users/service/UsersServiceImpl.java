@@ -31,8 +31,10 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public boolean canUseId(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		// Dao가 리턴해주는 값을
+		boolean canUseId = usersDao.canUseId(id);
+		// 리턴해준다.
+		return canUseId;
 	}
 
 	@Override

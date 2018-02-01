@@ -41,9 +41,11 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required autofocus>
+                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required autofocus/>                  	
                         </div>
+                        <span id="checkResult"></span>                            
                     </div>
+                
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">picture_in_picture</i>
@@ -105,34 +107,44 @@
     <script src="${pageContext.request.contextPath }/resources/js/admin.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/pages/examples/sign-up.js"></script>
     <script>
-    $("#id").keyup(function(){
-		//입력한 문자열을 읽어온다.
-		var id_check=$(this).val();
-		//ajax 요청을 해서 서버에 전송한다.
-		$.ajax({
-			method:"post",
-			url:"check.do",
-			data:{inputId:id_check},
-			success:function(data){
-				var obj=JSON.parse(data);
-				if(obj.canUse){//사용 가능한 아이디 라면 
-					$("#overlapErr").hide();
-					// 성공한 상태로 바꾸는 함수 호출
-					successState("#id");
-				
-
-				}else{//사용 가능한 아이디가 아니라면 
-					$("#overlapErr").show();
-					//실패한 상태로 바꾸는 함수 호출
-					errorState("#id");
-					
-				}
-			}
-		});
+    
+    $(function(){
+    	// 입력한 아이디가 유효한지 여부
+    	var idValid = false;
+    		
+    	$("#id").on("keyup", function(){
+    		// 입력한 아이디를 읽어와서
+    		var inputId = $("#id").val();
+    		// ajax를 이용해서 서버에 전송
+    		$.ajax({
+    			url : "checkid.do",
+    			method : "GET", 
+    			data : {"inputId" : inputId},
+    			success : function(data){
+    				if(data.canUse){
+    					$("#checkResult").text("사용가능한 아이디입니다.").css("color","green");	
+    					idValid = true;
+    					console.log(idValid);
+    				} else {
+    					$("#checkResult").text("아이디를 확인해주세요.").css("color","red");
+    					idValid = false;
+    					console.log(idValid);
+    				}
+    			}
+    		});
+    	});
 	});
 
+    
+	//폼 전송 이벤트가 발생했을때
+	$("#myForm").submit(function(){
+		if(idValid==false){
+			alert("아이디 중복 확인을 하세요.");
+			$("#id").val("").focus();
+			return false; //폼 전송 막기 
+		}
+	});
 	
-
     </script>
 </body>
 </html>
