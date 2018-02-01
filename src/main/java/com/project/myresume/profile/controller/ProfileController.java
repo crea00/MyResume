@@ -1,5 +1,8 @@
 package com.project.myresume.profile.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.myresume.file.dto.FileDto;
 import com.project.myresume.file.service.FileService;
+import com.project.myresume.profile.service.AcService;
+import com.project.myresume.profile.service.EduService;
 
 
 @Controller
@@ -20,6 +25,11 @@ public class ProfileController {
 		@Autowired 
 		private FileService fileService;
 		
+		@Autowired
+		private EduService eduService;
+		
+		@Autowired
+		private AcService acService;
 
 		@RequestMapping("/profile/fileInsertForm")
 		public ModelAndView authInsertForm(HttpServletRequest request){
@@ -43,21 +53,22 @@ public class ProfileController {
 		@RequestMapping("/profile/fileDelete")
 		public ModelAndView authDelete(HttpServletRequest request, 
 				@RequestParam String id){
-			
 			fileService.delete(request, id);
 			
 			return new ModelAndView("redirect:/profile/detail.do");
 		}
 	
 	
-	
-	/////////////////////////////////////////////////////
-	
+	// edu 목록 보여주기
 	@RequestMapping("/profile/detail")
-	public String profile(HttpServletRequest request) {
-		
-		
-		return "profile/detail";
+	public ModelAndView getList(HttpServletRequest request){
+		Map<String, Object> map = new HashMap<>();
+		map.put("edu", eduService.getList(request));
+		map.put("ac", acService.getList(request));
+		ModelAndView mView=new ModelAndView();
+		mView.addObject("map",map);
+		mView.setViewName("profile/detail");
+		return mView;
 	}
 	
 	

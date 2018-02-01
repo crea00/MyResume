@@ -114,7 +114,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="tmp" items="${expsList }">
+                                <c:forEach var="tmp" items="${adasdalist }">
 									<tr>
 										<td>${tmp.position }</td>
 										<td>${tmp.place }</td>
@@ -162,7 +162,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="tmp" items="${eduList }">
+                                <c:forEach var="tmp" items="${list }">
 									<tr>
 										<td>${tmp.place }</td>
 										<td>${tmp.major }</td>
