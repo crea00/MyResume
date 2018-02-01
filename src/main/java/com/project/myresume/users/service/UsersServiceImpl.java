@@ -21,6 +21,7 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public ModelAndView signup(UsersDto dto) {
 		
+		usersDao.insert(dto);
 		// Dao를 이용해서 Db에 저장
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("id", dto.getId());
@@ -82,8 +83,13 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public ModelAndView delete(HttpSession session) {
-		// TODO Auto-generated method stub
-		return null;
+		// 세션을 이용해서 id값을 얻어온다.
+		String id = (String)session.getAttribute("id");
+		// DB에서 아이디를 삭제하고 탈퇴와 동시에 로그아웃되도록 세션초기화
+		usersDao.delete(id);					
+		session.invalidate();
+		ModelAndView mv = new ModelAndView();
+		return mv;
 	}
 
 	//회원 한명의 정보 리턴
@@ -102,6 +108,7 @@ public class UsersServiceImpl implements UsersService {
 		List<UsersDto> list = usersDao.getList();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("userList", list);
+
 		return mv;
 	}
 

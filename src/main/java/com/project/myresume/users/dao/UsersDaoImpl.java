@@ -16,7 +16,6 @@ public class UsersDaoImpl implements UsersDao {
 	
 	@Override
 	public void insert(UsersDto dto) {
-		
 		session.insert("users.insert", dto);
 	}
 
@@ -41,12 +40,12 @@ public class UsersDaoImpl implements UsersDao {
 	public List<UsersDto> getList() {
 		//회원 전체의 정보 가져오기
 		return session.selectList("users.getList");
+
 	}
 
 	@Override
 	public void delete(String id) {
-		// TODO Auto-generated method stub
-		
+		session.delete("users.delete", id);
 	}
 
 	@Override

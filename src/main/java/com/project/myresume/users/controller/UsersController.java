@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.myresume.file.service.FileService;
 import com.project.myresume.users.dto.UsersDto;
 import com.project.myresume.users.service.UsersService;
 
@@ -71,14 +70,6 @@ public class UsersController {
 		return mv;
 	}
 	
-/*	@RequestMapping("/users/list")
-	public ModelAndView list(HttpServletRequest request) {
-		String id = (String)request.getSession().getAttribute("id");
-		ModelAndView mv = usersService.detail(id);
-		mv.setViewName("users/list");
-		return mv;
-	}*/
-	
 	
 	@RequestMapping("/users/list")
 	public String getData(HttpServletRequest request) {
@@ -86,5 +77,14 @@ public class UsersController {
 		return "users/list";
 		
 	}
-	
+
+	// 회원탈퇴
+	@RequestMapping("/users/delete")
+	public ModelAndView authDelete(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		// service를 이용해서 탈퇴처리
+		ModelAndView mv = usersService.delete(session);
+		mv.setViewName("redirect:/");
+		return mv;
+	}
 }

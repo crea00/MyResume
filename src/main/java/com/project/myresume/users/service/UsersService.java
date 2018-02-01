@@ -15,5 +15,4 @@ public interface UsersService {
 	public ModelAndView delete(HttpSession session);
 	public ModelAndView getList();
 	public ModelAndView getData(String id);
-	
 }

@@ -270,6 +270,8 @@
                             <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
                             <li role="seperator" class="divider"></li> -->
                             <li><a href="${pageContext.request.contextPath }/users/logout.do">Logout</a></li>
+                            <li><a href="${pageContext.request.contextPath }/users/updateform.do">회원정보수정</a></li>
+                            <li><a href="${pageContext.request.contextPath }/users/delete.do">회원탈퇴</a></li>
                         </ul>
                     </div>
                 </div>
