@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.myresume.file.service.FileService;
 import com.project.myresume.users.dto.UsersDto;
 import com.project.myresume.users.service.UsersService;
 
@@ -36,7 +37,7 @@ public class UsersController {
 	}
 	
 	// 로그인 요청처리
-	@RequestMapping("users/login")
+	@RequestMapping("/users/login")
 	public ModelAndView login(@ModelAttribute UsersDto dto, HttpServletRequest request){
 		ModelAndView mv = usersService.login(dto, request);
 		mv.setViewName("users/login_result");
@@ -70,21 +71,14 @@ public class UsersController {
 		return mv;
 	}
 	
-	// 회원정보 보여주기
-	@RequestMapping("/users/info")
-	public ModelAndView authInfo(HttpServletRequest request){
-		// session객체를 얻어온다.
-		HttpSession session = request.getSession();
-		
-		// session객체에서 로그인된 아이디를 읽어온다.
-		String id = (String)session.getAttribute("id");
-		
-		// 사용자 정보가 담긴 ModelAndView객체를 받아서
-		ModelAndView mv = usersService.detail(id);
-		
-		// view페이지 정보를 설정하고 리턴한다.
+
+	@RequestMapping("users/list")
+	public ModelAndView getData(HttpServletRequest request){
+		String id = (String)request.getSession().getAttribute("id");
+		ModelAndView mv = usersService.getData(id);
 		mv.setViewName("users/list");
 		return mv;
 	}
+
 	
 }

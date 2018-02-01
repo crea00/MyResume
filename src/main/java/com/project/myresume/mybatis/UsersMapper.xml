@@ -32,7 +32,7 @@
 	</select>
 	
 	<!-- 한명의 정보 리턴 -->
-	<select id="getData" parameterType="String" resultType="UsersDto">
+	<select id="getData" parameterType="string" resultType="UsersDto">
 		SELECT name,a.id,password,phone_no, is_admin, regdate,email, saveFileName
 		FROM TB_USER a
 		LEFT OUTER JOIN TB_FILE b

@@ -75,7 +75,7 @@
           		 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="${pageContext.request.contextPath }/users/loginform.do">이력서 서비스 이용하기</a>
           	</c:when>
           	<c:otherwise>
-          		 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="${pageContext.request.contextPath }/users/info.do">이력서 서비스 이용하기</a>
+          		 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="${pageContext.request.contextPath }/users/list.do">이력서 서비스 이용하기</a>
           	</c:otherwise>
           </c:choose>
         </div>
