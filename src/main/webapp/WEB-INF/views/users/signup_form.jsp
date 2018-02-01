@@ -62,6 +62,7 @@
                         <div class="form-line">
                             <input type="email" class="form-control" id="email" name="email" placeholder="이메일" required>
                         </div>
+                        <span id="checkResult2"></span>  
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -108,25 +109,33 @@
     <script src="${pageContext.request.contextPath }/resources/js/pages/examples/sign-up.js"></script>
     <script>
     
+    	
     $(function(){
     	// 입력한 아이디가 유효한지 여부
     	var idValid = false;
-    		
+		var inputId = null;
+    	
     	$("#id").on("keyup", function(){
     		// 입력한 아이디를 읽어와서
-    		var inputId = $("#id").val();
+    		inputId = $("#id").val();
+    		var str=$("#id").val();
+    		// 아이디를 검증할 정규식
+    		var reg= /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
+    		// 정규식으로 아이디 검증
+    		var isOk = reg.test(inputId);
+ 
     		// ajax를 이용해서 서버에 전송
     		$.ajax({
     			url : "checkid.do",
     			method : "GET", 
     			data : {"inputId" : inputId},
     			success : function(data){
-    				if(data.canUse){
+    				if(data.canUse && (inputId !="" && isOk) ){
     					$("#checkResult").text("사용가능한 아이디입니다.").css("color","green");	
     					idValid = true;
     					console.log(idValid);
     				} else {
-    					$("#checkResult").text("아이디를 확인해주세요.").css("color","red");
+    					$("#checkResult").text("사용이 불가능한 아이디입니다.").css("color","red");
     					idValid = false;
     					console.log(idValid);
     				}
@@ -134,7 +143,21 @@
     		});
     	});
 	});
+    
+   	// email 형식에 맞는지 여부
+	$("#email").keyup(function(){
+		var email = $("#email").val();
+		var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
+		var isOk2 = regEmail.test(email);
+		
+		if(isOk2){
+			$("#checkResult2").text("사용가능").css("color","green");
+		}else{
+			$("#checkResult2").text("사용불가").css("color","red");
+			return false;
+		}
+	});
     
 	//폼 전송 이벤트가 발생했을때
 	$("#myForm").submit(function(){
