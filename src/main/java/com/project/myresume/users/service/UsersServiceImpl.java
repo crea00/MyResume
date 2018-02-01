@@ -81,8 +81,13 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public ModelAndView delete(HttpSession session) {
-		// TODO Auto-generated method stub
-		return null;
+		// 세션을 이용해서 id값을 얻어온다.
+		String id = (String)session.getAttribute("id");
+		// DB에서 아이디를 삭제하고 탈퇴와 동시에 로그아웃되도록 세션초기화
+		usersDao.delete(id);					
+		session.invalidate();
+		ModelAndView mv = new ModelAndView();
+		return mv;
 	}
 
 	@Override
@@ -95,10 +100,8 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public ModelAndView detail(String id) {
-		UsersDto usersDto = usersDao.getData(id);
-		
+
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("usersDto", usersDto);
 		
 		return mv;
 	}

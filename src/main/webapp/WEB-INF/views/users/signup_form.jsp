@@ -41,7 +41,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required>
+                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -50,7 +50,7 @@
                         </span>
                         <div class="form-line">
                         	<label type="hidden" for="id_check"></label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="이름" required autofocus>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="이름" required>
                         </div>
                     </div>
                     <div class="input-group">
