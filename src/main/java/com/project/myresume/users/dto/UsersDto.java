@@ -2,7 +2,7 @@ package com.project.myresume.users.dto;
 
 public class UsersDto {
 	private String id;
-	private String pwd;
+	private String password;
 	private String name;
 	private String email;
 	private String phone_no;
@@ -17,11 +17,11 @@ public class UsersDto {
 	
 	public UsersDto(){	}
 
-	public UsersDto(String id, String pwd, String name, String email, String phone_no, String is_admin, String regdate,
+	public UsersDto(String id, String password, String name, String email, String phone_no, String is_admin, String regdate,
 			int num, String orgFileName, String saveFileName, long fileSize) {
 		super();
 		this.id = id;
-		this.pwd = pwd;
+		this.password = password;
 		this.name = name;
 		this.email = email;
 		this.phone_no = phone_no;
@@ -41,12 +41,12 @@ public class UsersDto {
 		this.id = id;
 	}
 
-	public String getPwd() {
-		return pwd;
+	public String getpassword() {
+		return password;
 	}
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setpassword(String password) {
+		this.password = password;
 	}
 
 	public String getName() {
@@ -120,6 +120,6 @@ public class UsersDto {
 	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
-	
+
 	
 }

@@ -19,6 +19,7 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public ModelAndView signup(UsersDto dto) {
 		
+		usersDao.insert(dto);
 		// Dao를 이용해서 Db에 저장
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("id", dto.getId());
@@ -86,8 +87,12 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public ModelAndView detail(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		UsersDto usersDto = usersDao.getData(id);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("usersDto", usersDto);
+		
+		return mv;
 	}
 
 }
