@@ -85,6 +85,14 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
+	public ModelAndView getData(String id) {
+		UsersDto dto =usersDao.getData(id);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("myDto", dto);
+		return mv;
+	}
+
+	@Override
 	public ModelAndView detail(String id) {
 		// TODO Auto-generated method stub
 		return null;

@@ -18,8 +18,6 @@ public class UsersController {
 
 	@Autowired
 	private UsersService usersService;
-	@Autowired
-	private FileService fileService;
 	
 	// 로그인 폼 요청처리
 	@RequestMapping("/users/loginform")
@@ -73,12 +71,22 @@ public class UsersController {
 		return mv;
 	}
 	
-	@RequestMapping("/users/list")
+/*	@RequestMapping("/users/list")
 	public ModelAndView list(HttpServletRequest request) {
 		String id = (String)request.getSession().getAttribute("id");
 		ModelAndView mv = usersService.detail(id);
 		mv.setViewName("users/list");
 		return mv;
+	}*/
+	
+	
+	@RequestMapping("/users/list")
+	public ModelAndView getData(HttpServletRequest request) {
+		String id = (String)request.getSession().getAttribute("id");
+		ModelAndView mv = usersService.getData(id);
+		mv.setViewName("users/list");
+		return mv;
+		
 	}
 	
 }
