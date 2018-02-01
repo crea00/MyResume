@@ -58,7 +58,7 @@
                             <i class="material-icons">email</i>
                         </span>
                         <div class="form-line">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="이메일" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="이메일" email="" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -66,7 +66,7 @@
                             <i class="material-icons">phone</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="phone_no" placeholder="전화번호" required>
+                            <input type="text" class="form-control" name="phone_no" placeholder="전화번호" digits="10" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -99,7 +99,7 @@
     <script src="${pageContext.request.contextPath }/resources/plugins/node-waves/waves.js"></script>
 
     <!-- Validation Plugin Js -->
-    <script src="${pageContext.request.contextPath }/resources/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/plugins/jquery-validation/jquery.validate.js?ver=2"></script>
 
     <!-- Custom Js -->
     <script src="${pageContext.request.contextPath }/resources/js/admin.js"></script>

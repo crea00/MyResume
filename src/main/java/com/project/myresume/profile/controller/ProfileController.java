@@ -80,10 +80,15 @@ public class ProfileController {
 	@RequestMapping("/profile/resume")
 	public ModelAndView resume(HttpServletRequest request, @RequestParam String id) {
 		ModelAndView mv = usersService.getData(id);
+		List<AcDto> acList = acService.getList(request);
+		List<EduDto> eduList = eduService.getList(request);
+		mv.addObject("acList", acList);
+		mv.addObject("eduList", eduList);		
 		mv.setViewName("profile/resume");
 
 		return mv;
 	}
+	
 
 	// edu 한개의정보 갖고오기
 	@RequestMapping("/profile/eduUpdateForm")
