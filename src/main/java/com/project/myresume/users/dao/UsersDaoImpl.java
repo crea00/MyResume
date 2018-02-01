@@ -38,9 +38,9 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	@Override
-	public List<UsersDto> getList(UsersDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<UsersDto> getList() {
+		//회원 전체의 정보 가져오기
+		return session.selectList("users.getList");
 	}
 
 	@Override

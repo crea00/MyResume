@@ -81,11 +81,9 @@ public class UsersController {
 	
 	
 	@RequestMapping("/users/list")
-	public ModelAndView getData(HttpServletRequest request) {
-		String id = (String)request.getSession().getAttribute("id");
-		ModelAndView mv = usersService.getData(id);
-		mv.setViewName("users/list");
-		return mv;
+	public String getData(HttpServletRequest request) {
+		
+		return "users/list";
 		
 	}
 	

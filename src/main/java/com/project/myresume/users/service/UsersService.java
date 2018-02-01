@@ -13,7 +13,7 @@ public interface UsersService {
 	public ModelAndView login(UsersDto dto, HttpServletRequest request);
 	public void update(UsersDto dto);
 	public ModelAndView delete(HttpSession session);
-	public ModelAndView detail(String id);
+	public ModelAndView getList();
 	public ModelAndView getData(String id);
 	
 }

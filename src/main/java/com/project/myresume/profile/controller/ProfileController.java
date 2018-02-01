@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.myresume.file.dto.FileDto;
 import com.project.myresume.file.service.FileService;
+import com.project.myresume.users.service.UsersService;
 
 
 @Controller
@@ -19,7 +20,8 @@ public class ProfileController {
 	//의존 객체
 		@Autowired 
 		private FileService fileService;
-		
+		@Autowired
+		private UsersService usersService;
 
 		@RequestMapping("/profile/fileInsertForm")
 		public ModelAndView authInsertForm(HttpServletRequest request){
@@ -50,15 +52,23 @@ public class ProfileController {
 		}
 	
 	
-	
-	/////////////////////////////////////////////////////
-	
-	@RequestMapping("/profile/detail")
-	public String profile(HttpServletRequest request) {
+
+		//회원의 경력,취미 등등 나타나는 페이지
+		@RequestMapping("/profile/detail")
+		public String detail(HttpServletRequest request) {
 		
 		
-		return "profile/detail";
-	}
+			return "profile/detail";
+		}
+		
+		//회원 이력서 출력 페이지
+		@RequestMapping("/profile/resume")
+		public ModelAndView resume(HttpServletRequest request, @RequestParam String id) {
+			ModelAndView mv = usersService.getData(id);
+			mv.setViewName("profile/resume");
+			
+			return mv;
+		}
 	
 	
 }
