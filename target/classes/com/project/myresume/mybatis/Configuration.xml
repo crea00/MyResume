@@ -11,7 +11,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.project.myresume.profile.dto.EduDto" 
 				alias="EduDto"/>
 		<typeAlias type="com.project.myresume.profile.dto.AcDto" 
-				alias="AcDto"/>		
+				alias="AcDto"/>	
+			<typeAlias type="com.project.myresume.profile.dto.ExpsDto" 
+				alias="ExpsDto"/>		
 	</typeAliases>
 
 	
@@ -21,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/project/myresume/mybatis/FileMapper.xml"/>
 		<mapper resource="com/project/myresume/mybatis/EduMapper.xml"/>	
 		<mapper resource="com/project/myresume/mybatis/AcMapper.xml"/>
+		<mapper resource="com/project/myresume/mybatis/ExpsMapper.xml"/>
 	</mappers>
 </configuration>
 

@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.myresume.profile.dao.AcDao;
+
 import com.project.myresume.profile.dao.EduDao;
-import com.project.myresume.profile.dto.AcDto;
+
 import com.project.myresume.profile.dto.EduDto;
 
 @Service
@@ -18,8 +18,6 @@ public class EduServiceImpl implements EduService {
 	
 	@Autowired
 	private EduDao eduDao;
-	@Autowired
-	private AcDao acDao;
 	
 	@Override
 	public void insert(EduDto dto) {

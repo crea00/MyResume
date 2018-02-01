@@ -14,32 +14,29 @@ public class SkillsDaoImpl implements SkillsDao{
 
 	@Override
 	public void insert(SkillsDto dto) {
-		// TODO Auto-generated method stub
-		
+		session.insert("skill.insert",dto);
 	}
 
 	@Override
 	public void update(SkillsDto dto) {
-		// TODO Auto-generated method stub
-		
+		session.update("skill.update",dto);
 	}
 
 	@Override
 	public void delete(SkillsDto dto) {
-		// TODO Auto-generated method stub
-		
+		session.delete("skill,delete",dto);
 	}
 
 	@Override
 	public List<SkillsDto> getList(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return session.selectList("skill.getList",id);
 	}
 
 	@Override
-	public SkillsDto getData(SkillsDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public SkillsDto getData(int num) {
+		
+		return session.selectOne("skill.getData",num);
 	}
 	
 }

@@ -19,7 +19,7 @@ public class AcServiceImpl implements AcService{
 	
 	@Override
 	public void insert(AcDto dto) {
-		
+		acDao.insert(dto);
 	}
 
 	@Override
