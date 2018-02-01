@@ -21,8 +21,20 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Override
 	public boolean canUseId(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		// id가 존재하는지 select
+		String result = session.selectOne("users.isExistId", id);
+		
+		if(result == null){
+			System.out.println("result는 true?" + result);
+			// id가 존재하지 않으면 사용가능
+			return true;
+
+		} else {
+			// id가 존재하면 사용불가
+			System.out.println("result는 false?" + result);
+			return false;
+			
+		}
 	}
 
 	@Override

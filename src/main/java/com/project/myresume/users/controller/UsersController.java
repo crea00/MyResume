@@ -1,5 +1,8 @@
 package com.project.myresume.users.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.myresume.users.dto.UsersDto;
@@ -87,5 +92,18 @@ public class UsersController {
 		ModelAndView mv = usersService.delete(session);
 		mv.setViewName("redirect:/");
 		return mv;
+	}
+	
+	// 아이디 중복 확인 요청 처리
+	@RequestMapping("users/checkid")
+	@ResponseBody
+	public Map<String, Object> checkid(@RequestParam String inputId){
+		// service를 이용해서 사용가능여부를 boolean type으로 리턴받기
+		boolean canUse = usersService.canUseId(inputId);
+		System.out.println("canUse는" + canUse);
+		// Map에 담고 리턴
+		Map<String, Object> map = new HashMap<>();
+		map.put("canUse", canUse);
+		return map;
 	}
 }
