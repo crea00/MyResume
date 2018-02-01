@@ -16,14 +16,16 @@
   <body id="page-top">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">
-        <span class="d-block d-lg-none">Start Bootstrap</span>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/">
+      <span class="d-none d-lg-block" style="font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive; color:#fff;">My Resume</span>
+      </a>
+      <a class="navbar-brand js-scroll-trigger" style="font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;" href="${pageContext.request.contextPath}/">
+        <span class="d-block d-lg-none">My Resume</span>
         <span class="d-none d-lg-block">
-        
         <c:if test="${not empty resumeDto.saveFileName }">
-          <img style="width: 225px; height: 225px;" class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/upload/${resumeDto.saveFileName }" alt="">
+          <img style="width: 225px; height: 225px;" class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${pageContext.request.contextPath}/upload/${resumeDto.saveFileName }" alt="">
 	    </c:if>
-        <c:if test="${empty resume.saveFileName }">	            
+        <c:if test="${empty resumeDto.saveFileName }">	            
 			<img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${pageContext.request.contextPath}/resources/img/profile.jpg" alt="">
 			
 	    </c:if>
@@ -163,14 +165,14 @@
    
     
         <!-- Bootstrap core JavaScript -->
-    <script src="/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="/resources/js/resume.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/resume.min.js"></script>
 
   </body>
 
