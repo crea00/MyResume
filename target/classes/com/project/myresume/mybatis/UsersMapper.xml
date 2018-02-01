@@ -38,8 +38,13 @@
 		LEFT OUTER JOIN TB_FILE b
 		ON a.id=b.id
 		WHERE a.id=#{id}
-		
 	</select>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="delete" parameterType="string">
+		DELETE FROM TB_USER
+		WHERE id = #{id}
+	</delete>	
 </mapper>
 
 

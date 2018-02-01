@@ -60,9 +60,8 @@
 											<th>가입시간</th>
                                         </tr>
                                     </thead>
-                             
                                     <tbody>
-<%--                                		<c:forEach var="tmp" items="${list }">
+                                		<c:forEach var="tmp" items="${myDto }">
 										<tr>
 											<td>${tmp.id }</td>
 											<td><a href="${pageContext.request.contextPath }/profile/detail.do?id=${tmp.id }">${tmp.name }</a></td>
@@ -70,10 +69,8 @@
 											<td>${tmp.email }</td>
 											<td>${tmp.phone_no }</td>
 											<td>${tmp.regdate }</td>
-				
 										</tr>
-									</c:forEach>
-                                  --%>
+										</c:forEach>
                                     </tbody>
                                 </table>
                             </div>
