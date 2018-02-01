@@ -162,7 +162,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="tmp" items="${list }">
+                                <c:forEach var="tmp" items="${eduList }">
 									<tr>
 										<td>${tmp.place }</td>
 										<td>${tmp.major }</td>

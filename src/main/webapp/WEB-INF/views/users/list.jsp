@@ -62,7 +62,7 @@
                                     </thead>
                              
                                     <tbody>
-                               		<c:forEach var="tmp" items="${list }">
+<%--                                		<c:forEach var="tmp" items="${list }">
 										<tr>
 											<td>${tmp.id }</td>
 											<td><a href="${pageContext.request.contextPath }/profile/detail.do?id=${tmp.id }">${tmp.name }</a></td>
@@ -73,7 +73,7 @@
 				
 										</tr>
 									</c:forEach>
-                                 
+                                  --%>
                                     </tbody>
                                 </table>
                             </div>

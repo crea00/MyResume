@@ -74,8 +74,12 @@
 	
 	<!-- com.project.myresume.users 하위 패키지 스캔 -->
 	<context:component-scan base-package="com.project.myresume.users.*" />
+
 	
 	<!--  com.project.myresume.profile 하위 패키지 스캔 -->
+
+	<context:component-scan base-package="com.project.myresume.file.*" />
+
 	<context:component-scan base-package="com.project.myresume.profile.*" />
 			
 </beans:beans>

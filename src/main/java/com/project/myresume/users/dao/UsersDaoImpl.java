@@ -16,7 +16,6 @@ public class UsersDaoImpl implements UsersDao {
 	
 	@Override
 	public void insert(UsersDto dto) {
-		
 		session.insert("users.insert", dto);
 	}
 
@@ -39,8 +38,8 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Override
 	public List<UsersDto> getList(UsersDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+		List<UsersDto> list = session.selectList("users.getList", dto);
+		return list;
 	}
 
 	@Override

@@ -4,14 +4,13 @@
 	<!-- 회원 가입 -->
 	<insert id="insert" parameterType="UsersDto">
 		INSERT INTO TB_USER
-		(name,id,password,is_admin,phone_no,regdate,email)
+		(name, id, password, is_admin, phone_no, regdate, email)
 		VALUES(#{name}, #{id}, #{password}, #{is_admin}, #{phone_no}, SYSDATE, #{email})
 	</insert>
 	
 	<!-- 목록 -->
-
 	<select id="getList" resultType="UsersDto">
-		SELECT name,a.id,password,phone_no,regdate,email,orgFileName,saveFileName,fileSize
+		SELECT name, a.id, password, phone_no, regdate, email, orgFileName, saveFileName, fileSize
 		FROM TB_USER a
 		LEFT OUTER JOIN TB_FILE b
 		ON a.id=b.id
@@ -33,7 +32,7 @@
 	</select>
 	
 	<!-- 한명의 정보 리턴 -->
-	<select id="getData" parameterType="String" resultType="UsersDto">
+	<select id="getData" parameterType="string" resultType="UsersDto">
 		SELECT name,a.id,password,phone_no, is_admin, regdate,email, saveFileName
 		FROM TB_USER a
 		LEFT OUTER JOIN TB_FILE b
