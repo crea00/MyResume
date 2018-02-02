@@ -44,7 +44,7 @@ public class UsersController {
 	@RequestMapping("/users/login")
 	public ModelAndView login(@ModelAttribute UsersDto dto, HttpServletRequest request){
 		ModelAndView mv = usersService.login(dto, request);
-		mv.setViewName("users/login_result");
+		mv.setViewName("redirect:/");
 		return mv;		
 	}
 	
@@ -54,15 +54,13 @@ public class UsersController {
 		String id = (String)session.getAttribute("id");
 		// 세션초기화
 		session.invalidate();
-		mv.addObject("msg", id+" 님 로그 아웃 되었습니다.");
-		mv.setViewName("users/logout_result");
+		mv.setViewName("redirect:/");
 		return mv;
 	}
 	
 	// 회원가입 폼 요청 처리
 	@RequestMapping("/users/signup_form")
 	public String signup_form() {
-		
 		return "users/signup_form";
 	}
 	
@@ -71,7 +69,8 @@ public class UsersController {
 	public ModelAndView signup(@ModelAttribute UsersDto dto){
 		// 전달되는 인자에 회원가입 정보가 들어있다.
 		ModelAndView mv = usersService.signup(dto);
-		mv.setViewName("users/signup_result");
+		// 홈으로 이동
+		mv.setViewName("redirect:/");
 		return mv;
 	}
 	
@@ -104,5 +103,28 @@ public class UsersController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("canUse", canUse);
 		return map;
+	}
+	
+	// 회원정보 수정페이지 이동
+	@RequestMapping("users/updateform")
+	public ModelAndView authUpdateForm(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		// 세션에 저장된 아이디를 불러와서
+		String id = (String)session.getAttribute("id");
+		//  service객체를 이용해서 사용자 정보가 담긴 ModelAndView객체 얻어오기
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("users/updateform");
+		return mv;
+	}
+	
+	// 회원정보 수정
+	@RequestMapping("users/udpate")
+	public ModelAndView authUpdate(@ModelAttribute UsersDto dto, HttpServletRequest request){
+		// service객체를 이용해서 수정
+		usersService.update(dto);
+		// 개인정보 보기로 redirect이동
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/users/list");
+		return mv;
 	}
 }
