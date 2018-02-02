@@ -37,6 +37,6 @@ public class IntsDaoImpl implements IntsDao {
 	@Override
 	public IntsDto getData(int num) {
 	
-		return session.selectOne("inst.getData",num);
+		return session.selectOne("ints.getData",num);
 	}
 }
