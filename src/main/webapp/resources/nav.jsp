@@ -269,9 +269,9 @@
                             <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
                             <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
                             <li role="seperator" class="divider"></li> -->
-                            <li><a href="${pageContext.request.contextPath }/users/logout.do">Logout</a></li>
+                            <li><a href="javascript:logoutConfirm()">Logout</a></li>
                             <li><a href="${pageContext.request.contextPath }/users/updateform.do">회원정보수정</a></li>
-                            <li><a href="${pageContext.request.contextPath }/users/delete.do">회원탈퇴</a></li>
+                            <li><a href="javascript:deleteConfirm()">회원탈퇴</a></li>
                         </ul>
                     </div>
                 </div>
@@ -772,3 +772,22 @@
         </aside> -->
         <!-- #END# Right Sidebar -->
     </section>
+    
+    
+    <script>
+   		// 회원탈퇴 여부 확인
+    	function deleteConfirm(){
+    		var isDelete = confirm("정말로 탈퇴하시겠습니까?");
+    		if(isDelete){
+    			location.href = "delete.do";
+    		}
+    	}
+    	// 로그아웃 여부 확인
+    	function logoutConfirm(){
+    		var isLogout = confirm("로그아웃하시겠습니까?");
+    		if(isLogout){
+    			location.href = "logout.do";
+    		}
+    	}
+    </script>
+    

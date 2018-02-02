@@ -32,7 +32,7 @@ public class UsersServiceImpl implements UsersService {
 		
 		// id를 ModelAndView객체에 담아서 리턴한다.
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("id", dto.getId());
+		mv.addObject("resultDto", dto);
 		return mv;
 	}
 
