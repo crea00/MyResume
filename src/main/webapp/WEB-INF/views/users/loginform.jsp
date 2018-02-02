@@ -50,7 +50,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="pwd" placeholder="비밀번호" required>
+                            <input type="password" class="form-control" name="password" placeholder="비밀번호" required>
 
                           	
                         </div> 

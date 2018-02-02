@@ -65,20 +65,20 @@
             <li class="nav-item">
             <c:choose>
 				<c:when test="${empty id }">
-				<li class="nav-item">
-					<a class="nav-link js-scroll-trigger" href="users/loginform.do">로그인</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link js-scroll-trigger"  href="users/signup_form.do">회원가입</a>
-				</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="users/loginform.do">로그인</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger"  href="users/signup_form.do">회원가입</a>
+					</li>
 				</c:when>
 				<c:otherwise>
-				<li class="nav-item">
-					<a class="nav-link js-scroll-trigger" href="profile/detail.do"><strong>${id }</strong>님 Login</a>
-				</li>
-				<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="users/logout.do">로그아웃</a>
-				</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="profile/detail.do"><strong>${id }</strong>님 Login</a>
+					</li>
+					<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="users/logout.do">로그아웃</a>
+					</li>
 				</c:otherwise>
 		 	</c:choose>
             </li>
@@ -215,4 +215,12 @@
     <script src="${pageContext.request.contextPath}/resources/js/agency.min.js"></script>
 
   </body>
+  <script>
+  	var id = ${dto.id};
+  		
+	(function loginAlert(){
+		alert(id + "님 로그인 되었습니다.");
+	})();
+  
+  </script>
 </html>

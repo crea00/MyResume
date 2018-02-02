@@ -45,6 +45,7 @@ public class UsersController {
 	@RequestMapping("/users/login")
 	public ModelAndView login(@ModelAttribute UsersDto dto, HttpServletRequest request){
 		ModelAndView mv = usersService.login(dto, request);
+		System.out.println("이름이 뭘까요" + dto.getId());
 		mv.setViewName("redirect:/");
 		return mv;		
 	}
