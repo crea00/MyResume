@@ -41,7 +41,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required autofocus/>                  	
+                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디" autofocus/>                  	
                         </div>
                         <span id="checkResult"></span>                            
                     </div>
@@ -60,7 +60,7 @@
                             <i class="material-icons">email</i>
                         </span>
                         <div class="form-line">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="이메일" email="" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="이메일" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -79,15 +79,19 @@
                             <input type="password" class="form-control" name="password" minlength="6" placeholder="비밀번호" required>
                         </div>
                     </div>
-                    <input type="hidden" class="form-control" name="is_admin" value="N" required>
-                    <div class="form-group">
-                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
-                        <label for="terms"><a href="javascript:void(0);">회원가입 약관 동의</a></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="password" minlength="6" placeholder="비밀번호 확인" required>
+                        </div>
                     </div>
-
+                    <input type="hidden" class="form-control" name="is_admin" value="N" required>
+   					<br />
                     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">회원가입</button>
-
                 </form>
+					
             </div>
         </div>
     </div>
@@ -101,7 +105,7 @@
     <script src="${pageContext.request.contextPath }/resources/plugins/node-waves/waves.js"></script>
 
     <!-- Validation Plugin Js -->
-    <script src="${pageContext.request.contextPath }/resources/plugins/jquery-validation/jquery.validate.js?ver=2"></script>
+    <script src="${pageContext.request.contextPath }/resources/plugins/jquery-validation/jquery.validate.js?ver=5545"></script>
 
     <!-- Custom Js -->
     <script src="${pageContext.request.contextPath }/resources/js/admin.js"></script>
@@ -121,12 +125,12 @@
     			method : "GET", 
     			data : {"inputId" : inputId},
     			success : function(data){
-    				if(data.canUse){
-    					$("#checkResult").text("사용가능한 아이디입니다.").css("color","green");	
+    				if(data.canUse && inputId!=""){
+    					$("#checkResult").text("사용가능한 아이디입니다.").css("color","green").css("font-size", "12px");	
     					idValid = true;
     					console.log(idValid);
     				} else {
-    					$("#checkResult").text("아이디를 확인해주세요.").css("color","red");
+    					$("#checkResult").text("아이디를 확인해주세요.").css("color","red").css("font-size", "12px");
     					idValid = false;
     					console.log(idValid);
     				}
@@ -134,17 +138,9 @@
     		});
     	});
 	});
+    
 
     
-	//폼 전송 이벤트가 발생했을때
-	$("#myForm").submit(function(){
-		if(idValid==false){
-			alert("아이디 중복 확인을 하세요.");
-			$("#id").val("").focus();
-			return false; //폼 전송 막기 
-		}
-	});
-	
     </script>
 </body>
 </html>

@@ -349,7 +349,7 @@ $.extend( $.validator, {
 	},
 
 	messages: {
-		required: "필수항목",
+		required: "필수 항목입니다.",
 		remote: "Please fix this field.",
 		email: "이메일을 정확히 입력해 주세요.",
 		url: "Please enter a valid URL.",
@@ -357,9 +357,9 @@ $.extend( $.validator, {
 		dateISO: "Please enter a valid date (ISO).",
 		number: "Please enter a valid number.",
 		digits: "숫자만 입력하세요.",
-		equalTo: "입력된 두 값이 같지 않습니다.",
+		equalTo: "입력값이 같지 않습니다.",
 		maxlength: $.validator.format( "Please enter no more than {0} characters." ),
-		minlength: $.validator.format( "Please enter at least {0} characters." ),
+		minlength: $.validator.format( "최소 {0} 글자 이상 입력해주세요." ),
 		rangelength: $.validator.format( "Please enter a value between {0} and {1} characters long." ),
 		range: $.validator.format( "Please enter a value between {0} and {1}." ),
 		max: $.validator.format( "Please enter a value less than or equal to {0}." ),
@@ -1345,31 +1345,6 @@ $.extend( $.validator, {
 				return this.getLength( value, element ) > 0;
 			}
 			return value.length > 0;
-		},
-		
-		//id
-		id: function(value, element){
-				//입력한 아이디가 유효한지 여부 
-				var idValid=false;
-
-				$("#id").on("keyup",function(){
-					//입력한 아이디을 읽어와서
-					var inputId=$(this).val();
-					//ajax 를 이용해서 서버에 전송
-					$.ajax({
-						url:".do",
-						method:"GET",
-						data:{"inputId":inputId},
-						success:function(data){
-							if(data.canUse){//사용가능
-								
-							}else{//사용불가
-								
-							}
-						}
-					});
-			
-		});
 		},
 
 		// http://jqueryvalidation.org/email-method/

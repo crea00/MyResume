@@ -66,6 +66,7 @@
                         <div class="col-xs-4">
                             <button class="btn btn-block bg-pink waves-effect" type="submit">로그인</button>
                         </div>
+                            <a class="btn btn-block bg-green bg-lg waves-effect" href="naverlogin.do" type="button"> 네이버계정으로 로그인</a>
                     </div>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-12 text-center">

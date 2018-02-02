@@ -178,6 +178,21 @@
 		    <artifactId>spring-security-web</artifactId>
 		    <version>4.0.0.RELEASE</version>
 		</dependency>	
+		
+		 <!-- Spring 라이브러리 -->
+  	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>4.0.0.RELEASE</version>
+	</dependency>
+	
+		<!-- naver -->
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-core</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+	
 	</dependencies>
     <build>
         <plugins>
@@ -218,3 +233,5 @@
         </plugins>
     </build>
 </project>
+
+
