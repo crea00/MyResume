@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,15 +18,21 @@ public class UsersServiceImpl implements UsersService {
 
 	@Autowired
 	private UsersDao usersDao;
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@Override
 	public ModelAndView signup(UsersDto dto) {
-		
-		usersDao.insert(dto);
+		// 입력한 비밀번호를 암호화된 문자열로 얻어낸다.
+		String hashPwd = encoder.encode(dto.getpassword());
+		// Dto에 다시 넣어준다.
+		dto.setpassword(hashPwd);
 		// Dao를 이용해서 Db에 저장
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("id", dto.getId());
+		usersDao.insert(dto);
 		
+		// id를 ModelAndView객체에 담아서 리턴한다.
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("resultDto", dto);
 		return mv;
 	}
 
@@ -62,17 +69,15 @@ public class UsersServiceImpl implements UsersService {
 			// 만약 아이디와 비밀번호가 일치한다면 로그인 처리
 			request.getSession().setAttribute("id", dto.getId());
 			request.getSession().setAttribute("myDto", usersDao.getData(dto.getId()));
-			mv.addObject("msg", dto.getId() + "님 로그인되었습니다.");
 			mv.addObject("home.do", url);
-			mv.addObject("isValid", isValid);
-			System.out.println("id" + dto.getId());
-			System.out.println("isValid가 true인데 " + isValid);
+
+
 		} else {
 			// 아이디 혹은 비밀번호가 틀린경우
 			mv.addObject("msg", "아이디 혹은 비밀번호가 틀려요.");
 			String location = request.getContextPath() + "/users/loginform.do?url=" + url;
 			mv.addObject("url", location);
-			System.out.println("isValid가 false인데 " + isValid);
+
 		}
 		return mv;
 	}
