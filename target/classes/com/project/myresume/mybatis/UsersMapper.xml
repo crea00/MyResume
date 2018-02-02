@@ -52,6 +52,12 @@
 		FROM TB_USER
 		WHERE id = #{id}	
 	</select>
+	<update id="update" parameterType="usersDto">
+		UPDATE TB_USER
+		SET name=#{name}, password=#{password}, phone_no=#{phone_no}, email= #{email}
+		WHERE id = #{id}
+	</update>
+	
 </mapper>
 
 

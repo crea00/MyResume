@@ -1,24 +1,23 @@
 package com.project.myresume.users.controller;
 
-import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.project.myresume.users.dto.UsersDto;
 import com.project.myresume.users.service.UsersService;
 
@@ -123,8 +122,7 @@ public class UsersController {
 	@RequestMapping("users/updateform")
 	public ModelAndView authUpdateForm(HttpServletRequest request){
 		HttpSession session = request.getSession();
-		// 세션에 저장된 아이디를 불러와서
-		String id = (String)session.getAttribute("id");
+		
 		//  service객체를 이용해서 사용자 정보가 담긴 ModelAndView객체 얻어오기
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("users/updateform");
@@ -132,14 +130,11 @@ public class UsersController {
 	}
 	
 	// 회원정보 수정
-	@RequestMapping("users/udpate")
-	public ModelAndView authUpdate(@ModelAttribute UsersDto dto, HttpServletRequest request){
+	@RequestMapping("users/update")
+	public String authUpdate(@ModelAttribute UsersDto dto, HttpServletRequest request){
 		// service객체를 이용해서 수정
 		usersService.update(dto);
-		// 개인정보 보기로 redirect이동
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/users/list");
-		return mv;
+		return "redirect:/profile/detail.do";
 	}
 
 }

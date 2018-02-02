@@ -29,7 +29,7 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">My<b>Resume</b></a>
+            <a href="${pagecontext.request.contextPath }/myresume/">My<b>Resume</b></a>
             <small>Customized Individual Resume Platform</small>
         </div>
         <div class="card">
