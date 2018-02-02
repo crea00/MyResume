@@ -42,6 +42,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
+                        	<input type="hidden" name="url" value="${url }" />
                             <input type="text" class="form-control" name="id" placeholder="회원 아이디" required autofocus>
                         </div>
                     </div>

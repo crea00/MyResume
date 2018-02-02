@@ -212,12 +212,4 @@
     <script src="${pageContext.request.contextPath}/resources/js/agency.min.js"></script>
 
   </body>
-  <script>
-  	var id = ${dto.id};
-  		
-	(function loginAlert(){
-		alert(id + "님 로그인 되었습니다.");
-	})();
-  
-  </script>
 </html>

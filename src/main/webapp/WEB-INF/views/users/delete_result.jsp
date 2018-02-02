@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>views/users/signup_result.jsp</title>
+<title>views/users/delete_result.jsp</title>
 </head>
 <body>
 <script>

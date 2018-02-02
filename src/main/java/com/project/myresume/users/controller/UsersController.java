@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.project.myresume.users.dto.UsersDto;
 import com.project.myresume.users.service.UsersService;
 
@@ -43,21 +45,21 @@ public class UsersController {
 	
 	// 로그인 요청처리
 	@RequestMapping("/users/login")
-	public ModelAndView login(@ModelAttribute UsersDto dto, HttpServletRequest request){
+	public ModelAndView login(@ModelAttribute UsersDto dto, HttpServletRequest request, HttpSession session){
 		ModelAndView mv = usersService.login(dto, request);
-		System.out.println("이름이 뭘까요" + dto.getId());
-		mv.setViewName("redirect:/");
+		mv.setViewName("users/login_result");	
 		return mv;		
 	}
 	
 	// 로그아웃 요청 처리
-	@RequestMapping("users/logout")
+	@RequestMapping("/users/logout")
 	public ModelAndView logout(HttpSession session, ModelAndView mv){
 		String id = (String)session.getAttribute("id");
 		// 세션초기화
 		session.invalidate();
-		mv.addObject("msg", id+" 님 로그 아웃 되었습니다.");
-		mv.setViewName("redirect:/");
+		
+		mv.addObject("msg", id + "님 로그아웃되었습니다.");
+		mv.setViewName("users/logout_result");
 		return mv;
 	}
 	
@@ -73,7 +75,7 @@ public class UsersController {
 		// 전달되는 인자에 회원가입 정보가 들어있다.
 		ModelAndView mv = usersService.signup(dto);
 		// 홈으로 이동
-		mv.setViewName("redirect:/");
+		mv.setViewName("users/signup_result");
 		return mv;
 	}
 	
@@ -94,12 +96,12 @@ public class UsersController {
 		HttpSession session = request.getSession();
 		// service를 이용해서 탈퇴처리
 		ModelAndView mv = usersService.delete(session);
-		mv.setViewName("redirect:/");
+		mv.setViewName("users/delete_result");
 		return mv;
 	}
 	
 	// 아이디 중복 확인 요청 처리
-	@RequestMapping("users/checkid")
+	@RequestMapping("/users/checkid")
 	@ResponseBody
 	public Map<String, Object> checkid(@RequestParam String inputId){
 		// service를 이용해서 사용가능여부를 boolean type으로 리턴받기
@@ -112,7 +114,7 @@ public class UsersController {
 	}
 	
 	// 회원정보 수정페이지 이동
-	@RequestMapping("users/updateform")
+	@RequestMapping("/users/updateform")
 	public ModelAndView authUpdateForm(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		// 세션에 저장된 아이디를 불러와서
@@ -124,7 +126,7 @@ public class UsersController {
 	}
 	
 	// 회원정보 수정
-	@RequestMapping("users/udpate")
+	@RequestMapping("/users/udpate")
 	public ModelAndView authUpdate(@ModelAttribute UsersDto dto, HttpServletRequest request){
 		// service객체를 이용해서 수정
 		usersService.update(dto);
