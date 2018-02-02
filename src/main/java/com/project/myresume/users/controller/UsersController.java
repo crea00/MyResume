@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.project.myresume.users.dto.UsersDto;
 import com.project.myresume.users.service.UsersService;
 
@@ -44,7 +45,7 @@ public class UsersController {
 	@RequestMapping("/users/login")
 	public ModelAndView login(@ModelAttribute UsersDto dto, HttpServletRequest request){
 		ModelAndView mv = usersService.login(dto, request);
-		mv.setViewName("users/login_result");
+		mv.setViewName("redirect:/");
 		return mv;		
 	}
 	
@@ -55,7 +56,7 @@ public class UsersController {
 		// 세션초기화
 		session.invalidate();
 		mv.addObject("msg", id+" 님 로그 아웃 되었습니다.");
-		mv.setViewName("users/logout_result");
+		mv.setViewName("redirect:/");
 		return mv;
 	}
 	
@@ -76,10 +77,13 @@ public class UsersController {
 	}
 	
 	
-	@RequestMapping("/users/list")
-	public String getData(HttpServletRequest request) {
-		
-		return "users/list";
+	// 회원정보 갖고오기
+	@RequestMapping("/users/info")
+	public ModelAndView getData(HttpServletRequest request) {
+		String id=(String)request.getSession().getAttribute("id");
+		ModelAndView mView=usersService.getData(id);
+		mView.setViewName("users/info");
+		return mView;
 		
 	}
 
