@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Myresume - 로그인</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <!-- Favicon-->
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
@@ -34,7 +35,7 @@
         </div>
         <div class="card">
             <div class="body">
-	                <form id="sign_in" action="login.do" method="POST">
+	                <form id="sign_in" action="login.do" method="POST" onsubmit="return FormSubmit();">
 
                     <div class="msg">로그인 후 나의 이력서를 만들어 보세요!</div>
                     <div class="input-group">
@@ -50,9 +51,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="비밀번호" required>
-
-                          	
+                            <input type="password" class="form-control" name="password" placeholder="비밀번호" required>     	
                         </div> 
                         <div class="">
                         	 <c:if test="${not empty loginFail }">
@@ -60,6 +59,8 @@
                             </c:if> 
                         </div>
                     </div>
+                     <div class="g-recaptcha" data-sitekey="6Le780MUAAAAAAEstmgpleGJGu0uKopxAfZhNb84"></div>
+                    <br/>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
                         </div>
@@ -72,6 +73,7 @@
                             <a href="signup_form.do">Myresume 회원이 아니신가요?</a>
                         </div>
                     </div>
+                
                 </form>
             </div>
         </div>
@@ -92,5 +94,16 @@
     <!-- Custom Js -->
     <script src="${pageContext.request.contextPath }/resources/js/admin.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/pages/examples/sign-in.js"></script>
+	<script>
+	
+		function FormSubmit() {
+			if (grecaptcha.getResponse() == "") {
+				alert("리캡챠를 체크해야 합니다.");
+				return false;
+			} else {
+				return true;
+			}
+		}
+	</script>
 </body>
 </html>
