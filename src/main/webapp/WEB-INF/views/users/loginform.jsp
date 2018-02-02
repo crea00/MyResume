@@ -42,6 +42,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
+                        	<input type="hidden" name="url" value="${url }" />
                             <input type="text" class="form-control" name="id" placeholder="회원 아이디" required autofocus>
                         </div>
                     </div>
@@ -50,7 +51,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="pwd" placeholder="비밀번호" required>
+                            <input type="password" class="form-control" name="password" placeholder="비밀번호" required>
 
                           	
                         </div> 

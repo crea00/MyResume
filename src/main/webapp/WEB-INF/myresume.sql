@@ -71,4 +71,4 @@ CREATE SEQUENCE AC_SEQ;
 
 -- 비밀번호를 hash값으로 저장하기 위해 속성을 바꿈
 ALTER TABLE TB_USER
-MODIFY password VARCHAR2(100);
+MODIFY password VARCHAR2(200);

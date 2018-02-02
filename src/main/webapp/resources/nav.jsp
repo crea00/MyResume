@@ -779,14 +779,14 @@
     	function deleteConfirm(){
     		var isDelete = confirm("정말로 탈퇴하시겠습니까?");
     		if(isDelete){
-    			location.href = "delete.do";
+    			location.href = "../users/delete.do";
     		}
     	}
     	// 로그아웃 여부 확인
     	function logoutConfirm(){
     		var isLogout = confirm("로그아웃하시겠습니까?");
     		if(isLogout){
-    			location.href = "logout.do";
+    			location.href = "../users/logout.do";
     		}
     	}
     </script>

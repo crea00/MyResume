@@ -8,7 +8,9 @@
 <title>views/users/logout_result.jsp</title>
 </head>
 <body>
-<p>로그 아웃 되었습니다.</p>
-<a href="${pageContext.request.contextPath }/home.do">확인</a>
+<script>
+	alert("${msg}");
+	location.href = "${pageContext.request.contextPath}/";
+</script>
 </body>
 </html>

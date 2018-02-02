@@ -78,7 +78,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" id="password" minlength="6" placeholder="비밀번호" value="${myDto.password}" required>
+                            <input type="password" class="form-control" name="password" id="password" minlength="6" placeholder="비밀번호" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -86,7 +86,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" id="password2" minlength="6" placeholder="비밀번호 확인" value="${myDto.password}" required>
+                            <input type="password" class="form-control" id="password2" minlength="6" placeholder="비밀번호 확인" required>
                         </div>
                         <span id="checkResult2"></span> 
                     </div>
