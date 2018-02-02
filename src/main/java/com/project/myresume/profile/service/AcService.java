@@ -13,5 +13,6 @@ public interface AcService {
 	public void delete(AcDto dto);
 	public void update(AcDto dto);
 	public List<AcDto> getList(HttpServletRequest request);
+	public List<AcDto> resumeList(String id);
 	public ModelAndView getData(int num);
 }

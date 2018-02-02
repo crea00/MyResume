@@ -48,4 +48,11 @@ public class ExpsServiceImpl implements ExpsService{
 		return mView;
 	}
 
+	@Override
+	public List<ExpsDto> resumeList(String id) {
+		List<ExpsDto> exList=exDao.getList(id);
+		
+		return exList;
+	}
+
 }

@@ -13,5 +13,6 @@ public interface EduService {
 	public void delete(EduDto dto);
 	public void update(EduDto dto);
 	public List<EduDto> getList(HttpServletRequest request);
+	public List<EduDto> resumeList(String id);
 	public ModelAndView getData(int num);
 }	

@@ -11,7 +11,7 @@
 	<update id="update" parameterType="ExpsDto">
 		UPDATE tb_exps
 		SET position = #{position}, place = #{place}, ex_exp = #{ex_exp}, start_date = #{start_date}, end_date = #{end_date}
-		WHERE num = #{num} AND id = #{id}
+		WHERE num=#{num} and id = #{id}
 	</update>
 	
 	<!-- 목록 리턴 -->
@@ -33,7 +33,7 @@
 		resultType="ExpsDto">
 		SELECT num, id, position, place, ex_exp, TO_CHAR(start_date, 'YYYY-MM-DD') start_date, TO_CHAR(end_date,'YYYY-MM-DD') end_date
 		FROM tb_exps
-		WHERE id=#{id} and num=#{num}
+		WHERE  num=#{num}
 	</select>
 </mapper>
 

@@ -19,6 +19,9 @@
     			font-size: 0.9rem;
     			text-align: left;
     		}
+    		.button{
+    			
+    		}
     </style>
 
     <!-- Bootstrap core CSS -->
@@ -60,7 +63,24 @@
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="profile/detail.do">edu 목록</a>
+            <c:choose>
+				<c:when test="${empty id }">
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="users/loginform.do">로그인</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger"  href="users/signup_form.do">회원가입</a>
+				</li>
+				</c:when>
+				<c:otherwise>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="profile/detail.do"><strong>${id }</strong>님 Login</a>
+				</li>
+				<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="users/logout.do">로그아웃</a>
+				</li>
+				</c:otherwise>
+		 	</c:choose>
             </li>
           </ul>
         </div>
@@ -78,7 +98,7 @@
           		 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="${pageContext.request.contextPath }/users/loginform.do">이력서 서비스 이용하기</a>
           	</c:when>
           	<c:otherwise>
-          		 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="${pageContext.request.contextPath }/users/list.do">이력서 서비스 이용하기</a>
+          		 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="${pageContext.request.contextPath }/profile/detail.do">이력서 서비스 이용하기</a>
           	</c:otherwise>
           </c:choose>
         </div>
@@ -93,6 +113,7 @@
           <div class="col-lg-12 text-center">
             <h2 class="section-heading text-uppercase">My Resume People</h2>
             <h3 class="section-subheading text-muted">My Resume에 등록된 인재들을 찾아보세요.</h3>
+            <button>버튼</button>
           </div>
         </div>
         <div class="row">

@@ -54,14 +54,15 @@
 
                           	
                         </div> 
-                        <div class="">
-                        	 <c:if test="${not empty loginFail }">
-                            	<p><strong>${loginFail }</strong></p>
-                            </c:if> 
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
+                                             
+                        	 <c:if test="${not empty msg }">
+                            	<p><strong style="color:red">${msg }</strong></p>
+                            </c:if> 
+                     
                         </div>
                         <div class="col-xs-4">
                             <button class="btn btn-block bg-pink waves-effect" type="submit">로그인</button>

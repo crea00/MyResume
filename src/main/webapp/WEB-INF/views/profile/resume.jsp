@@ -80,7 +80,7 @@
         <div class="my-auto">
           <h2 class="mb-5">Experience</h2>
 			<!-- experience select  -->
-			<c:forEach var="tmp" items="${expsList }">
+			<c:forEach var="tmp" items="${exList }">
 				<div class="resume-item d-flex flex-column flex-md-row mb-5">
 		            <div class="resume-content mr-auto">
 		              <h3 class="mb-0">${tmp.position }</h3>

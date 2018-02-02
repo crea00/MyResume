@@ -47,4 +47,10 @@ public class AcServiceImpl implements AcService{
 		return mView;
 	}
 
+	@Override
+	public List<AcDto> resumeList(String id) {
+		List<AcDto> acList=acDao.getList(id);
+		return acList;
+	}
+
 }
