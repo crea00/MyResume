@@ -54,21 +54,21 @@
                                 </div>
                                  <div class="form-group form-float">
                                     <div class="form-line">
-                                    	<input type="hidden" name="id" value="${id}" />
+      
                                         <input placeholder="교육내용" type="text" class="form-control" name="edu_exp" maxlength="500" minlength="3" required>
                                     </div>
                                     <div class="help-info">* 필수 작성</div>
                                 </div>
                                  <div class="form-group form-float">
                                     <div class="form-line">
-                                    	<input type="hidden" name="id" value="${id}" />
+                                    
                                         <input id="inputMsg" placeholder="시작일('YYYY-MM-DD'형식으로 작성해주세요)" type="text" class="form-control" name="start_date" maxlength="10" minlength="3" required>
                                   	   </div>
                                     <div class="help-info">* 필수 작성</div>
                                 </div>
                                  <div class="form-group form-float">
                                     <div class="form-line">
-                                    	<input type="hidden" name="id" value="${id}" />
+                                    	
                                         <input id="inputMsg2" placeholder="종료일('YYYY-MM-DD'형식으로 작성해주세요)" type="text" class="form-control" name="end_date" maxlength="10" minlength="3" required>
                                     </div>
                                     <div class="help-info">* 필수 작성</div>

@@ -24,7 +24,7 @@ public class SkillsDaoImpl implements SkillsDao{
 
 	@Override
 	public void delete(SkillsDto dto) {
-		session.delete("skill,delete",dto);
+		session.delete("skill.delete",dto);
 	}
 
 	@Override

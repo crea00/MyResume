@@ -19,7 +19,7 @@
 	
 	<!-- getData -->
 	<select id="getData" parameterType="int"
-		resultType="eduDto">
+		resultType="EduDto">
 		SELECT id, num, place, major, edu_exp, TO_CHAR(start_date,'YYYY-MM-DD') start_date, TO_CHAR(end_date,'YYYY-MM-DD') end_date
 		FROM tb_edu
 		WHERE num=#{num}
