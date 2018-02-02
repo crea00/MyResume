@@ -50,6 +50,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
+          	<c:choose>
+          		<c:when test="${empty id }">
+          			<li class="nav-item">
+          				<p class="nav-link js-scroll-trigger">로그인이 필요합니다.</p>
+          			</li>
+          		</c:when>
+          		<c:otherwise>
+          			<li class="nav-item">
+	           			<p class="nav-link js-scroll-trigger"><a href="${pageContext.request.contextPath }/users/list.do">${id }</a>님 로그인중</p>
+          			</li>
+          			<li class="nav-item js-scroll-trigger">
+          				<p class="nav-link js-scroll-trigger"><a href="users/logout.do">Logout</a></p>
+          			</li>
+          		</c:otherwise>
+          	</c:choose>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#resume">Resume</a>
             </li>
@@ -59,9 +74,14 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="profile/detail.do">edu 목록</a>
-            </li>
+            <c:choose>
+            	<c:when test="${not empty id }">
+            		<li class="nav-item">
+          			    <a class="nav-link js-scroll-trigger" href="profile/detail.do">edu 목록</a>
+           			 </li>
+            	</c:when>
+            </c:choose>
+            
           </ul>
         </div>
       </div>
@@ -191,4 +211,12 @@
     <script src="${pageContext.request.contextPath}/resources/js/agency.min.js"></script>
 
   </body>
+  <script>
+  	var id = ${dto.id};
+  		
+	(function loginAlert(){
+		alert(id + "님 로그인 되었습니다.");
+	})();
+  
+  </script>
 </html>
