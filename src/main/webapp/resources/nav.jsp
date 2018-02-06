@@ -262,13 +262,7 @@
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${myDto.email }</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                        <ul class="dropdown-menu pull-right">
-                   <!--          <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                            <li role="seperator" class="divider"></li> -->
+                        <ul class="dropdown-menu pull-right"  style="top : 65px">
                             <li><a href="javascript:logoutConfirm()">Logout</a></li>
                             <li><a href="${pageContext.request.contextPath }/users/updateform.do">회원정보수정</a></li>
                             <li><a href="javascript:delConfirm()">회원탈퇴</a></li>

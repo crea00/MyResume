@@ -78,7 +78,7 @@ public class ProfileController {
 		return new ModelAndView("redirect:/profile/detail.do");
 	}
 
-	// profile 목록 보여주기
+	// 개인프로필 목록 보여주기
 	@RequestMapping("/profile/detail")
 	public ModelAndView getList(HttpServletRequest request) {
 		String id=(String)request.getSession().getAttribute("id");
@@ -140,7 +140,7 @@ public class ProfileController {
 		return mView;
 	}
 
-	// edu 삭제하기
+	// eduDelete
 	@RequestMapping("/profile/eduDelete")
 	public ModelAndView delete(@ModelAttribute EduDto dto) {
 		eduService.delete(dto);
@@ -150,14 +150,14 @@ public class ProfileController {
 
 	}
 
-	// edu insertForm
+	// eduInsertForm
 	@RequestMapping("/profile/eduInsertForm")
 	public ModelAndView eduInsertForm() {
 
 		return new ModelAndView("profile/eduInsertForm");
 	}
 
-	// edu insert
+	// eduInsert
 	@RequestMapping("/profile/eduInsert")
 	public ModelAndView eduInsert(HttpServletRequest request, @ModelAttribute EduDto dto) {
 		String id = (String) request.getSession().getAttribute("id");
@@ -166,7 +166,7 @@ public class ProfileController {
 		return new ModelAndView("redirect:/profile/detail.do");
 	}
 
-	// ac updateForm
+	// acUpdateForm
 	@RequestMapping("/profile/acUpdateForm")
 	public ModelAndView acUpdateForm(@RequestParam int num) {
 		ModelAndView mView = acService.getData(num);
@@ -174,7 +174,7 @@ public class ProfileController {
 		return mView;
 	}
 
-	// ac Update
+	// acUpdate
 	@RequestMapping("/profile/acUpdate")
 	public ModelAndView acUpdate(@ModelAttribute AcDto dto) {
 		acService.update(dto);
@@ -192,13 +192,13 @@ public class ProfileController {
 		return mView;
 	}
 
-	// ac InsertForm
+	// acInsertForm
 	@RequestMapping("/profile/acInsertForm")
 	public ModelAndView acInsertForm() {
 		return new ModelAndView("profile/acInsertForm");
 	}
 	
-	// ac Insert
+	// acInsert
 	@RequestMapping("/profile/acInsert")
 	public ModelAndView acInsert(HttpServletRequest request,
 			@ModelAttribute AcDto dto){
