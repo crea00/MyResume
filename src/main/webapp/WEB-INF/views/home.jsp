@@ -171,7 +171,8 @@
 
 
 			<!-- 검색창 끝. -->
-
+			<br />
+			<br />
 
 			<div class="row">
 				<c:forEach var="tmp" items="${userList}">
