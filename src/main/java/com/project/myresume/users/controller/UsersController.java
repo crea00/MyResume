@@ -42,7 +42,7 @@ public class UsersController {
 	private ExpsService expsService;
 
 	@Autowired
-	private SkillsService skillService;
+	private SkillsService skillsService;
 	
 	@Autowired
 	private EduService eduService;
@@ -52,11 +52,6 @@ public class UsersController {
 	
 	@Autowired
 	private IntsService intsService;
-	
-	private EduService edusService;
-	
-	@Autowired
-	private SkillsService skillsService;
 
 	// 로그인 폼 요청처리
 	@RequestMapping("/users/loginform")
@@ -132,7 +127,7 @@ public class UsersController {
 	public ModelAndView authDelete(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id=(String)session.getAttribute("id");
-		skillService.deleteAll(id);
+		skillsService.deleteAll(id);
 		eduService.deleteAll(id);
 		expsService.deleteAll(id);
 		acService.deleteAll(id);
@@ -250,7 +245,7 @@ public class UsersController {
 			
 
 		}else if(sp.equals("edu")) {//검색어가 edu단이면
-			idList =edusService.search(keyword);
+			idList =eduService.search(keyword);
 			if(exp.equals("all")) {
 				//전체검색
 			}else if(exp.equals("new")) {
