@@ -16,7 +16,8 @@ public interface ExpsService {
 	public List<ExpsDto> getList(HttpServletRequest request);// 목록 리턴(select)
 	public List<ExpsDto> resumeList(String id);// 목록 리턴(select)
 	public ModelAndView getData(int num);//하나의 정보 리턴
-	
+	public List<String> oldSearch();
+	public List<String> newSearch();
 	
 	public void deleteAll(String id);
 }

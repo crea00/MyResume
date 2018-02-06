@@ -42,7 +42,20 @@ public class ExpsDaoImpl implements ExpsDao{
 
 	@Override
 	public void deleteAll(String id) {
-		session.selectOne("exps.deleteAll",id);
+		session.delete("exps.deleteAll",id);  //select
+	}
+	@Override
+	public List<ExpsDto> oldSearch() {
+		// TODO Auto-generated method stub
+		
+		return session.selectList("exps.oldList");
+	}
+
+
+	@Override
+	public List<ExpsDto> newSearch() {
+		
+		return session.selectList("exps.newList");
 	}
 
 }

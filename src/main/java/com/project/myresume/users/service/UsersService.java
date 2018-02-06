@@ -18,5 +18,9 @@ public interface UsersService {
 	public ModelAndView delete(HttpSession session);
 	public ModelAndView getList(HttpServletRequest request);
 	public UsersDto getData(String id);
+
 	public void increaseViewCount(String id);
+
+	public List<String> search(String keyword);
+
 }

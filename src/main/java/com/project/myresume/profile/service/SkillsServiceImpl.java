@@ -63,5 +63,12 @@ public class SkillsServiceImpl implements SkillsService{
 	public void deleteAll(String id) {
 		skillDao.deleteAll(id);	
 	}
+	
+	@Override
+	public List<String> search(String keyword) {
+		// TODO Auto-generated method stub
+		return skillDao.search(keyword);
+
+	}
 
 }

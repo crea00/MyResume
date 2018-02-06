@@ -132,5 +132,11 @@ public class UsersServiceImpl implements UsersService {
 	
 	}
 
+	@Override
+	public List<String> search(String keyword) {
+		System.out.println(keyword);
+		System.out.println(usersDao.search(keyword));
+		return usersDao.search(keyword);
+	}
 
 }

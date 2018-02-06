@@ -38,6 +38,14 @@
 		DELETE FROM tb_skills
 		WHERE id=#{id}
 	</delete>
+
+	<!-- 기술 이름으로 검색 -->
+	<select id="search" parameterType="string" resultType="string">
+		select distinct id
+		from tb_skills
+		where skill_nm like '%'||#{skill_nm}||'%'
+	</select>
+
 </mapper>
 
 

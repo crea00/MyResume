@@ -48,4 +48,10 @@ public class SkillsDaoImpl implements SkillsDao{
 		session.selectOne("skill.deleteAll",id);
 	}
 
+	@Override
+	public List<String> search(String keyword) {
+		// TODO Auto-generated method stub
+		return session.selectList("skill.search",keyword);
+	}
+	
 }

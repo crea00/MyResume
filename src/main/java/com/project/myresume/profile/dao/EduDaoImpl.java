@@ -41,8 +41,16 @@ public class EduDaoImpl implements EduDao{
 	}
 
 	@Override
+	public List<String> search(String keyword) {
+		
+		return session.selectList("edu.search",keyword);
+
+	}
+
+	@Override
 	public void deleteAll(String id) {
-		session.selectOne("edu.deleteAll",id);
+		session.delete("edu.deleteAll",id);
+		
 	}
 
 }

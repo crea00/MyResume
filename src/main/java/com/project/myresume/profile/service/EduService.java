@@ -15,7 +15,10 @@ public interface EduService {
 	public List<EduDto> getList(HttpServletRequest request);
 	public List<EduDto> resumeList(String id);
 	public ModelAndView getData(int num);
+
 	
 	
 	public void deleteAll(String id);
-}	
+
+	public List<String> search(String keyword);
+}

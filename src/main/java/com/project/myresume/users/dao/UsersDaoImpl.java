@@ -65,6 +65,12 @@ public class UsersDaoImpl implements UsersDao {
 		session.update("users.update",dto);
 		
 	}
+	
+	@Override
+	public List<String> search(String keyword) {
+		
+		return session.selectList("users.search", keyword);
+	}
 
 	@Override
 	public void increaseViewCount(String id) {
