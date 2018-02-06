@@ -16,6 +16,6 @@ public interface SkillsService {
 	public List<SkillsDto> getList(HttpServletRequest request);// 목록 리턴(select)
 	public List<SkillsDto> resumeList(String id);// 목록 리턴(select)
 	public ModelAndView getData(int num);//하나의 정보 리턴
-	
+	public List<String> search(String keyword);
 	
 }

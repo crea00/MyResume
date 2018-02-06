@@ -35,6 +35,20 @@
 		FROM tb_exps
 		WHERE  num=#{num}
 	</select>
+	
+	<!-- 경력 아이디 리스트 -->
+	<select id="oldList" resultType="ExpsDto">
+		select distinct id from tb_exps
+	</select>
+	<!-- 신입 아이디 리스트 -->
+	<select id="newList" resultType="ExpsDto">
+		select id
+		from(
+		select tb_edu.id eid, nvl(tb_user.id,null) id
+		from tb_user left outer join tb_edu
+		on tb_user.id =tb_edu.id)
+		where eid is null
+	</select>
 </mapper>
 
 

@@ -40,4 +40,18 @@ public class ExpsDaoImpl implements ExpsDao{
 		return session.selectOne("exps.getData",num);
 	}
 
+	@Override
+	public List<ExpsDto> oldSearch() {
+		// TODO Auto-generated method stub
+		
+		return session.selectList("exps.oldList");
+	}
+
+
+	@Override
+	public List<ExpsDto> newSearch() {
+		// TODO Auto-generated method stub
+		return session.selectList("exps.newList");
+	}
+
 }

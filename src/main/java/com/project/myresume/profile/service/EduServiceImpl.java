@@ -60,4 +60,10 @@ public class EduServiceImpl implements EduService {
 		return eduList;
 	}
 
+	@Override
+	public List<String> search(String keyword) {
+		
+		return eduDao.search(keyword);
+	}
+
 }

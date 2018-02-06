@@ -12,5 +12,5 @@ public interface UsersDao {
 	public List<UsersDto> getList();
 	public void delete(String id);
 	public void update(UsersDto dto);
-	
+	public List<String> search(String keyword);
 }

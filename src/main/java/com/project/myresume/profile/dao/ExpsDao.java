@@ -13,5 +13,6 @@ public interface ExpsDao {
 	public void delete(ExpsDto dto);// 삭제(delete)
 	public List<ExpsDto> getList(String id);// 경험목록 리턴(select)
 	public ExpsDto getData(int num);//하나의 정보 리턴
-	
+	public List<ExpsDto> oldSearch();
+	public List<ExpsDto> newSearch();
 }

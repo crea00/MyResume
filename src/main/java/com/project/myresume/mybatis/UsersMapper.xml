@@ -47,7 +47,7 @@
 	</delete>	
 	
 	<!-- 아이디 중복 확인 -->
-	<select id="isExistId" parameterType="string" resultType="string">
+	<select id="isExistId" parameterType="string" resultSets="java.">
 		SELECT id
 		FROM TB_USER
 		WHERE id = #{id}	
@@ -58,6 +58,12 @@
 		WHERE id = #{id}
 	</update>
 	
+	<!-- 전체 검색하기 -->
+	<select id="search" parameterType="string" resultType="string">
+		select DISTINCT tb_user.id
+		from tb_user, tb_skills, tb_edu
+		where skill_nm like '%'||#{skill_nm}||'%' or major like '%'||#{major}||'%'
+	</select>	
 </mapper>
 
 

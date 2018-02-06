@@ -53,4 +53,10 @@ public class SkillsServiceImpl implements SkillsService{
 		return skillsList;
 	}
 
+	@Override
+	public List<String> search(String keyword) {
+		// TODO Auto-generated method stub
+		return skillDao.search(keyword);
+	}
+
 }

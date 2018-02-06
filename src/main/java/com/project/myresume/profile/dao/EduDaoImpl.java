@@ -40,4 +40,10 @@ public class EduDaoImpl implements EduDao{
 		return session.selectOne("edu.getData",num);
 	}
 
+	@Override
+	public List<String> search(String keyword) {
+		// TODO Auto-generated method stub
+		return session.selectList("edu.search",keyword);
+	}
+
 }

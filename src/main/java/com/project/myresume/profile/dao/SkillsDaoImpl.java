@@ -38,5 +38,11 @@ public class SkillsDaoImpl implements SkillsDao{
 		
 		return session.selectOne("skill.getData",num);
 	}
+
+	@Override
+	public List<String> search(String keyword) {
+		// TODO Auto-generated method stub
+		return session.selectList("skill.search",keyword);
+	}
 	
 }

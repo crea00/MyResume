@@ -1,5 +1,7 @@
 package com.project.myresume.users.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,4 +17,5 @@ public interface UsersService {
 	public ModelAndView delete(HttpSession session);
 	public ModelAndView getList();
 	public UsersDto getData(String id);
+	public List<String> search(String keyword);
 }
