@@ -111,33 +111,6 @@
 			}
 		}
 		
-		
-		// localStorage 에 저장된 아이디 비밀번호가 있으면 복구시켜준다.
-		if(localStorage.id != undefined){
-			$("#id").val(localStorage.id);
-			$("#password").val(localStorage.passward);
-			//체크박스 체크해주기
-			$("#rememberme").prop("checked", true);
-		}
-
-
-		//폼 전송 이벤트가 발생했을때 실행할 함수 등록
-		$(".form-signin").on("submit", function(){
-			//아이디 비밀번호 저장여부 
-			var isSave=$("#rememberme").is(":checked");
-			if(isSave){
-				//입력한 아이디 비밀번호를 읽어와서
-				var inputId=$("#id").val();
-				var inputPwd=$("#password").val();
-				//localStorage 에 저장한다.
-				localStorage.id=inputId;
-				localStorage.password=inputPwd;
-			}else{
-				//localStorage 에 id, pwd 삭제하기 
-				delete localStorage.id;
-				delete localStorage.password;
-			}
-		});
 	</script>
 </body>
 </html>

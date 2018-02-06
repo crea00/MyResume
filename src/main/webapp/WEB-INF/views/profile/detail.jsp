@@ -114,7 +114,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="tmp" items="${exList }">
+                                <c:forEach var="tmp" items="${expsList }">
 									<tr>
 										<td>${tmp.position }</td>
 										<td>${tmp.place }</td>
