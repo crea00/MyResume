@@ -43,7 +43,7 @@
                             <input type="hidden" name="id" value="${id}" />
                          	<input type="hidden" id="skill_nm" name="skill_nm" value="${skill_nm }" />
 	           			   
-	           			    	<div class="btn-group">
+	           			    	<div class="btn-group" style="margin-bottom: 20px;">
 	           			    		<button type="button" class="btn btn-default"><span id="skillsBtn">기술명을 입력해주세요.</span></button>
 		                       		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 		                           	 <span class="caret"></span>
