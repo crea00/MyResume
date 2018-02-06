@@ -53,74 +53,8 @@
 </head>
 
 <body id="page-top">
-    <!-- Resume -->
-    <section class="bg-light" id="resume">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">My Resume People</h2>
-            <h3 class="section-subheading text-muted">My Resume에 등록된 인재들을 찾아보세요.</h3>
-            <button>버튼</button>
-          </div>
-        </div>
-        <div class="row">
-          <c:forEach var="tmp" items="${userList}" begin="0" end="5">
-	          <div class="col-sm-4">          
-	            <div class="team-member">
-	            <c:if test="${not empty tmp.saveFileName }">	            
-	              <img class="mx-auto rounded-circle" src="${pageContext.request.contextPath}/upload/${tmp.saveFileName }" alt="">
-	            </c:if>
-	            <c:if test="${empty tmp.saveFileName }">	            
-	              <img class="mx-auto rounded-circle" src="${pageContext.request.contextPath}/resources/img/team/2.jpg" alt="">
-	            </c:if>
-	              <h4><a href="profile/resume.do?id=${tmp.id }">${tmp.name }</a></h4>
-	              <p class="text-muted">${tmp.email }</p>
-	              <p class="text-muted">${tmp.viewCount }</p>
-	            </div>
-	          </div>
-          </c:forEach> 
-          
-        </div>
-      </div>
-    </section>
-    
-    <!-- Services -->
-    <section id="services">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Services</h2>
-            <h3 class="section-subheading text-muted">헤드헌팅에 최적화 된, 다양한 이력서 템플릿을 이용해 자신만의 이력서 관리를 할 수 있습니다.</h3>
-          </div>
-        </div>
-        <div class="row text-center">
-          <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">간편한 이력서 관리</h4>
-            <p class="text-muted services-font">Myresume는 이력서 관리 툴을 제공합니다. 관리프로그램을 이용해 자신의 이력을 실시간으로 업데이트할 수 있으며 헤드헌터들이 언제든 열람할 수 있습니다.</p>
-          </div>
-          <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fa fa-vcard fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">편리한 헤드헌팅</h4>
-            <p class="text-muted services-font">Myresume에서는 편리한 방법으로 인재를 찾을 수 있는 서비스를 제공하려 노력하고 있으며, 헤드헌터들에게 쉽게 노출될 수 있는 서비스를 제공하고 있습니다.</p>
-          </div>
-          <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fa fa-file-text fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">다양한 이력서 템플릿</h4>
-            <p class="text-muted services-font">Myresume에서는 헤드헌터들에게 매력적인 이력서를 제시할 수 있는 방법을 항상 연구하고 고안하고 있습니다. 템플릿을 사용해 멋진 이력서를 만들어 보세요!</p>
-          </div>
-        </div>
-      </div>
-    </section>
+
+
 
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">

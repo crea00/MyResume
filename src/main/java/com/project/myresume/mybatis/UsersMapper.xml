@@ -47,11 +47,13 @@
 	</delete>	
 	
 	<!-- 아이디 중복 확인 -->
-	<select id="isExistId" parameterType="string" resultSets="java.">
+	<select id="isExistId" parameterType="string" resultType="String">
 		SELECT id
 		FROM TB_USER
 		WHERE id = #{id}	
 	</select>
+	
+	
 	<update id="update" parameterType="usersDto">
 		UPDATE TB_USER
 		SET name=#{name}, password=#{password}, phone_no=#{phone_no}, email= #{email}

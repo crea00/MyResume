@@ -55,11 +55,6 @@
                             <input type="password" class="form-control" name="password" placeholder="비밀번호" required>     	
                         </div> 	
                     </div>
-                    <div class="checkbox mb-3">
-        					<label>
-         				 		<input type="checkbox" id="isSave"> Remember me
-        					</label>
-        			</div>
                      <div class="g-recaptcha" data-sitekey="6Le780MUAAAAAAEstmgpleGJGu0uKopxAfZhNb84"></div>
                     <br/>
                     <div class="row">
