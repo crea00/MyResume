@@ -54,7 +54,7 @@
 	</select>
 	
 	
-	<update id="update" parameterType="usersDto">
+	<update id="update" parameterType="UsersDto">
 		UPDATE TB_USER
 		SET name=#{name}, password=#{password}, phone_no=#{phone_no}, email= #{email}
 		WHERE id = #{id}
