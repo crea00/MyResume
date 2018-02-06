@@ -41,7 +41,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디" autofocus/>                  	
+                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디(대소문자,숫자 4~20글자)" autofocus/>                  	
                         </div>
                         <span id="checkResult"></span>                            
                     </div>
@@ -144,8 +144,8 @@
     		// 입력한 아이디를 읽어와서
     		inputId = $("#id").val();
     		var str=$("#id").val();
-    		// 아이디를 검증할 정규식
-    		var reg= /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
+    		// 아이디를 검증할 정규식(한글 특수문자 제외한 대소문자,숫자 4~20글자로 구성해야합니다. )
+    		var reg= /^[A-Za-z0-9]{3,19}$/;
     		// 정규식으로 아이디 검증
     		var isOk = reg.test(inputId);
  
@@ -155,7 +155,7 @@
     			method : "GET", 
     			data : {"inputId" : inputId},
     			success : function(data){
-    				if(data.canUse && inputId!=""){
+    				if(data.canUse && inputId!="" && isOk){
     					$("#checkResult").text("사용가능한 아이디입니다.").css("color","green").css("font-size", "12px");	
 
     					idValid = true;
