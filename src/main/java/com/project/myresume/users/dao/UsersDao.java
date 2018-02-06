@@ -15,6 +15,9 @@ public interface UsersDao {
 
 	public void increaseViewCount(String id);
 	
-
+	
 	public List<String> search(String keyword);
+	
+	public boolean canUseEmail(String email);
+	
 }

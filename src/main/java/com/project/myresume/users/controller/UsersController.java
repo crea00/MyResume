@@ -150,6 +150,19 @@ public class UsersController {
 		map.put("canUse", canUse);
 		return map;
 	}
+	
+	// email 중복 확인 요청 처리
+	@RequestMapping("/users/checkemail")
+	@ResponseBody
+	public Map<String, Object> checkemail(@RequestParam String inputEmail) {
+		// service를 이용해서 사용가능여부를 boolean type으로 리턴받기
+		boolean canUse = usersService.canUseEmail(inputEmail);
+		System.out.println("canUse는" + canUse);
+		// Map에 담고 리턴
+		Map<String, Object> map = new HashMap<>();
+		map.put("canUse", canUse);
+		return map;
+	}
 
 	// 회원정보 수정페이지 이동
 	@RequestMapping("/users/updateform")

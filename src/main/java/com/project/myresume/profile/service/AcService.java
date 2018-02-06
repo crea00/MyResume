@@ -9,6 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.project.myresume.profile.dto.AcDto;
 
 public interface AcService {
+	/* ac 
+	 * 
+	 */
 	public void insert(AcDto dto);
 	public void delete(AcDto dto);
 	public void update(AcDto dto);

@@ -62,7 +62,7 @@
                         <div class="form-line">
                             <input type="email" class="form-control" id="email" name="email" placeholder="이메일" required>
                         </div>
-                
+                		<span id="test"></span>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -119,6 +119,8 @@
     	// 입력한 아이디가 유효한지 여부
     	var idValid = false;
 		var inputId = null;
+		var emValid= false;
+		var inputEmail=null;
 		
 		$("#password2").on("keyup", function(){
 			
@@ -138,6 +140,32 @@
 				$("#checkResult2").text("");
 			}
 			
+		});
+		
+		// email
+		$("#email").on("keyup",function(){
+			inputEmail = $("#email").val();
+			var RegEmail= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;   
+			var isOk2 = RegEmail.test(inputEmail);
+			$.ajax({
+				url:"checkemail.do",
+				method:"GET",
+				data:{"inputEmail": inputEmail},
+				success:function(data){
+					if(data.canUse && inputEmail!="" && isOk2){
+						$("#test").text("사용가능한 email").css("color","green");
+						emValid=true;
+						console.log(emValid);
+					}else if(data.canUse && !isOk2){
+						$("#test").text("다시 email").css("color","blue");
+						emValid = false;
+					}else {
+    					$("#test").text("이미 사용한 email 입니다.").css("color","red");
+    					emValid = false;
+    					console.log(emValid);
+    				}
+				}
+			})
 		});
     	
     	$("#id").on("keyup", function(){

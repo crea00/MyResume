@@ -138,4 +138,10 @@ public class UsersServiceImpl implements UsersService {
 		return usersDao.search(keyword);
 	}
 
+	@Override
+	public boolean canUseEmail(String email) {
+		boolean canUseEmail=usersDao.canUseEmail(email);
+		return canUseEmail;
+	}
+
 }

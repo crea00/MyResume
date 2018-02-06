@@ -192,6 +192,7 @@
 								<a href="profile/resume.do?id=${tmp.id }">${tmp.name }</a>
 							</h4>
 							<p class="text-muted">${tmp.email }</p>
+							<p class="text-muted">${tmp.viewCount }</p>
 						</div>
 					</div>
 				</c:forEach>

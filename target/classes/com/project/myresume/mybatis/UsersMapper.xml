@@ -53,6 +53,13 @@
 		WHERE id = #{id}	
 	</select>
 	
+	<!-- eamil 중복 확인 -->
+	<select id="isExistEmail" parameterType="string" resultType="string">
+		SELECT email
+		FROM TB_USER
+		WHERE email = #{email}	
+	</select>
+	
 	
 	<update id="update" parameterType="UsersDto">
 		UPDATE TB_USER

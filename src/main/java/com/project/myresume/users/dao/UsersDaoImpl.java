@@ -77,7 +77,23 @@ public class UsersDaoImpl implements UsersDao {
 		session.update("users.addCount",id);
 		
 	}
-	
-	
 
+	@Override
+	public boolean canUseEmail(String email) {
+		// email 존재하는지 select
+		String results = session.selectOne("users.isExistEmail", email);
+		
+		if(results == null){
+			System.out.println("result는 true?" + results);
+			// email 존재하지 않으면 사용가능
+			return true;
+
+		} else {
+			// eamil 존재하면 사용불가
+			System.out.println("result는 false?" + results);
+			return false;
+			
+		}
+	}
+		
 }
