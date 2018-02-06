@@ -39,14 +39,27 @@
                         </div>
                         <div class="body">
                             <form action="skillsUpdate.do" id="form_advanced_validation" method="POST" novalidate>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                    	<input type="hidden" name="id" value="${dto.id}" />
-                                    	<input type="hidden" name="num" value="${dto.num }" />
-                                        <input value="${dto.skill_nm }" placeholder="기술명" type="text" class="form-control" name="skill_nm" maxlength="10" minlength="3" required>
-                                    </div>
-                                    <div class="help-info">* 필수 작성</div>
-                                </div>
+                            	<input type="hidden" name="id" value="${dto.id}" />
+                           	    <input type="hidden" name="num" value="${dto.num }" />
+                            	<input type="hidden" name="skill_nm" id="skill_nm" />
+                                <div class="btn-group" style="margin-bottom: 20px;">
+	           			    		<button type="button" class="btn btn-default"><span id="skillsBtn">${dto.skill_nm }</span></button>
+		                       		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		                           	 <span class="caret"></span>
+	                           		</button>
+	                          		<ul class="dropdown-menu" role="menu" style="top : 65px"> 
+	                      				<li><a href="javascript:set('java')">java</a></li>
+	                      				<li><a href="javascript:set('JSP')">JSP</a></li>
+	                      				<li><a href="javascript:set('Spring')">Spring</a></li>
+	                          			<li><a href="javascript:set('javascript')">javascript</a></li>
+	                          			<li><a href="javascript:set('nodeJS')">nodeJS</a></li>
+	                          			<li><a href="javascript:set('Python')">Python</a></li>
+		                          		<li><a href="javascript:set('C')">C</a></li>
+	                      		    </ul>
+	                       		</div>
+                             
+                                    
+                                 
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                     	<input value="${dto.skill_exp }" placeholder="기술 설명" type="text" class="form-control" name="skill_exp" maxlength="500" minlength="3" required>
@@ -65,6 +78,31 @@
     </section>
     <script>
 		$("#form_advanced_validation").validate();
+		
+		set("${skill_nm}");
+	    
+	    function set(skill_nm){
+	    	if(skill_nm == "java"){
+	    		$("#skillsBtn").text("java");
+	    	} else if(skill_nm == "JSP"){
+	    		$("#skillsBtn").text("JSP")
+	    	} else if(skill_nm == "Spring"){
+	    		$("#skillsBtn").text("Spring")
+	    	} else if(skill_nm == "javascript"){
+	    		//console.log("javascript");
+	    		$("#skillsBtn").text("javascript");
+	    	} else if(skill_nm == "nodeJS"){
+	    		$("#skillsBtn").text("nodeJS");
+	    	} else if(skill_nm == "Python") {
+	    		$("#skillsBtn").text("Python");
+	    	} else if(skill_nm == "C") {
+	    		$("#skilllsBtn").text("C");
+	    	}
+	    	
+	    	$("#skill_nm").val(skill_nm);
+
+	    }
+
     </script>
 
 </body>
