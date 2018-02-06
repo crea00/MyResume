@@ -7,6 +7,12 @@
 		WHERE num = #{num} AND id = #{id}
 	</delete>
 	
+	<!-- DB 삭제 -->
+	<delete id="deleteAll" parameterType="String">
+		DELETE FROM tb_ac
+		WHERE id = #{id}
+	</delete>
+	
 	<!-- 수정 -->
 	<update id="update" parameterType="acDto">
 		UPDATE tb_ac

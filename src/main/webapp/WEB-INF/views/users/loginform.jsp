@@ -30,7 +30,7 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">My<b>Resume</b></a>
+            <a href="${pagecontext.request.contextPath }/myresume/">My<b>Resume</b></a>
             <small>Customized Individual Resume Platform</small>
         </div>
         <div class="card">
@@ -43,6 +43,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
+                        	<input type="hidden" name="url" value="${url }" />
                             <input type="text" class="form-control" name="id" placeholder="회원 아이디" required autofocus>
                         </div>
                     </div>
@@ -52,21 +53,27 @@
                         </span>
                         <div class="form-line">
                             <input type="password" class="form-control" name="password" placeholder="비밀번호" required>     	
-                        </div> 
-                        <div class="">
-                        	 <c:if test="${not empty loginFail }">
-                            	<p><strong>${loginFail }</strong></p>
-                            </c:if> 
-                        </div>
+                        </div> 	
                     </div>
+                    <div class="checkbox mb-3">
+        					<label>
+         				 		<input type="checkbox" id="isSave"> Remember me
+        					</label>
+        			</div>
                      <div class="g-recaptcha" data-sitekey="6Le780MUAAAAAAEstmgpleGJGu0uKopxAfZhNb84"></div>
                     <br/>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
+                                             
+                        	 <c:if test="${not empty msg }">
+                            	<p><strong style="color:red">${msg }</strong></p>
+                            </c:if> 
+                     
                         </div>
                         <div class="col-xs-4">
                             <button class="btn btn-block bg-pink waves-effect" type="submit">로그인</button>
                         </div>
+                            <a class="btn btn-block bg-green bg-lg waves-effect" href="naverlogin.do" type="button"> 네이버계정으로 로그인</a>
                     </div>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-12 text-center">

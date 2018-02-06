@@ -47,4 +47,15 @@ public class IntsServiceImpl implements IntsService{
 		return mView;
 	}
 
+	@Override
+	public List<IntsDto> resumeList(String id) {
+		List<IntsDto> intsList=intsDao.getList(id);
+		return intsList;
+	}
+
+	@Override
+	public void deleteAll(String id) {
+		intsDao.deleteAll(id);
+	}
+
 }

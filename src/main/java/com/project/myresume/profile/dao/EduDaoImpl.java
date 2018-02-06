@@ -40,4 +40,9 @@ public class EduDaoImpl implements EduDao{
 		return session.selectOne("edu.getData",num);
 	}
 
+	@Override
+	public void deleteAll(String id) {
+		session.selectOne("edu.deleteAll",id);
+	}
+
 }

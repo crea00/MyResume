@@ -1,20 +1,33 @@
 package com.project.myresume.users.controller;
 
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.project.myresume.profile.dto.SkillsDto;
+import com.project.myresume.profile.service.AcService;
+import com.project.myresume.profile.service.EduService;
+import com.project.myresume.profile.service.ExpsService;
+import com.project.myresume.profile.service.IntsService;
+import com.project.myresume.profile.service.SkillsService;
 import com.project.myresume.users.dto.UsersDto;
 import com.project.myresume.users.service.UsersService;
 
@@ -23,6 +36,21 @@ public class UsersController {
 
 	@Autowired
 	private UsersService usersService;
+
+	@Autowired
+	private SkillsService skillService;
+	
+	@Autowired
+	private EduService eduService;
+	
+	@Autowired
+	private ExpsService expsService;
+	
+	@Autowired
+	private AcService acService;
+	
+	@Autowired
+	private IntsService intsService;
 	
 	// 로그인 폼 요청처리
 	@RequestMapping("/users/loginform")
@@ -30,7 +58,7 @@ public class UsersController {
 		// url이라는 파라미터로 전달된 문자열 읽어오기
 		String url = request.getParameter("url");
 		System.out.println(url);
-		if(url == null){
+		if (url == null) {
 			// url이 null이면 root 요청
 			url = request.getContextPath() + "/";
 		}
@@ -40,49 +68,54 @@ public class UsersController {
 		mv.setViewName("users/loginform");
 		return mv;
 	}
-	
+
 	// 로그인 요청처리
 	@RequestMapping("/users/login")
-	public ModelAndView login(@ModelAttribute UsersDto dto, HttpServletRequest request){
+	public ModelAndView login(@ModelAttribute UsersDto dto, HttpServletRequest request, HttpSession session){
 		ModelAndView mv = usersService.login(dto, request);
-		System.out.println("이름이 뭘까요" + dto.getId());
-		mv.setViewName("redirect:/");
+		mv.setViewName("users/login_result");	
 		return mv;		
+
 	}
 	
 	// 로그아웃 요청 처리
-	@RequestMapping("users/logout")
+	@RequestMapping("/users/logout")
 	public ModelAndView logout(HttpSession session, ModelAndView mv){
 		String id = (String)session.getAttribute("id");
 		// 세션초기화
 		session.invalidate();
-		mv.addObject("msg", id+" 님 로그 아웃 되었습니다.");
-		mv.setViewName("redirect:/");
+		
+		mv.addObject("msg", id + "님 로그아웃되었습니다.");
+		mv.setViewName("users/logout_result");
 		return mv;
 	}
+	
 	
 	// 회원가입 폼 요청 처리
 	@RequestMapping("/users/signup_form")
 	public String signup_form() {
+
 		return "users/signup_form";
 	}
-	
+
 	// 회원가입 요청 처리
 	@RequestMapping("/users/signup")
-	public ModelAndView signup(@ModelAttribute UsersDto dto){
+	public ModelAndView signup(@ModelAttribute UsersDto dto) {
 		// 전달되는 인자에 회원가입 정보가 들어있다.
 		ModelAndView mv = usersService.signup(dto);
 		// 홈으로 이동
-		mv.setViewName("redirect:/");
+		mv.setViewName("users/signup_result");
 		return mv;
 	}
-	
+
 	
 	// 회원정보 갖고오기
 	@RequestMapping("/users/info")
 	public ModelAndView getData(HttpServletRequest request) {
 		String id=(String)request.getSession().getAttribute("id");
-		ModelAndView mView=usersService.getData(id);
+		ModelAndView mView= new ModelAndView();
+		UsersDto dto =usersService.getData(id);
+		mView.addObject("myDto", dto);
 		mView.setViewName("users/info");
 		return mView;
 		
@@ -90,18 +123,24 @@ public class UsersController {
 
 	// 회원탈퇴
 	@RequestMapping("/users/delete")
-	public ModelAndView authDelete(HttpServletRequest request){
+	public ModelAndView authDelete(HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		String id=(String)session.getAttribute("id");
+		skillService.deleteAll(id);
+		eduService.deleteAll(id);
+		expsService.deleteAll(id);
+		acService.deleteAll(id);
+		intsService.deleteAll(id);
 		// service를 이용해서 탈퇴처리
 		ModelAndView mv = usersService.delete(session);
-		mv.setViewName("redirect:/");
+		mv.setViewName("users/delete_result");
 		return mv;
 	}
-	
+
 	// 아이디 중복 확인 요청 처리
-	@RequestMapping("users/checkid")
+	@RequestMapping("/users/checkid")
 	@ResponseBody
-	public Map<String, Object> checkid(@RequestParam String inputId){
+	public Map<String, Object> checkid(@RequestParam String inputId) {
 		// service를 이용해서 사용가능여부를 boolean type으로 리턴받기
 		boolean canUse = usersService.canUseId(inputId);
 		System.out.println("canUse는" + canUse);
@@ -110,13 +149,12 @@ public class UsersController {
 		map.put("canUse", canUse);
 		return map;
 	}
-	
+
 	// 회원정보 수정페이지 이동
-	@RequestMapping("users/updateform")
+	@RequestMapping("/users/updateform")
 	public ModelAndView authUpdateForm(HttpServletRequest request){
 		HttpSession session = request.getSession();
-		// 세션에 저장된 아이디를 불러와서
-		String id = (String)session.getAttribute("id");
+		
 		//  service객체를 이용해서 사용자 정보가 담긴 ModelAndView객체 얻어오기
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("users/updateform");
@@ -124,13 +162,13 @@ public class UsersController {
 	}
 	
 	// 회원정보 수정
-	@RequestMapping("users/udpate")
-	public ModelAndView authUpdate(@ModelAttribute UsersDto dto, HttpServletRequest request){
+	@RequestMapping("users/update")
+	public String authUpdate(@ModelAttribute UsersDto dto, HttpServletRequest request){
+
 		// service객체를 이용해서 수정
 		usersService.update(dto);
-		// 개인정보 보기로 redirect이동
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/users/list");
-		return mv;
+		return "redirect:/profile/detail.do";
+		
 	}
+
 }

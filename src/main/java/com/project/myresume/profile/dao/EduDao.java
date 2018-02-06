@@ -12,4 +12,6 @@ public interface EduDao {
 	public void delete(EduDto dto); // 삭제
 	public List<EduDto> getList(String id); // 목록
 	public EduDto getData(int num); // 하나의 정보 리턴
+	
+	public void deleteAll(String id);
 }

@@ -10,12 +10,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.myresume.profile.dao.AcDao;
 import com.project.myresume.profile.dto.AcDto;
+import com.project.myresume.users.dao.UsersDao;
+import com.project.myresume.users.service.UsersService;
 
 @Service
 public class AcServiceImpl implements AcService{
 	
 	@Autowired
 	private AcDao acDao;
+	private UsersDao usDao;
 	
 	@Override
 	public void insert(AcDto dto) {
@@ -45,6 +48,17 @@ public class AcServiceImpl implements AcService{
 		ModelAndView mView=new ModelAndView();
 		mView.addObject("dto", dto);
 		return mView;
+	}
+
+	@Override
+	public List<AcDto> resumeList(String id) {
+		List<AcDto> acList=acDao.getList(id);
+		return acList;
+	}
+
+	@Override
+	public void deleteAll(String id) {
+		acDao.deleteAll(id);
 	}
 
 }

@@ -14,4 +14,5 @@ public interface ExpsDao {
 	public List<ExpsDto> getList(String id);// 경험목록 리턴(select)
 	public ExpsDto getData(int num);//하나의 정보 리턴
 	
+	public void deleteAll(String id);
 }

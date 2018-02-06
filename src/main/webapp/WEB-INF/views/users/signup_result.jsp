@@ -8,7 +8,9 @@
 <title>views/users/signup_result.jsp</title>
 </head>
 <body>
-<p><strong>${id }</strong>님 회원가입</p>
-<a href="${pageContext.request.contextPath }/">인덱스로가기</a>
+<script>
+	alert("${msg}");
+	location.href = "${pageContext.request.contextPath}/";
+</script>
 </body>
 </html>

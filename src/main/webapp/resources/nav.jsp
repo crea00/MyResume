@@ -271,7 +271,7 @@
                             <li role="seperator" class="divider"></li> -->
                             <li><a href="javascript:logoutConfirm()">Logout</a></li>
                             <li><a href="${pageContext.request.contextPath }/users/updateform.do">회원정보수정</a></li>
-                            <li><a href="javascript:deleteConfirm()">회원탈퇴</a></li>
+                            <li><a href="javascript:delConfirm()">회원탈퇴</a></li>
                         </ul>
                     </div>
                 </div>
@@ -776,17 +776,17 @@
     
     <script>
    		// 회원탈퇴 여부 확인
-    	function deleteConfirm(){
+    	function delConfirm(){
     		var isDelete = confirm("정말로 탈퇴하시겠습니까?");
     		if(isDelete){
-    			location.href = "delete.do";
+    			location.href = "../users/delete.do";
     		}
     	}
     	// 로그아웃 여부 확인
     	function logoutConfirm(){
     		var isLogout = confirm("로그아웃하시겠습니까?");
     		if(isLogout){
-    			location.href = "logout.do";
+    			location.href = "../users/logout.do";
     		}
     	}
     </script>

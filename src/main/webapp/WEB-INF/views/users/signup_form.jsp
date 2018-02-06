@@ -29,7 +29,7 @@
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
-           <a href="javascript:void(0);">My<b>Resume</b></a>
+           <a href="${pageContext.request.contextPath }/">My<b>Resume</b></a>
            <small>Customized Individual Resume Platform</small>
         </div>
         <div class="card">
@@ -41,7 +41,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required autofocus/>                  	
+                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디" autofocus/>                  	
                         </div>
                         <span id="checkResult"></span>                            
                     </div>
@@ -62,14 +62,14 @@
                         <div class="form-line">
                             <input type="email" class="form-control" id="email" name="email" placeholder="이메일" required>
                         </div>
-                        <span id="checkResult2"></span>  
+                
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">phone</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="phone_no" placeholder="전화번호" required>
+                            <input type="text" class="form-control" name="phone_no" placeholder="전화번호" digits="10" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -77,18 +77,23 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" minlength="6" placeholder="비밀번호" required>
+                            <input type="password" class="form-control" name="password" id="password" minlength="6" placeholder="비밀번호" required>
                         </div>
                     </div>
-                    <input type="hidden" class="form-control" name="is_admin" value="N" required>
-                    <div class="form-group">
-                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
-                        <label for="terms"><a href="javascript:void(0);">회원가입 약관 동의</a></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" id="password2" minlength="6" placeholder="비밀번호 확인" required>
+                        </div>
+                        <span id="checkResult2"></span> 
                     </div>
-
+                    <input type="hidden" class="form-control" name="is_admin" value="N" required>
+   					<br />
                     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">회원가입</button>
-
                 </form>
+					
             </div>
         </div>
     </div>
@@ -102,7 +107,7 @@
     <script src="${pageContext.request.contextPath }/resources/plugins/node-waves/waves.js"></script>
 
     <!-- Validation Plugin Js -->
-    <script src="${pageContext.request.contextPath }/resources/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/plugins/jquery-validation/jquery.validate.js?ver=5545"></script>
 
     <!-- Custom Js -->
     <script src="${pageContext.request.contextPath }/resources/js/admin.js"></script>
@@ -114,6 +119,26 @@
     	// 입력한 아이디가 유효한지 여부
     	var idValid = false;
 		var inputId = null;
+		
+		$("#password2").on("keyup", function(){
+			
+			if($("#password2").val()!=$("#password").val()){
+				$("#checkResult2").text("비밀번호가 일치하지 않습니다.").css("color","red").css("font-size", "12px");
+			}else{
+				$("#checkResult2").text("");
+			}
+			
+		});
+		
+		$("#password").on("keyup", function(){
+			
+			if($("#password2").val()!=$("#password").val()){
+				$("#checkResult2").text("비밀번호가 일치하지 않습니다.").css("color","red").css("font-size", "12px");
+			}else{
+				$("#checkResult2").text("");
+			}
+			
+		});
     	
     	$("#id").on("keyup", function(){
     		// 입력한 아이디를 읽어와서
@@ -130,12 +155,13 @@
     			method : "GET", 
     			data : {"inputId" : inputId},
     			success : function(data){
-    				if(data.canUse && (inputId !="" && isOk) ){
-    					$("#checkResult").text("사용가능한 아이디입니다.").css("color","green");	
+    				if(data.canUse && inputId!=""){
+    					$("#checkResult").text("사용가능한 아이디입니다.").css("color","green").css("font-size", "12px");	
+
     					idValid = true;
     					console.log(idValid);
     				} else {
-    					$("#checkResult").text("사용이 불가능한 아이디입니다.").css("color","red");
+    					$("#checkResult").text("아이디를 확인해주세요.").css("color","red").css("font-size", "12px");
     					idValid = false;
     					console.log(idValid);
     				}
@@ -144,30 +170,7 @@
     	});
 	});
     
-   	// email 형식에 맞는지 여부
-	$("#email").keyup(function(){
-		var email = $("#email").val();
-		var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
-		var isOk2 = regEmail.test(email);
-		
-		if(isOk2){
-			$("#checkResult2").text("사용가능").css("color","green");
-		}else{
-			$("#checkResult2").text("사용불가").css("color","red");
-			return false;
-		}
-	});
-    
-	//폼 전송 이벤트가 발생했을때
-	$("#myForm").submit(function(){
-		if(idValid==false){
-			alert("아이디 중복 확인을 하세요.");
-			$("#id").val("").focus();
-			return false; //폼 전송 막기 
-		}
-	});
-	
     </script>
 </body>
 </html>

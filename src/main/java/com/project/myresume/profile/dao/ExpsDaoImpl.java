@@ -40,4 +40,9 @@ public class ExpsDaoImpl implements ExpsDao{
 		return session.selectOne("exps.getData",num);
 	}
 
+	@Override
+	public void deleteAll(String id) {
+		session.selectOne("exps.deleteAll",id);
+	}
+
 }

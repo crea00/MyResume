@@ -25,6 +25,7 @@ import com.project.myresume.profile.service.EduService;
 import com.project.myresume.profile.service.ExpsService;
 import com.project.myresume.profile.service.IntsService;
 import com.project.myresume.profile.service.SkillsService;
+import com.project.myresume.users.dto.UsersDto;
 import com.project.myresume.users.service.UsersService;
 
 @Controller
@@ -80,16 +81,19 @@ public class ProfileController {
 	// profile 목록 보여주기
 	@RequestMapping("/profile/detail")
 	public ModelAndView getList(HttpServletRequest request) {
-
+		String id=(String)request.getSession().getAttribute("id");
+		usersService.increaseViewCount(id);
 		ModelAndView mView = new ModelAndView();
 		List<AcDto> acList = acService.getList(request);
 		List<EduDto> eduList = eduService.getList(request);
 		List<ExpsDto> exList = exService.getList(request);
 		List<IntsDto> intsList = intsService.getList(request);
 		List<SkillsDto> skillsList = skillService.getList(request);
+		UsersDto mydto =usersService.getData(id);
+		mView.addObject("myDto",mydto);
 		mView.addObject("acList", acList);
 		mView.addObject("eduList", eduList);
-		mView.addObject("exList", exList);
+		mView.addObject("expsList", exList);
 		mView.addObject("intsList",intsList);
 		mView.addObject("skillsList",skillsList);
 		mView.setViewName("profile/detail");
@@ -99,11 +103,25 @@ public class ProfileController {
 	// 회원 이력서 출력 페이지 
 	@RequestMapping("/profile/resume")
 	public ModelAndView resume(HttpServletRequest request, @RequestParam String id) {
-		ModelAndView mv = usersService.getData(id);
+		ModelAndView mv = new ModelAndView();
+		// usersService.increaseViewCount(id); 보류
+		UsersDto resumeDto = usersService.getData(id);
+		List<AcDto> acList = acService.resumeList(id);
+		List<EduDto> eduList = eduService.resumeList(id);
+		List<ExpsDto> exList = exService.resumeList(id);
+		List<IntsDto> intsList = intsService.resumeList(id);
+		List<SkillsDto> skillsList = skillService.resumeList(id);
+		mv.addObject("resumeDto", resumeDto);
+		mv.addObject("acList", acList);
+		mv.addObject("eduList", eduList);		
+		mv.addObject("exList", exList);		
+		mv.addObject("intsList", intsList);		
+		mv.addObject("skillsList", skillsList);		
 		mv.setViewName("profile/resume");
 
 		return mv;
 	}
+	
 
 	// edu 한개의정보 갖고오기
 	@RequestMapping("/profile/eduUpdateForm")

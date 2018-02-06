@@ -53,4 +53,16 @@ public class EduServiceImpl implements EduService {
 		return mvView;
 	}
 
+	@Override
+	public List<EduDto> resumeList(String id) {
+		List<EduDto> eduList= eduDao.getList(id); 
+		
+		return eduList;
+	}
+
+	@Override
+	public void deleteAll(String id) {
+		eduDao.deleteAll(id);
+	}
+
 }

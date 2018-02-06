@@ -4,23 +4,23 @@
 	<!-- 회원 가입 -->
 	<insert id="insert" parameterType="UsersDto">
 		INSERT INTO TB_USER
-		(name, id, password, is_admin, phone_no, regdate, email)
-		VALUES(#{name}, #{id}, #{password}, #{is_admin}, #{phone_no}, SYSDATE, #{email})
+		(name, id, password, is_admin, phone_no, regdate, email,viewCount)
+		VALUES(#{name}, #{id}, #{password}, #{is_admin}, #{phone_no}, SYSDATE, #{email},#{viewCount})
 	</insert>
 	
 	<!-- 목록 -->
-	<select id="getList" resultType="UsersDto">
-		SELECT name, a.id, password, phone_no, regdate, email, orgFileName, saveFileName, fileSize
+	<select id="getList" resultType="UsersDto" >
+		SELECT name, a.id, password, phone_no, regdate, email, orgFileName, saveFileName, fileSize,viewCount
 		FROM TB_USER a
 		LEFT OUTER JOIN TB_FILE b
 		ON a.id=b.id
-		
 		WHERE 1=1 
 		<if test="is_admin eq 'N'.toString()">
 	      AND a.id = #{id}
 	      
 	    </if>
-	     AND is_admin='N'
+	     AND is_admin='N'  
+	     ORDER BY viewCount DESC
 	</select>
 	
 	<!-- 로그인 -->
@@ -33,7 +33,7 @@
 	
 	<!-- 한명의 정보 리턴 -->
 	<select id="getData" parameterType="string" resultType="UsersDto">
-		SELECT name,a.id,password,phone_no, is_admin, regdate,email, saveFileName
+		SELECT name,a.id,password,phone_no, is_admin, regdate,email, saveFileName,viewCount
 		FROM TB_USER a
 		LEFT OUTER JOIN TB_FILE b
 		ON a.id=b.id
@@ -52,6 +52,18 @@
 		FROM TB_USER
 		WHERE id = #{id}	
 	</select>
+	<update id="update" parameterType="usersDto">
+		UPDATE TB_USER
+		SET name=#{name}, password=#{password}, phone_no=#{phone_no}, email= #{email}
+		WHERE id = #{id}
+	</update>
+	
+	<!--  count 늘리기 -->
+	<update id="addCount" parameterType="String">
+		UPDATE  TB_USER
+		SET viewCount=viewCount+1
+		WHERE id=#{id}
+	</update>
 </mapper>
 
 

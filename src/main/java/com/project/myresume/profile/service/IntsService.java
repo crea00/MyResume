@@ -14,7 +14,8 @@ public interface IntsService {
 	public void update(IntsDto dto);// 수정(update)
 	public void delete(IntsDto dto);// 삭제(delete)
 	public List<IntsDto> getList(HttpServletRequest request);// 목록 리턴(select)
+	public List<IntsDto> resumeList(String id);// 목록 리턴(select)
 	public ModelAndView getData(int num);//하나의 정보 리턴
 	
-	
+	public void deleteAll(String id);
 }

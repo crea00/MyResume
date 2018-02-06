@@ -32,6 +32,12 @@
 		(id,skill_nm,skill_exp,num)
 		VALUES(#{id}, #{skill_nm}, #{skill_exp},skills_seq.NEXTVAL)
 	</insert>
+	
+	
+	<delete id="deleteAll" parameterType="String">
+		DELETE FROM tb_skills
+		WHERE id=#{id}
+	</delete>
 </mapper>
 
 
