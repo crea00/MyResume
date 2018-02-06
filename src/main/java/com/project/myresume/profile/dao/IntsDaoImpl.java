@@ -39,4 +39,9 @@ public class IntsDaoImpl implements IntsDao {
 	
 		return session.selectOne("ints.getData",num);
 	}
+
+	@Override
+	public void deleteAll(String id) {
+		session.selectOne("ints.deleteAll",id);
+	}
 }

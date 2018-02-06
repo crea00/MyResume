@@ -1,5 +1,6 @@
 package com.project.myresume.profile.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,6 +54,32 @@ public class ExpsServiceImpl implements ExpsService{
 		List<ExpsDto> exList=exDao.getList(id);
 		
 		return exList;
+	}
+
+	@Override
+	public void deleteAll(String id) {
+		exDao.deleteAll(id);
+	}
+	
+	@Override
+	public List<String> oldSearch() {
+		List<ExpsDto> list = exDao.oldSearch();
+		List<String> oldList = new ArrayList<>();
+		for(ExpsDto dto : list) {
+			oldList.add(dto.getId());
+		}
+		return oldList;
+	}
+
+
+	@Override
+	public List<String> newSearch() {
+		List<ExpsDto> list = exDao.newSearch();
+		List<String> newList = new ArrayList<>();
+		for(ExpsDto dto : list) {
+			newList.add(dto.getId());
+		}
+		return newList;
 	}
 
 }

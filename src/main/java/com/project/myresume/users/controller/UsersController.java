@@ -1,7 +1,13 @@
 package com.project.myresume.users.controller;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+
+
+import java.util.Iterator;
+
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +27,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+
+import com.project.myresume.profile.dto.SkillsDto;
+import com.project.myresume.profile.service.AcService;
+import com.project.myresume.profile.service.EduService;
+import com.project.myresume.profile.service.ExpsService;
+import com.project.myresume.profile.service.IntsService;
+
+import com.project.myresume.profile.service.SkillsService;
 import com.project.myresume.users.dto.UsersDto;
 import com.project.myresume.users.service.UsersService;
 
@@ -29,7 +43,26 @@ public class UsersController {
 
 	@Autowired
 	private UsersService usersService;
+	
+	@Autowired
+	private ExpsService expsService;
 
+	@Autowired
+	private SkillsService skillService;
+	
+	@Autowired
+	private EduService eduService;
+	
+	@Autowired
+	private AcService acService;
+	
+	@Autowired
+	private IntsService intsService;
+	
+	private EduService edusService;
+	
+	@Autowired
+	private SkillsService skillsService;
 
 	// 로그인 폼 요청처리
 	@RequestMapping("/users/loginform")
@@ -104,6 +137,12 @@ public class UsersController {
 	@RequestMapping("/users/delete")
 	public ModelAndView authDelete(HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		String id=(String)session.getAttribute("id");
+		skillService.deleteAll(id);
+		eduService.deleteAll(id);
+		expsService.deleteAll(id);
+		acService.deleteAll(id);
+		intsService.deleteAll(id);
 		// service를 이용해서 탈퇴처리
 		ModelAndView mv = usersService.delete(session);
 		mv.setViewName("users/delete_result");
@@ -141,6 +180,124 @@ public class UsersController {
 		// service객체를 이용해서 수정
 		usersService.update(dto);
 		return "redirect:/profile/detail.do";
+		
+	}
+	
+	@RequestMapping("/search")
+	public ModelAndView search(@RequestParam Map<String, String> params) {
+		ModelAndView mView = new ModelAndView();
+		List<UsersDto> searchDto = new ArrayList<>();
+		//셋중에 하나만 가능--all/skill/edu
+		String sp = params.get("search_param");
+		//무조건 존재--all/new/old
+		String exp = params.get("exp");
+		//keyword
+		String keyword = params.get("keyword");
+		List<String> oldList =expsService.oldSearch();//경력자 아이디 리스트
+		List<String> newList =expsService.newSearch();//신입 아이디 리스트
+		List<String> idList = new ArrayList<>();
+		
+		if(sp.equals("all")) {
+			idList =usersService.search(keyword);
+			if(exp.equals("all")) {
+				//전체검색
+			}else if(exp.equals("new")) {
+				//신입검색
+				for(Iterator<String> it = idList.iterator() ; it.hasNext() ; ){
+					String value = it.next();
+					for(String str : oldList) {						
+						if(value.equals(str)){
+							it.remove();
+						}
+						
+					}
+				}
+			}else if(exp.equals("old")) {
+				//경력검색
+				for(Iterator<String> it = idList.iterator(); it.hasNext() ; ){
+					String value = it.next();
+					for(String str : newList) {						
+						if(value.equals(str)){
+							it.remove();
+						}
+						
+					}
+				}
+				
+			}
+		}else if(sp.equals("skill")) {//skill에서 검색
+			idList =skillsService.search(keyword);
+			if(exp.equals("all")) {
+				//전체검색
+			}else if(exp.equals("new")) {
+				//신입검색
+				for(Iterator<String> it = idList.iterator(); it.hasNext(); ){
+					String value = it.next();
+					for(String str : oldList) {						
+						if(value.equals(str)){
+							it.remove();
+						}
+						
+					}
+				}
+			}else if(exp.equals("old")) {
+				//경력검색
+				for(Iterator<String> it = idList.iterator(); it.hasNext(); ){
+					String value = it.next();
+					for(String str : newList) {						
+						if(value.equals(str)){
+							it.remove();
+						}
+						
+					}
+				}
+				
+			}
+			
+
+		}else if(sp.equals("edu")) {//검색어가 edu단이면
+			idList =edusService.search(keyword);
+			if(exp.equals("all")) {
+				//전체검색
+			}else if(exp.equals("new")) {
+				//신입검색
+				for(Iterator<String> it = idList.iterator(); it.hasNext(); ){
+					String value = it.next();
+					for(String str : oldList) {						
+						if(value.equals(str)){
+							it.remove();
+						}
+						
+					}
+				}
+			}else if(exp.equals("old")) {
+				//경력검색
+				for(Iterator<String> it = idList.iterator(); it.hasNext(); ){
+					String value = it.next();
+					for(String str : newList) {						
+						if(value.equals(str)){
+							it.remove();
+						}
+						
+					}
+				}
+				
+			}
+			
+		}
+		
+		for(String str: idList) {//경력자 또는 신입 또는 전체 중에서
+			UsersDto dto=usersService.getData(str);
+			searchDto.add(dto);
+		}
+		mView.addObject("searchList", searchDto);
+		mView.setViewName("profile/searchList");
+		
+		//
+		System.out.println(keyword);
+		System.out.println(sp);
+		System.out.println(exp);
+		return mView;
 	}
 
 }

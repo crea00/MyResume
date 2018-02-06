@@ -8,6 +8,7 @@ public class UsersDto {
 	private String phone_no;
 	private String is_admin;
 	private String regdate;
+	private int viewCount;
 	
 	// FileDto 내용
 	private int num;				
@@ -17,8 +18,8 @@ public class UsersDto {
 	
 	public UsersDto(){	}
 
-	public UsersDto(String id, String password, String name, String email, String phone_no, String is_admin, String regdate,
-			int num, String orgFileName, String saveFileName, long fileSize) {
+	public UsersDto(String id, String password, String name, String email, String phone_no, String is_admin,
+			String regdate, int viewCount, int num, String orgFileName, String saveFileName, long fileSize) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -27,6 +28,7 @@ public class UsersDto {
 		this.phone_no = phone_no;
 		this.is_admin = is_admin;
 		this.regdate = regdate;
+		this.viewCount = viewCount;
 		this.num = num;
 		this.orgFileName = orgFileName;
 		this.saveFileName = saveFileName;
@@ -41,11 +43,11 @@ public class UsersDto {
 		this.id = id;
 	}
 
-	public String getpassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setpassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -89,6 +91,14 @@ public class UsersDto {
 		this.regdate = regdate;
 	}
 
+	public int getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+
 	public int getNum() {
 		return num;
 	}
@@ -121,5 +131,6 @@ public class UsersDto {
 		this.fileSize = fileSize;
 	}
 
+	
 	
 }

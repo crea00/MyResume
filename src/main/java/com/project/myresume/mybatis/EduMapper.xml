@@ -32,6 +32,12 @@
 		WHERE id=#{id} and  num=#{num}
 	</delete>
 	
+	<!-- edu DB삭제 -->
+	<delete id="deleteAll" parameterType="String">
+		DELETE FROM tb_edu
+		WHERE id=#{id} 
+	</delete>
+	
 	<!-- 추가 -->
 	<insert id="insert" parameterType="eduDto">
 		INSERT INTO tb_edu
@@ -39,6 +45,13 @@
 		VALUES(edu_seq.NEXTVAL, #{id}, #{place}, #{major}, #{edu_exp}, #{start_date}, #{end_date})
 	</insert>
 	
+	<!-- 교육 이름으로 검색 -->
+	<select id="search" parameterType="string" resultType="string">
+		select distinct id
+		from tb_edu
+		where major like '%'||#{major}||'%'
+	</select>
+
 
 </mapper>
 

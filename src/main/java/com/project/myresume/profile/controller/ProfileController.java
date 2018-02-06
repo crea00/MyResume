@@ -82,6 +82,7 @@ public class ProfileController {
 	@RequestMapping("/profile/detail")
 	public ModelAndView getList(HttpServletRequest request) {
 		String id=(String)request.getSession().getAttribute("id");
+		usersService.increaseViewCount(id);
 		ModelAndView mView = new ModelAndView();
 		List<AcDto> acList = acService.getList(request);
 		List<EduDto> eduList = eduService.getList(request);
@@ -103,6 +104,7 @@ public class ProfileController {
 	@RequestMapping("/profile/resume")
 	public ModelAndView resume(HttpServletRequest request, @RequestParam String id) {
 		ModelAndView mv = new ModelAndView();
+		// usersService.increaseViewCount(id); 보류
 		UsersDto resumeDto = usersService.getData(id);
 		List<AcDto> acList = acService.resumeList(id);
 		List<EduDto> eduList = eduService.resumeList(id);

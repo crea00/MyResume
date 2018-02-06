@@ -17,5 +17,5 @@ public interface IntsService {
 	public List<IntsDto> resumeList(String id);// 목록 리턴(select)
 	public ModelAndView getData(int num);//하나의 정보 리턴
 	
-	
+	public void deleteAll(String id);
 }

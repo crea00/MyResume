@@ -7,6 +7,12 @@
 		WHERE num = #{num} AND id = #{id}
 	</delete>
 	
+	<!-- DB 삭제 -->
+	<delete id="deleteAll" parameterType="String">
+		DELETE FROM tb_exps
+		WHERE  id = #{id}
+	</delete>
+	
 	<!-- 수정 -->
 	<update id="update" parameterType="ExpsDto">
 		UPDATE tb_exps
@@ -34,6 +40,20 @@
 		SELECT num, id, position, place, ex_exp, TO_CHAR(start_date, 'YYYY-MM-DD') start_date, TO_CHAR(end_date,'YYYY-MM-DD') end_date
 		FROM tb_exps
 		WHERE  num=#{num}
+	</select>
+	
+	<!-- 경력 아이디 리스트 -->
+	<select id="oldList" resultType="ExpsDto">
+		select distinct id from tb_exps
+	</select>
+	<!-- 신입 아이디 리스트 -->
+	<select id="newList" resultType="ExpsDto">
+		select id
+		from(
+		select tb_edu.id eid, nvl(tb_user.id,null) id
+		from tb_user left outer join tb_edu
+		on tb_user.id =tb_edu.id)
+		where eid is null
 	</select>
 </mapper>
 
