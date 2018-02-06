@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 	<!-- 타입의 별칭 정의하기 -->
 	<typeAliases>
-		<typeAlias type="com.project.myresume.users.dto.UsersDto" alias="usersDto"/>
+		<typeAlias type="com.project.myresume.users.dto.UsersDto" alias="UsersDto"/>
 		<typeAlias type="com.project.myresume.file.dto.FileDto" alias="fileDto"/>
 		<typeAlias type="com.project.myresume.profile.dto.EduDto" 
 				alias="EduDto"/>

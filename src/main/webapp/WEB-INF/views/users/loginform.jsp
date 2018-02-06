@@ -35,7 +35,7 @@
         </div>
         <div class="card">
             <div class="body">
-	                <form id="sign_in" action="login.do" method="POST" onsubmit="return FormSubmit();">
+	                <form class="form-signin" action="login.do" method="POST" onsubmit="return FormSubmit();">
 
                     <div class="msg">로그인 후 나의 이력서를 만들어 보세요!</div>
                     <div class="input-group">
@@ -55,11 +55,6 @@
                             <input type="password" class="form-control" name="password" placeholder="비밀번호" required>     	
                         </div> 	
                     </div>
-                    <div class="checkbox mb-3">
-        					<label>
-         				 		<input type="checkbox" id="isSave"> Remember me
-        					</label>
-        			</div>
                      <div class="g-recaptcha" data-sitekey="6Le780MUAAAAAAEstmgpleGJGu0uKopxAfZhNb84"></div>
                     <br/>
                     <div class="row">
@@ -115,6 +110,34 @@
 				return true;
 			}
 		}
+		
+		
+		// localStorage 에 저장된 아이디 비밀번호가 있으면 복구시켜준다.
+		if(localStorage.id != undefined){
+			$("#id").val(localStorage.id);
+			$("#password").val(localStorage.passward);
+			//체크박스 체크해주기
+			$("#rememberme").prop("checked", true);
+		}
+
+
+		//폼 전송 이벤트가 발생했을때 실행할 함수 등록
+		$(".form-signin").on("submit", function(){
+			//아이디 비밀번호 저장여부 
+			var isSave=$("#rememberme").is(":checked");
+			if(isSave){
+				//입력한 아이디 비밀번호를 읽어와서
+				var inputId=$("#id").val();
+				var inputPwd=$("#password").val();
+				//localStorage 에 저장한다.
+				localStorage.id=inputId;
+				localStorage.password=inputPwd;
+			}else{
+				//localStorage 에 id, pwd 삭제하기 
+				delete localStorage.id;
+				delete localStorage.password;
+			}
+		});
 	</script>
 </body>
 </html>

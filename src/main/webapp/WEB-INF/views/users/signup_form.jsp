@@ -41,7 +41,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디(대소문자,숫자 4~20글자)" autofocus/>                  	
+                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디(3~10글자)" autofocus/>                  	
                         </div>
                         <span id="checkResult"></span>                            
                     </div>
@@ -147,12 +147,12 @@
     		// 아이디를 검증할 정규식(한글 특수문자 제외한 대소문자,숫자 4~20글자로 구성해야합니다. )
     		var reg= /^[A-Za-z0-9]{3,19}$/;
     		// 정규식으로 아이디 검증
-    		var isOk = reg.test(inputId);
+    		var isOk = reg.test(inputId);	
  
     		// ajax를 이용해서 서버에 전송
     		$.ajax({
     			url : "checkid.do",
-    			method : "GET", 
+    			method : "GET",
     			data : {"inputId" : inputId},
     			success : function(data){
     				if(data.canUse && inputId!="" && isOk){
@@ -168,9 +168,7 @@
     			}
     		});
     	});
-	});
-    
-
-    </script>
+    });	
+</script>
 </body>
 </html>
