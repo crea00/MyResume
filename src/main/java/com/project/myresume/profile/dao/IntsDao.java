@@ -10,4 +10,6 @@ public interface IntsDao {
 	public void delete(IntsDto dto);// 삭제(delete)
 	public List<IntsDto> getList(String id);// 목록 리턴(select)
 	public IntsDto getData(int num);//하나의 정보 리턴
+	
+	public void deleteAll(String id);
 }

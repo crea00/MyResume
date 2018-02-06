@@ -32,6 +32,12 @@
 		WHERE id=#{id} and  num=#{num}
 	</delete>
 	
+	<!-- edu DB삭제 -->
+	<delete id="deleteAll" parameterType="String">
+		DELETE FROM tb_edu
+		WHERE id=#{id} 
+	</delete>
+	
 	<!-- 추가 -->
 	<insert id="insert" parameterType="eduDto">
 		INSERT INTO tb_edu

@@ -19,4 +19,5 @@ public interface ExpsService {
 	public List<String> oldSearch();
 	public List<String> newSearch();
 	
+	public void deleteAll(String id);
 }

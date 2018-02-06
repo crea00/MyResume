@@ -3,7 +3,10 @@ package com.project.myresume.users.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+
 import java.util.Iterator;
+
 import java.util.List;
 import java.util.Map;
 
@@ -23,9 +26,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-
+import com.project.myresume.profile.service.AcService;
 import com.project.myresume.profile.service.EduService;
 import com.project.myresume.profile.service.ExpsService;
+import com.project.myresume.profile.service.IntsService;
+
 import com.project.myresume.profile.service.SkillsService;
 import com.project.myresume.users.dto.UsersDto;
 import com.project.myresume.users.service.UsersService;
@@ -40,6 +45,17 @@ public class UsersController {
 	private ExpsService expsService;
 
 	@Autowired
+	private SkillsService skillService;
+	
+	@Autowired
+	private EduService eduService;
+	
+	@Autowired
+	private AcService acService;
+	
+	@Autowired
+	private IntsService intsService;
+	
 	private EduService edusService;
 	
 	@Autowired
@@ -118,6 +134,12 @@ public class UsersController {
 	@RequestMapping("/users/delete")
 	public ModelAndView authDelete(HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		String id=(String)session.getAttribute("id");
+		skillService.deleteAll(id);
+		eduService.deleteAll(id);
+		expsService.deleteAll(id);
+		acService.deleteAll(id);
+		intsService.deleteAll(id);
 		// service를 이용해서 탈퇴처리
 		ModelAndView mv = usersService.delete(session);
 		mv.setViewName("users/delete_result");
@@ -155,6 +177,7 @@ public class UsersController {
 		// service객체를 이용해서 수정
 		usersService.update(dto);
 		return "redirect:/profile/detail.do";
+		
 	}
 	
 	@RequestMapping("/search")

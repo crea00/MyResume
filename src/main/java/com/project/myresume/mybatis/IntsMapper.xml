@@ -6,6 +6,13 @@
 		DELETE FROM tb_ints
 		WHERE id=#{id} and num=#{num}
 	</delete>
+	
+	<!--DB 삭제 -->
+	<delete id="deleteAll" parameterType="String">
+		DELETE FROM tb_ints
+		WHERE id=#{id} 
+	</delete>
+	
 	<!-- 수정 -->
 	<update id="update" parameterType="IntsDto">
 		UPDATE tb_ints

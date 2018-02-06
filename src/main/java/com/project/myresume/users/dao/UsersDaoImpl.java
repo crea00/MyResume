@@ -72,4 +72,12 @@ public class UsersDaoImpl implements UsersDao {
 		return session.selectList("users.search", keyword);
 	}
 
+	@Override
+	public void increaseViewCount(String id) {
+		session.update("users.addCount",id);
+		
+	}
+	
+	
+
 }

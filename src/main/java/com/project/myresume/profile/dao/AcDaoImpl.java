@@ -41,4 +41,9 @@ public class AcDaoImpl implements AcDao{
 		return session.selectOne("ac.getData",num);
 	}
 
+	@Override
+	public void deleteAll(String id) {
+		session.selectOne("ac.deleteAll",id);
+	}
+
 }

@@ -3,19 +3,25 @@ package com.project.myresume.profile.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.myresume.profile.dao.SkillsDao;
 import com.project.myresume.profile.dto.SkillsDto;
+import com.project.myresume.users.dao.UsersDao;
 
 @Service
 public class SkillsServiceImpl implements SkillsService{
 	
 	@Autowired
 	private SkillsDao skillDao;
+	
+	@Autowired
+	private UsersDao usersDao;
 	
 	@Override
 	public void insert(SkillsDto dto) {
@@ -50,13 +56,21 @@ public class SkillsServiceImpl implements SkillsService{
 	@Override
 	public List<SkillsDto> resumeList(String id) {
 		List<SkillsDto> skillsList = skillDao.getList(id);
+		usersDao.increaseViewCount(id);
 		return skillsList;
 	}
 
 	@Override
+	public void deleteAll(String id) {
+		skillDao.deleteAll(id);	
+	}
+	
+	@Override
 	public List<String> search(String keyword) {
 		// TODO Auto-generated method stub
 		return skillDao.search(keyword);
+
 	}
+
 
 }

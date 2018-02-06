@@ -57,6 +57,11 @@ public class ExpsServiceImpl implements ExpsService{
 	}
 
 	@Override
+	public void deleteAll(String id) {
+		exDao.deleteAll(id);
+	}
+	
+	@Override
 	public List<String> oldSearch() {
 		List<ExpsDto> list = exDao.oldSearch();
 		List<String> oldList = new ArrayList<>();

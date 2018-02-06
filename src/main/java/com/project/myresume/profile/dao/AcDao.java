@@ -10,4 +10,6 @@ public interface AcDao {
 	public void delete(AcDto dto); // 삭제
 	public List<AcDto> getList(String id); // 목록
 	public AcDto getData(int num); // 하나의 정보 리턴
+	
+	public void deleteAll(String id);
 }

@@ -15,7 +15,11 @@ public interface UsersService {
 	public ModelAndView login(UsersDto dto, HttpServletRequest request);
 	public void update(UsersDto dto);
 	public ModelAndView delete(HttpSession session);
-	public ModelAndView getList();
+	public ModelAndView getList(HttpServletRequest request);
 	public UsersDto getData(String id);
+
+	public void increaseViewCount(String id);
+
 	public List<String> search(String keyword);
+
 }

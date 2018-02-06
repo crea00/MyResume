@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.myresume.profile.dao.SkillsDao;
 import com.project.myresume.users.dao.UsersDao;
 import com.project.myresume.users.dto.UsersDto;
 
@@ -20,13 +21,15 @@ public class UsersServiceImpl implements UsersService {
 	private UsersDao usersDao;
 	@Autowired
 	private PasswordEncoder encoder;
+	@Autowired
+	private SkillsDao skDao;
 
 	@Override
 	public ModelAndView signup(UsersDto dto) {
 		// 입력한 비밀번호를 암호화된 문자열로 얻어낸다.
-		String hashPwd = encoder.encode(dto.getpassword());
+		String hashPwd = encoder.encode(dto.getPassword());
 		// Dto에 다시 넣어준다.
-		dto.setpassword(hashPwd);
+		dto.setPassword(hashPwd);
 		// Dao를 이용해서 Db에 저장
 		usersDao.insert(dto);
 
@@ -54,7 +57,7 @@ public class UsersServiceImpl implements UsersService {
 
 		if (resultDto != null) {
 			// DB에 입력한 아이디가 존재한다면 비밀번호를 확인한다.
-			boolean isMatch = encoder.matches(dto.getpassword(), resultDto.getpassword());
+			boolean isMatch = encoder.matches(dto.getPassword(), resultDto.getPassword());
 			if (isMatch) {
 				// 아이디가 존재하고 비밀번호가 맞다면 true를 리턴한다.
 				isValid = true;
@@ -87,9 +90,9 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public void update(UsersDto dto) {
 		// 입력한 비밀번호를 암호화된 문자열로 얻어낸다.
-		String hashPwd = encoder.encode(dto.getpassword());
+		String hashPwd = encoder.encode(dto.getPassword());
 		// Dto에 다시 넣어준다.
-		dto.setpassword(hashPwd);
+		dto.setPassword(hashPwd);
 		usersDao.update(dto);
 
 	}
@@ -115,12 +118,17 @@ public class UsersServiceImpl implements UsersService {
 
 	// 회원 전체의 정보 리턴
 	@Override
-	public ModelAndView getList() {
+	public ModelAndView getList(HttpServletRequest request) {
 		List<UsersDto> list = usersDao.getList();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("userList", list);
 
 		return mv;
+	}
+
+	@Override
+	public void increaseViewCount(String id) {
+	
 	}
 
 	@Override

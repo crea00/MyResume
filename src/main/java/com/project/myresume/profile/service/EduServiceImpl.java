@@ -61,9 +61,15 @@ public class EduServiceImpl implements EduService {
 	}
 
 	@Override
+	public void deleteAll(String id) {
+		eduDao.deleteAll(id);
+	}
+	
+	@Override
 	public List<String> search(String keyword) {
 		
 		return eduDao.search(keyword);
+
 	}
 
 }

@@ -53,4 +53,9 @@ public class IntsServiceImpl implements IntsService{
 		return intsList;
 	}
 
+	@Override
+	public void deleteAll(String id) {
+		intsDao.deleteAll(id);
+	}
+
 }
