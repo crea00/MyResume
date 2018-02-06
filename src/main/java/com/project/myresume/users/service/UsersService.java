@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.myresume.profile.dto.SkillsDto;
 import com.project.myresume.users.dto.UsersDto;
 
 public interface UsersService {

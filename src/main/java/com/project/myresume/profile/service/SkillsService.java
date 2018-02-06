@@ -4,13 +4,10 @@ package com.project.myresume.profile.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.http.HttpRequest;
-import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.myresume.profile.dto.SkillsDto;
+
 
 public interface SkillsService {
 	public void insert(SkillsDto dto);// 저장(insert)	

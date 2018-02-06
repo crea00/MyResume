@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.myresume.profile.dao.SkillsDao;
-import com.project.myresume.profile.dto.SkillsDto;
 import com.project.myresume.users.dao.UsersDao;
 import com.project.myresume.users.dto.UsersDto;
 

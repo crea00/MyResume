@@ -47,7 +47,7 @@
 	</delete>	
 	
 	<!-- 아이디 중복 확인 -->
-	<select id="isExistId" parameterType="string" resultType="String">
+	<select id="isExistId" parameterType="string" resultType="string">
 		SELECT id
 		FROM TB_USER
 		WHERE id = #{id}	

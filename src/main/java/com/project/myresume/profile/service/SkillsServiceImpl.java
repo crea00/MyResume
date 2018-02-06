@@ -3,10 +3,10 @@ package com.project.myresume.profile.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,7 +20,8 @@ public class SkillsServiceImpl implements SkillsService{
 	@Autowired
 	private SkillsDao skillDao;
 	
-	@Autowired UsersDao usersDao;
+	@Autowired
+	private UsersDao usersDao;
 	
 	@Override
 	public void insert(SkillsDto dto) {
@@ -70,5 +71,6 @@ public class SkillsServiceImpl implements SkillsService{
 		return skillDao.search(keyword);
 
 	}
+
 
 }
