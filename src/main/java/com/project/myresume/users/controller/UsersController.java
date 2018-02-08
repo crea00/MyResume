@@ -1,6 +1,7 @@
 package com.project.myresume.users.controller;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,17 +10,28 @@ import java.util.Iterator;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.google.api.Google;
+import org.springframework.social.google.api.impl.GoogleTemplate;
+import org.springframework.social.google.api.plus.Person;
+import org.springframework.social.google.api.plus.PlusOperations;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.AccessGrant;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,9 +65,23 @@ public class UsersController {
 	@Autowired
 	private IntsService intsService;
 
+	/* GoogleLogin */
+	@Autowired
+	private GoogleConnectionFactory googleConnectionFactory;
+	@Autowired
+	private OAuth2Parameters googleOAuth2Parameters;
+
+	
 	// 로그인 폼 요청처리
-	@RequestMapping("/users/loginform")
+	@RequestMapping(value = "/users/loginform", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView loginform(ModelAndView mv, HttpServletRequest request) {
+		
+		
+		/* 구글code 발행 */
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String google_url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+		mv.addObject("google_url", google_url);
+		
 		// url이라는 파라미터로 전달된 문자열 읽어오기
 		String url = request.getParameter("url");
 		System.out.println(url);
@@ -66,9 +92,45 @@ public class UsersController {
 		// 로그인 후 이동할 url정보를 ModelAndView객체에 담는다.
 		mv.addObject("url", url);
 		// view페이지 정보를 담고
-		mv.setViewName("users/loginform");
+		mv.setViewName("users/loginform");	
+		
+		System.out.println(google_url);
 		return mv;
 	}
+	
+	// 구글 Callback호출 메소드
+	@RequestMapping(value = "/users/oauth2callback", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView googleCallback(ModelAndView mv, @RequestParam String code, HttpServletRequest request) throws IOException {
+		System.out.println("여기는 googleCallback");
+
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, googleOAuth2Parameters.getRedirectUri(), null);
+		String accessToken = accessGrant.getAccessToken();
+	
+		Connection<Google>connection = googleConnectionFactory.createConnection(accessGrant);
+		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
+				
+		PlusOperations plusOperations = google.plusOperations();
+		Person person = plusOperations.getGoogleProfile();
+		String id=person.getId();
+		String name=person.getDisplayName();
+		if(usersService.canUseId(id)) {//계정에 아이디 없으면 회원가입
+			UsersDto dto = new UsersDto();
+			dto.setName(name);
+			dto.setId(id);
+
+			usersService.socialSignup(dto);
+		}
+		
+		
+		request.getSession().setAttribute("id", name);
+		
+		mv.setViewName("redirect:/home.do");
+		return mv;
+	}
+	
+	
+	
 
 	// 로그인 요청처리
 	@RequestMapping("/users/login")

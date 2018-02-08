@@ -95,5 +95,11 @@ public class UsersDaoImpl implements UsersDao {
 			
 		}
 	}
+
+	@Override
+	public void socialInsert(UsersDto dto) {
+		session.insert("users.socialInsert", dto);
+		
+	}
 		
 }

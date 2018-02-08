@@ -31,9 +31,8 @@
 		<beans:property name="configLocation"
 			value="classpath:com/project/myresume/mybatis/Configuration.xml" />
 	</beans:bean>
-	
-	<!-- 네이버 -->
-	<beans:bean id="naverLoginBO" class="com.test.sts.NaverLoginBO" />
+
+
 	<!-- Dao 에 주입해줄 SqlSession 인터페이스를 구현한 SqlSessionTemplate 객체 -->
 	<beans:bean class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg name="sqlSessionFactory"
@@ -76,6 +75,22 @@
 		<beans:property name="order" value="0" />
 	</beans:bean>
 
+	<!-- google Class Bean설정 추가 -->
+	<!-- 클라이언트ID와 보안비밀 세팅 -->
+	<beans:bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg
+			value="113993238665-i6jl1rsjflkouc6klce2a9oskqqrbnih.apps.googleusercontent.com" />
+		<beans:constructor-arg value="2MKwtTN3GD2NE4m-kBzQjRvk" />
+	</beans:bean>
+	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+	<beans:bean id="googleOAuth2Parameters"
+		class="org.springframework.social.oauth2.OAuth2Parameters">
+		<beans:property name="scope"
+			value="https://www.googleapis.com/auth/plus.login" />
+		<beans:property name="redirectUri"
+			value="http://localhost:8888/myresume/users/oauth2callback.do" />
+	</beans:bean>
 
 
 
@@ -84,7 +99,7 @@
 
 	<context:component-scan base-package="com.project.myresume" />
 
-	
+
 	<context:component-scan base-package="com.test.sts" />
 
 

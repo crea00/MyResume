@@ -86,6 +86,8 @@ public class UsersServiceImpl implements UsersService {
 		}
 		return mv;
 	}
+	
+	
 
 	@Override
 	public void update(UsersDto dto) {
@@ -143,5 +145,21 @@ public class UsersServiceImpl implements UsersService {
 		boolean canUseEmail=usersDao.canUseEmail(email);
 		return canUseEmail;
 	}
+
+	@Override
+	public ModelAndView socialSignup(UsersDto dto) {
+		
+		
+		usersDao.socialInsert(dto);
+
+		// id를 ModelAndView객체에 담아서 리턴한다.
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("resultDto", dto);
+		mv.addObject("msg", "회원가입 되었습니다, 로그인해주세요.");
+		return mv;
+		
+	}
+
+
 
 }
