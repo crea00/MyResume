@@ -89,8 +89,7 @@ public class ProfileController {
 		List<ExpsDto> exList = exService.getList(request);
 		List<IntsDto> intsList = intsService.getList(request);
 		List<SkillsDto> skillsList = skillService.getList(request);
-		UsersDto mydto =usersService.getData(id);
-		mView.addObject("myDto",mydto);
+		request.getSession().setAttribute("myDto", usersService.getData(id));
 		mView.addObject("acList", acList);
 		mView.addObject("eduList", eduList);
 		mView.addObject("expsList", exList);
@@ -271,6 +270,8 @@ public class ProfileController {
 	// SkillsUpdate
 	@RequestMapping("/profile/skillsUpdate")
 	public ModelAndView skillsUpdate(@ModelAttribute SkillsDto dto){
+		String skill_nm=dto.getSkill_nm().toLowerCase();
+		dto.setSkill_nm(skill_nm);
 		skillService.update(dto);
 		return new ModelAndView("redirect:/profile/detail.do");
 	}
@@ -284,6 +285,8 @@ public class ProfileController {
 	// skillsInsert
 	@RequestMapping("/profile/skillsInsert")
 	public ModelAndView skillsInsert(@ModelAttribute SkillsDto dto){
+		String skill_nm=dto.getSkill_nm().toLowerCase();
+		dto.setSkill_nm(skill_nm);
 		skillService.insert(dto);
 		return new ModelAndView("redirect:/profile/detail.do");
 	}

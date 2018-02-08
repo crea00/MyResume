@@ -42,6 +42,8 @@ import com.project.myresume.profile.service.ExpsService;
 import com.project.myresume.profile.service.IntsService;
 
 import com.project.myresume.profile.service.SkillsService;
+import com.project.myresume.search.dto.SearchDto;
+import com.project.myresume.search.service.SearchService;
 import com.project.myresume.users.dto.UsersDto;
 import com.project.myresume.users.service.UsersService;
 
@@ -65,6 +67,10 @@ public class UsersController {
 	
 	@Autowired
 	private IntsService intsService;
+	
+	@Autowired
+	private SearchService searchService;
+	
 
 	/* GoogleLogin */
 	@Autowired
@@ -124,9 +130,8 @@ public class UsersController {
 			dto.setName(name);
 			dto.setId(id);
 			dto.setEmail(email);
-
 			usersService.socialSignup(dto);
-			request.getSession().setAttribute("myDto", usersService.getData(id));
+			
 		}
 		
 		
@@ -254,13 +259,13 @@ public class UsersController {
 		
 	}
 	
-	@RequestMapping("/search")
-	public ModelAndView search(@RequestParam Map<String, String> params) {
+	@RequestMapping("/search2")
+	public ModelAndView search2(@RequestParam Map<String, String> params) {
 		ModelAndView mView = new ModelAndView();
 		List<UsersDto> searchDto = new ArrayList<>();
 		//셋중에 하나만 가능--all/skill/edu
 		String sp = params.get("search_param");
-		//무조건 존재--all/new/old
+		//무조건 존재--expAll/new/old
 		String exp = params.get("exp");
 		//keyword
 		String keyword = params.get("keyword");
@@ -368,6 +373,38 @@ public class UsersController {
 		System.out.println(keyword);
 		System.out.println(sp);
 		System.out.println(exp);
+		return mView;
+	}
+	
+
+	@RequestMapping("/search")
+	public ModelAndView search(@RequestParam Map<String, String> params) {
+		List<UsersDto> searchList = new ArrayList<>();
+		SearchDto dto = new SearchDto();
+		//셋중에 하나만 가능--all/skill/edu
+		String sp = params.get("search_param");
+		//무조건 존재--expAll/new/old
+		String exp = params.get("exp");
+		//keyword
+		String keyword = params.get("keyword");
+		System.out.println(sp);
+		System.out.println(exp);
+		System.out.println(keyword.toLowerCase());
+		dto.setExp(exp);
+		dto.setKeyword(keyword.toLowerCase());
+		dto.setSearch_param(sp);
+		List<String> idList = searchService.search(dto);
+		for(String id : idList) {
+			UsersDto usersDto =usersService.getData(id);
+			searchList.add(usersDto);
+		}
+		ModelAndView mView = new ModelAndView();
+		mView.addObject("searchList", searchList);
+		mView.addObject("keyword", keyword);
+		mView.addObject("search_param", sp);
+		mView.addObject("exp", exp);
+		
+		mView.setViewName("profile/searchList");
 		return mView;
 	}
 

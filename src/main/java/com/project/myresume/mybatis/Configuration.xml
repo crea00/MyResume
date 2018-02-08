@@ -18,7 +18,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 				alias="IntsDto"/>		
 		<typeAlias type="com.project.myresume.profile.dto.SkillsDto" 
 				alias="SkillsDto"/>					
-
+		<typeAlias type="com.project.myresume.search.dto.SearchDto" 
+				alias="SearchDto"/>	
 	</typeAliases>
 
 	
@@ -31,6 +32,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/project/myresume/mybatis/ExpsMapper.xml"/>
 		<mapper resource="com/project/myresume/mybatis/IntsMapper.xml"/>
 		<mapper resource="com/project/myresume/mybatis/SkillsMapper.xml"/>
+		<mapper resource="com/project/myresume/mybatis/SearchMapper.xml"/>
 	</mappers>
 </configuration>
 
