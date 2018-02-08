@@ -117,14 +117,16 @@ public class UsersController {
 		
 		String id=person.getId();
 		String name=person.getDisplayName();
-		
+		String email = person.getAccountEmail();
 		
 		if(usersService.canUseId(id)) {//계정에 아이디 없으면 회원가입
 			UsersDto dto = new UsersDto();
 			dto.setName(name);
 			dto.setId(id);
+			dto.setEmail(email);
 
 			usersService.socialSignup(dto);
+			request.getSession().setAttribute("myDto", usersService.getData(id));
 		}
 		
 		

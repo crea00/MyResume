@@ -84,7 +84,7 @@
 							</c:when>
 							<c:otherwise>
 								<li class="nav-item"><a class="nav-link js-scroll-trigger"
-									href="profile/detail.do"><strong>${id }</strong>님 Login</a></li>
+									href="profile/detail.do"><strong>${id }</strong>님</a></li>
 								<li class="nav-item"><a class="nav-link js-scroll-trigger"
 									href="users/logout.do">로그아웃</a></li>
 							</c:otherwise>
