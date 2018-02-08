@@ -117,7 +117,7 @@
 		// localStorage 에 저장된 아이디 비밀번호가 있으면 복구시켜준다.
 		if(localStorage.id != undefined){
 			$("#id").val(localStorage.id);
-			$("#password").val(localStorage.passward);
+			$("#password").val(localStorage.password);
 			//체크박스 체크해주기
 			$("#rememberme").prop("checked", true);
 		}
