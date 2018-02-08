@@ -72,7 +72,10 @@
                         <div class="col-xs-4">
                             <button class="btn btn-block bg-pink waves-effect" type="submit">로그인</button>
                         </div>
-                            <a class="btn btn-block bg-green bg-lg waves-effect" href="${google_url }" type="button"> 네이버계정으로 로그인</a>
+
+                        <div class="col-xs-12 text-center">
+                            <a href="${google_url }"> <img style="width:100%;" src="${pageContext.request.contextPath }/resources/images/google.png"/></a>
+                    	</div>
                     </div>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-12 text-center">

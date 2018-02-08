@@ -10,8 +10,8 @@
 	
 		<!--소셜 회원 가입 -->
 	<insert id="socialInsert" parameterType="UsersDto">
-		INSERT INTO TB_USER(name, id, regdate)
-		VALUES(#{name}, #{id}, SYSDATE)
+		INSERT INTO TB_USER(name, id, is_admin, regdate)
+		VALUES(#{name}, #{id}, 'N', SYSDATE)
 	</insert>
 	
 	<!-- 목록 -->

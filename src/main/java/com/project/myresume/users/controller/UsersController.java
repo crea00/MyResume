@@ -27,6 +27,7 @@ import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
+import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -80,6 +81,7 @@ public class UsersController {
 		/* 구글code 발행 */
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String google_url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+		
 		mv.addObject("google_url", google_url);
 		
 		// url이라는 파라미터로 전달된 문자열 읽어오기
@@ -106,14 +108,17 @@ public class UsersController {
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, googleOAuth2Parameters.getRedirectUri(), null);
 		String accessToken = accessGrant.getAccessToken();
-	
+		
 		Connection<Google>connection = googleConnectionFactory.createConnection(accessGrant);
 		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
-				
+		
 		PlusOperations plusOperations = google.plusOperations();
 		Person person = plusOperations.getGoogleProfile();
+		
 		String id=person.getId();
 		String name=person.getDisplayName();
+		
+		
 		if(usersService.canUseId(id)) {//계정에 아이디 없으면 회원가입
 			UsersDto dto = new UsersDto();
 			dto.setName(name);
@@ -123,7 +128,7 @@ public class UsersController {
 		}
 		
 		
-		request.getSession().setAttribute("id", name);
+		request.getSession().setAttribute("id", id);
 		
 		mv.setViewName("redirect:/home.do");
 		return mv;
