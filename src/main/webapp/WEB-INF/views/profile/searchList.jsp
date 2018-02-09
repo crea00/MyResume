@@ -37,7 +37,10 @@
 }
 .pagination li.active a{
 	color: #fed136;
+>>>>>>> branch 'master' of https://github.com/dev-nicelee/spring_project.git
 }
+
+
 </style>
 
 <!-- Bootstrap core CSS -->
@@ -110,7 +113,6 @@
 
 	<!-- Header -->
 	<header class="masthead">
-		<div class="container">
 			<div class="intro-text">
 				<div class="row">
 				<div class="col-lg-12 text-center">
@@ -122,7 +124,7 @@
 			<br />
 			<br />
 			<!-- 검색창 -->
-
+<div class="container">
 			<form action="search.do" method="post">
 				<div class="row">
 					<div class="col-lg-8 container">
@@ -203,7 +205,7 @@
 
 	<!-- Resume -->
 	<section class="bg-light" id="resume">
-		<div class="container">
+
 
 
 
@@ -226,7 +228,7 @@
 									src="${pageContext.request.contextPath}/resources/img/team/2.jpg"
 									alt="">
 							</c:if>
-							<h4>
+							<h4 class="h4">
 								<a href="profile/resume.do?id=${tmp.id }">${tmp.name }</a>
 							</h4>
 							<p class="text-muted">${tmp.email }</p>
@@ -235,6 +237,7 @@
 				</c:forEach>
 
 			</div>
+
 		<div class="row" style="text-align: center;">
 		<ul class="pagination" style="margin:0 auto;">
 		<c:choose>
@@ -275,7 +278,7 @@
 		</ul>
 			
 			</div>
-			</div>
+
 	</section>
 	<!-- Footer -->
 	<footer>
@@ -287,6 +290,8 @@
 			</div>
 		</div>
 	</footer>
+	
+
 
 	<!-- Bootstrap core JavaScript -->
 	<script
