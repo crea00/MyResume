@@ -86,7 +86,7 @@
 							</c:when>
 							<c:otherwise>
 								<li class="nav-item"><a class="nav-link js-scroll-trigger"
-									href="profile/detail.do"><strong>${id }</strong>님 Login</a></li>
+									href="profile/detail.do"><strong>${id }</strong>님</a></li>
 								<li class="nav-item"><a class="nav-link js-scroll-trigger"
 									href="users/logout.do">로그아웃</a></li>
 							</c:otherwise>
@@ -151,17 +151,17 @@
 							</div>
 							    <span class="input-group-addon">
        							<label class="radio-inline">
-  									<input type="radio" name="exp" id="inlineRadio1" value="all" checked> 전체 
+  									<input type="radio" name="exp" id="inlineRadio1" value="expAll" checked> 전체 
 								</label>
 								<label class="radio-inline">
-  									<input type="radio" name="exp" id="inlineRadio2" value="new"> 신입 
+  									<input type="radio" name="exp" id="inlineRadio2" value="expNew"> 신입 
 								</label>
 								<label class="radio-inline">
-  									<input type="radio" name="exp" id="inlineRadio3" value="old"> 경력 
+  									<input type="radio" name="exp" id="inlineRadio3" value="expOld"> 경력 
 								</label>
       							</span>
 							<input type="hidden" name="search_param" value="all" id="search_param">
-							<input type="text" class="form-control" name="keyword" placeholder="검색키워드를 입력하세요">
+							<input type="text" class="form-control" name="keyword" placeholder="검색키워드를 입력하세요" required>
 							<span class="input-group-btn">
 								<button class="btn btn-primary btn-xl text-uppercase"
 									id="searchBtn" type="submit">검색</button>

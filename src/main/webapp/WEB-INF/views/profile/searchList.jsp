@@ -118,7 +118,7 @@
 								<button type="button"
 									class="btn btn-default btn-xl text-uppercase dropdown-toggle"
 									data-toggle="dropdown">
-									<span id="search_concept">전체</span> <span class="caret"></span>
+									<span id="search_concept">${search_param }</span> <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
 									<li><a style="color: black;" href="#all">전체</a></li>
@@ -126,19 +126,50 @@
 									<li><a style="color: black;" href="#edu">교육</a></li>
 								</ul>
 							</div>
+       							<c:if test="${exp eq 'expAll' }">
 							    <span class="input-group-addon">
        							<label class="radio-inline">
-  									<input type="radio" name="exp" id="inlineRadio1" value="all" checked> 전체 
+  									<input type="radio" name="exp" id="inlineRadio1" value="expAll" checked> 전체 
+       							
 								</label>
 								<label class="radio-inline">
-  									<input type="radio" name="exp" id="inlineRadio2" value="new"> 신입 
+  									<input type="radio" name="exp" id="inlineRadio2" value="expNew"> 신입 
 								</label>
 								<label class="radio-inline">
-  									<input type="radio" name="exp" id="inlineRadio3" value="old"> 경력 
+  									<input type="radio" name="exp" id="inlineRadio3" value="expOld"> 경력 
 								</label>
       							</span>
-							<input type="hidden" name="search_param" value="all" id="search_param">
-							<input type="text" class="form-control" name="keyword" placeholder="검색키워드를 입력하세요">
+      							</c:if>
+      							<c:if test="${exp eq 'expNew' }">
+							    <span class="input-group-addon">
+       							<label class="radio-inline">
+  									<input type="radio" name="exp" id="inlineRadio1" value="expAll" > 전체 
+       							
+								</label>
+								<label class="radio-inline">
+  									<input type="radio" name="exp" id="inlineRadio2" value="expNew" checked> 신입 
+								</label>
+								<label class="radio-inline">
+  									<input type="radio" name="exp" id="inlineRadio3" value="expOld"> 경력 
+								</label>
+      							</span>
+      							</c:if>
+      							<c:if test="${exp eq 'expOld' }">
+							    <span class="input-group-addon">
+       							<label class="radio-inline">
+  									<input type="radio" name="exp" id="inlineRadio1" value="expAll" > 전체 
+       							
+								</label>
+								<label class="radio-inline">
+  									<input type="radio" name="exp" id="inlineRadio2" value="expNew"> 신입 
+								</label>
+								<label class="radio-inline">
+  									<input type="radio" name="exp" id="inlineRadio3" value="expOld" checked> 경력 
+								</label>
+      							</span>
+      							</c:if>
+							<input type="hidden" name="search_param" value="${search_param }" id="search_param">
+							<input type="text" class="form-control" name="keyword" placeholder="검색키워드를 입력하세요" value="${keyword }" required>
 							<span class="input-group-btn">
 								<button class="btn btn-primary btn-xl text-uppercase"
 									id="searchBtn" type="submit">검색</button>

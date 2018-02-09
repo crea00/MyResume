@@ -157,7 +157,7 @@
 						emValid=true;
 						console.log(emValid);
 					}else if(data.canUse && !isOk2){
-						$("#test").text("다시 email").css("color","blue");
+						$("#test").text("email 형식이 아닙니다.").css("color","red");
 						emValid = false;
 					}else {
     					$("#test").text("이미 사용한 email 입니다.").css("color","red");

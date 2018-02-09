@@ -6,6 +6,7 @@ import com.project.myresume.users.dto.UsersDto;
 
 public interface UsersDao {
 	public void insert(UsersDto dto);
+	public void socialInsert(UsersDto dto);
 	public boolean canUseId(String id);
 	public UsersDto getData(String id);
 	public boolean isValid(UsersDto dto);

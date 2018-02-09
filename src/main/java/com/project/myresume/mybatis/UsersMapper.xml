@@ -8,6 +8,12 @@
 		VALUES(#{name}, #{id}, #{password}, #{is_admin}, #{phone_no}, SYSDATE, #{email},#{viewCount})
 	</insert>
 	
+		<!--소셜 회원 가입 -->
+	<insert id="socialInsert" parameterType="UsersDto">
+		INSERT INTO TB_USER(name, email, id, is_admin, regdate)
+		VALUES(#{name}, #{email}, #{id}, 'N', SYSDATE)
+	</insert>
+	
 	<!-- 목록 -->
 	<select id="getList" resultType="UsersDto" >
 		SELECT name, a.id, password, phone_no, regdate, email, orgFileName, saveFileName, fileSize,viewCount

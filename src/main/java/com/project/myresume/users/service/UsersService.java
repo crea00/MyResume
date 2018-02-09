@@ -11,6 +11,7 @@ import com.project.myresume.users.dto.UsersDto;
 
 public interface UsersService {
 	public ModelAndView signup(UsersDto dto);
+	public ModelAndView socialSignup(UsersDto dto);
 	public boolean canUseId(String id);
 	public ModelAndView login(UsersDto dto, HttpServletRequest request);
 	public void update(UsersDto dto);

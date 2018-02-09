@@ -6,30 +6,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 	<!-- 타입의 별칭 정의하기 -->
 	<typeAliases>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		<typeAlias type="com.project.myresume.users.dto.UsersDto"
 				alias="UsersDto"/>
 		<typeAlias type="com.project.myresume.file.dto.FileDto" 
@@ -46,6 +22,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 				alias="SkillsDto"/>					
 		<typeAlias type="com.project.myresume.cafe.dto.CafeDto"
 				alias="CafeDto"/>
+		<typeAlias type="com.project.myresume.search.dto.SearchDto" 
+				alias="SearchDto"/>	
 	</typeAliases>
 
 	
@@ -59,6 +37,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/project/myresume/mybatis/IntsMapper.xml"/>
 		<mapper resource="com/project/myresume/mybatis/SkillsMapper.xml"/>
 		<mapper resource="com/project/myresume/mybatis/CafeMapper.xml"/>
+		<mapper resource="com/project/myresume/mybatis/SearchMapper.xml"/>
 	</mappers>
 </configuration>
 

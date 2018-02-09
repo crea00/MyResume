@@ -72,7 +72,10 @@
                         <div class="col-xs-4">
                             <button class="btn btn-block bg-pink waves-effect" type="submit">로그인</button>
                         </div>
-                            <a class="btn btn-block bg-green bg-lg waves-effect" href="naverlogin.do" type="button"> 네이버계정으로 로그인</a>
+
+                        <div class="col-xs-12 text-center">
+                            <a href="${google_url }"> <img style="width:100%;" src="${pageContext.request.contextPath }/resources/images/google.png"/></a>
+                    	</div>
                     </div>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-12 text-center">
@@ -114,7 +117,7 @@
 		// localStorage 에 저장된 아이디 비밀번호가 있으면 복구시켜준다.
 		if(localStorage.id != undefined){
 			$("#id").val(localStorage.id);
-			$("#password").val(localStorage.passward);
+			$("#password").val(localStorage.password);
 			//체크박스 체크해주기
 			$("#rememberme").prop("checked", true);
 		}
