@@ -72,6 +72,8 @@
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#resume">Resume</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="cafe/list.do">사장님게시판</a></li>	
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#services">Services</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#contact">Contact</a></li>

@@ -29,6 +29,7 @@ public class AuthAspect {
 				HttpServletRequest request = (HttpServletRequest)tmp;
 				// 로그인 정보가 있는지 확인
 				String id = (String)request.getSession().getAttribute("id");
+				System.out.println("session에 저장된 id" + id);
 				if(id == null){
 					// 로그인 정보가 없다면 여기가 수행된다.
 					ModelAndView mv = new ModelAndView();

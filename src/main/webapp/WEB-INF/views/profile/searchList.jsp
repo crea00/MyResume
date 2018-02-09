@@ -20,6 +20,13 @@
 	font-size: 0.9rem;
 	text-align: left;
 }
+#pn a{
+	color: black;
+
+}
+#pn {
+	text-align: center;	
+}
 
 .button {
 
@@ -221,7 +228,8 @@
 				</c:forEach>
 
 			</div>
-			<div class="row">
+		<div class="row">
+		<div id="pn" class="container">
 		<ul class="pagination">
 		<c:choose>
 			<c:when test="${startPageNum ne 1 }">
@@ -260,7 +268,8 @@
 			</c:choose>
 		</ul>
 			</div>
-		</div>
+			</div>
+			</div>
 	</section>
 	<!-- Footer -->
 	<footer>
