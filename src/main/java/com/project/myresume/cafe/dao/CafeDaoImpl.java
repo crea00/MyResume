@@ -38,26 +38,27 @@ public class CafeDaoImpl implements CafeDao {
 
 	// 글 자세히보기
 	@Override
+	public CafeDto getData(CafeDto dto) {
+		return session.selectOne("cafe.getData", dto);
+	}
+	
+	@Override
 	public CafeDto getData(int num) {
-		return session.selectOne("cafe.getData", num);
+		return session.selectOne("cafe.getData2", num);
 	}
 
 	@Override
 	public int getCount(CafeDto dto) {
-		int count = session.selectOne("cafe.getCount", dto);
-		return count;
+		return session.selectOne("cafe.getCount", dto);
 	}
-
+	
+	// 글 조회수
 	@Override
 	public void increaseViewCount(int num) {
-		// TODO Auto-generated method stub
-		
+		session.update("cafe.addCount", num);
 	}
 
 	
-	@Override
-	public CafeDto getData(CafeDto dto) {
-		return session.selectOne("cafe.getData2", dto);
-	}
+
 
 }

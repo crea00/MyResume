@@ -11,6 +11,6 @@ public interface CafeService {
 	public void delete(int num);
 	public void update(CafeDto dto);
 	public ModelAndView list(HttpServletRequest request);
-	public ModelAndView detail(CafeDto dto);
+	public ModelAndView detail(HttpServletRequest request);
 	public ModelAndView detail(int num);
 }

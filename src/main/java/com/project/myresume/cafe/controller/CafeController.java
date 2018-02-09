@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.myresume.cafe.dto.CafeDto;
 import com.project.myresume.cafe.service.CafeService;
+import com.project.myresume.users.dto.UsersDto;
 
 @Controller
 public class CafeController {
@@ -54,8 +55,8 @@ public class CafeController {
 	
 	// 글 자세히보기
 	@RequestMapping("/cafe/detail")
-	public ModelAndView detail(HttpServletRequest request, @RequestParam int num){
-		ModelAndView mv = cafeService.detail(num);
+	public ModelAndView detail(HttpServletRequest request){
+		ModelAndView mv = cafeService.detail(request);
 		mv.setViewName("cafe/detail");
 		return mv;		
 	}
