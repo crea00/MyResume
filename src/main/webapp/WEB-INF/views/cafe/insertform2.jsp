@@ -4,10 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>채용공고를 입력해주세요.</title>
-<jsp:include page="/resources/resource.jsp"></jsp:include>
+<meta charset="UTF-8">
+<title>cafe/insertform.jsp</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
 <style>
 	/* SmartEditer를 위한 texarea에 적용할 css */
 	#content{
@@ -21,46 +20,24 @@
 </head>
 <body>
 
-<div class="theme-red">
-<!-- nav -->
-<jsp:include page="/resources/nav.jsp"></jsp:include>
-<!-- /nav -->
-
-	<section class="content">
-		<div class="container-fluid">
-			<div class="row clearfix">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="card">
-						<div class="header">
-							<h3>채용공고 입력폼입니다.</h3>
-						</div>
-						
-						<div class="body table-responsive">
-							<!-- 새글 작성 form -->
-							<form action="insert.do" method="post">
-								<div class="form-group">
-									<label for="writer">작성자</label>
-									<c:if test="${id eq 'admin' }">
-										<input class="form-control" type="text" id="writer" value="관리자" disabled />
-									</c:if>
-								</div> 
-								<div class="form-group">
-									<label for="title">제목</label>
-									<input class="form-control" type="text" name="title" id="title" placeholder="제목을 입력해주세요"/>
-								</div>
-								<div class="form-group">
-									<label for="content">내용</label>
-									<textarea name="content" id="content" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
-								</div>
-								<button onclick="submitContents(this)" class="btn btn-success" type="submit">확인</button>
-							</form> 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+<div class="container">
 	
+	<!-- 새글 작성 form -->
+	<form action="insert.do" method="post">
+		<div class="form-group">
+			<label for="writer">작성자</label>
+			<input class="form-control" type="text" id="writer" value="${id }" disabled />
+		</div> 
+		<div class="form-group">
+			<label for="title">제목</label>
+			<input class="form-control" type="text" name="title" id="title" />
+		</div>
+		<div class="form-group">
+			<label for="content">내용</label>
+			<textarea name="content" id="content" cols="30" rows="10"></textarea>
+		</div>
+		<button onclick="submitContents(this)" class="btn btn-success" type="submit">확인</button>
+	</form> 
 </div>
 <script>
 	var oEditors = [];

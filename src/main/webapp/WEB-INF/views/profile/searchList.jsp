@@ -20,16 +20,24 @@
 	font-size: 0.9rem;
 	text-align: left;
 }
-#pn a{
-	color: black;
 
-}
 #pn {
 	text-align: center;	
 }
 
-.h4 > a{
-	color:black;
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.pagination li.active a{
+	color: #fed136;
+>>>>>>> branch 'master' of https://github.com/dev-nicelee/spring_project.git
 }
 
 
@@ -105,7 +113,6 @@
 
 	<!-- Header -->
 	<header class="masthead">
-		<div class="container">
 			<div class="intro-text">
 				<div class="row">
 				<div class="col-lg-12 text-center">
@@ -198,7 +205,7 @@
 
 	<!-- Resume -->
 	<section class="bg-light" id="resume">
-		<div class="container">
+
 
 
 
@@ -230,7 +237,9 @@
 				</c:forEach>
 
 			</div>
-			<ul class="pagination">
+
+		<div class="row" style="text-align: center;">
+		<ul class="pagination" style="margin:0 auto;">
 		<c:choose>
 			<c:when test="${startPageNum ne 1 }">
 				<li>
@@ -267,8 +276,9 @@
 				</c:otherwise>
 			</c:choose>
 		</ul>
-</div>
-		
+			
+			</div>
+
 	</section>
 	<!-- Footer -->
 	<footer>

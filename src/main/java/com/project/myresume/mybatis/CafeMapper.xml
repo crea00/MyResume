@@ -21,16 +21,32 @@
 		DELETE FROM tb_board_cafe
 		WHERE num = #{num}
 	</delete>
-	
-	<!-- 글 목록보기 -->
-	<select id="getList" parameterType="CafeDto" resultType="CafeDto">
-		SELECT <include refid="cafeColumns" />
-		FROM tb_board_cafe
-		ORDER BY num DESC
+
+	<!-- 글 자세히보기 -->
+	<select id="getData" parameterType="cafeDto" resultType="cafeDto">
+	 	SELECT result1.*
+	 	FROM
+		 	( SELECT <include refid="cafeColumns"/>,
+		 	LEAD(num, 1, 0) OVER(ORDER BY num DESC) nextNum,
+		 	LAG(num, 1, 0) OVER(ORDER BY num DESC) prevNum
+		 	FROM tb_board_cafe
+		 	<where>
+				<if test="writer != null">
+					OR writer LIKE '%'||#{writer}||'%'
+				</if>
+				<if test="title != null">
+					OR title LIKE '%'||#{title}||'%'
+				</if>
+				<if test="content != null">
+					OR content LIKE '%'||#{content}||'%'
+				</if>
+			</where>
+		 	ORDER BY num DESC ) result1
+	 	WHERE num=#{num}
 	</select>
 	
 	<!-- 글 자세히보기 -->
-	<select id="getData" parameterType="int" resultType="CafeDto">
+	<select id="getData2" parameterType="int" resultType="CafeDto">
 		SELECT <include refid="cafeColumns" />
 		FROM tb_board_cafe
 		WHERE num = #{num} 
@@ -60,7 +76,31 @@
 		WHERE num = #{num}
 	</update>
 	
+	<!-- 글 조회수 출력 -->
+	<update id="addCount" parameterType="CafeDto">
+		UPDATE tb_board_cafe
+		SET viewCount = viewCount + 1
+		WHERE num = #{num}
+	</update>
 	
+	<!-- 글목록보기 (pagination 처리) -->
+	<select id="getList" parameterType="cafeDto" resultType="cafeDto">
+		SELECT *
+		FROM (SELECT result1.*,ROWNUM rnum
+			  FROM (SELECT <include refid="cafeColumns"/>
+			  		FROM tb_board_cafe 
+			  		<where>
+						<if test="title != null">
+							OR title LIKE '%'||#{title}||'%'
+						</if>
+						<if test="content != null">
+							OR content LIKE '%'||#{content}||'%'
+						</if>
+					</where>	
+			  		ORDER BY num DESC) result1
+			  )
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
 	
 	
 </mapper>

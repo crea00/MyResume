@@ -70,9 +70,9 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav text-uppercase ml-auto">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#resume">Resume</a></li>
+						href="cafe/list.do">employment</a></li>	
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="cafe/list.do">사장님게시판</a></li>	
+						href="#resume">Resume</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#services">Services</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
@@ -194,7 +194,7 @@
 								<a href="profile/resume.do?id=${tmp.id }">${tmp.name }</a>
 							</h4>
 							<p class="text-muted">${tmp.email }</p>
-							<p class="text-muted">${tmp.viewCount }</p>
+							<p class="text-muted">조회수 : ${tmp.viewCount }</p>
 						</div>
 					</div>
 				</c:forEach>

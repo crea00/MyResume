@@ -20,7 +20,7 @@
 		FROM TB_USER a
 		LEFT OUTER JOIN TB_FILE b
 		ON a.id=b.id
-		WHERE 1=1 
+		WHERE 1=1
 		<if test="is_admin eq 'N'.toString()">
 	      AND a.id = #{id}
 	      

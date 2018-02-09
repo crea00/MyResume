@@ -4,9 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>상세 보기</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>채용공고보기 입니다.</title>
+<jsp:include page="/resources/resource.jsp"></jsp:include>
+
 <script src="${pageContext.request.contextPath}/SmartEditor/js/HuskyEZCreator.js"></script>
 <style>
 	textarea{resize:none;}
@@ -35,34 +37,47 @@
 	}	
 </style>
 </head>
-<body>
+<body class="theme-red">
 
-<div class="container">
-	
-	<c:if test="${not empty msg }">
-		<div class="alert alert-success">${msg }</div>
-	</c:if>
-	   <%-- 로그인한 회원이 작성한 글이라면  수정, 삭제 링크를 출력한다. --%>
-   <c:if test="${dto.prevNum ne 0 }">
-   	<a class="btn btn-default btn-sm" href="detail.do?num=${dto.prevNum}&condition=${condition}&keyword=${keyword}"><i class="glyphicon glyphicon-chevron-up"></i></a>
-   </c:if>
-   <c:if test="${dto.nextNum ne 0 }">
-   	<a class="btn btn-default btn-sm" href="detail.do?num=${dto.nextNum}&condition=${condition}&keyword=${keyword}"><i class="glyphicon glyphicon-chevron-down"></i></a>
-   </c:if>
-   	<h1><strong>${dto.title }</strong></h1>
-	<p>${dto.regdate} <em>By</em> <strong>${dto.writer}</strong></p>   
-	<hr/>
-    <div class="content">${dto.content }</div>
-    <hr/>
-    <a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/cafe/list.do">리스트로 가기</a>
-    <c:if test="${id eq dto.writer }">
-    <a class="btn btn-default btn-xs" href="updateform.do?num=${dto.num }">수정</a>
-    <a class="btn btn-default btn-xs" href="javascript:delCheck()">삭제</a>
-    </c:if>
-    
+<!-- nav -->
+<jsp:include page="/resources/nav.jsp"></jsp:include>  
+<!-- nav./ -->
 
-</div>
-<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card">
+						<div class="header">
+							<a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/cafe/list.do">리스트로 가기</a>
+							<h3>${dto.title }</h3>
+							<p>${dto.regdate} <em>By</em> <strong>관리자</strong></p>
+						</div><!-- /header -->
+						
+						<div class="body table-responsive">
+							<div class="content">${dto.content }</div>
+						    <hr/>
+						    <%-- 관리자라면  수정,삭제 링크를 출력한다. --%>
+						   	<c:if test="${id eq 'admin' }">
+							    <a class="btn btn-default btn-xs" href="updateform.do?num=${dto.num }">수정</a>
+							    <a class="btn btn-default btn-xs" href="javascript:delCheck()">삭제</a><br/>
+							</c:if>
+							
+							<div class="moveBtn" style="margin-top: 10px;">
+								<c:if test="${dto.prevNum ne 0 }">
+							   		<a class="btn btn-default btn-sm" href="detail.do?num=${dto.prevNum}&condition=${condition}&keyword=${keyword}">이전글 보기</a>
+							   	</c:if>
+							   	<c:if test="${dto.nextNum ne 0 }">
+							   		<a class="btn btn-default btn-sm" href="detail.do?num=${dto.nextNum}&condition=${condition}&keyword=${keyword}">다음글 보기</a>
+							   	</c:if>
+							</div>						   	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 <script>
 
 	function delCheck(){
