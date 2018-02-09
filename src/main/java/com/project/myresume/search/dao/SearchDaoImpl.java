@@ -19,4 +19,10 @@ public class SearchDaoImpl implements SearchDao{
 		return session.selectList("search.s",dto);
 	}
 
+	@Override
+	public int getCount(SearchDto dto) {
+		// TODO Auto-generated method stub
+		return session.selectOne("search.getCount",dto);
+	}
+
 }

@@ -3,11 +3,8 @@
 <mapper namespace="search">
 	<!-- 전체 검색하기 -->
 	<select id="s" parameterType="SearchDto" resultType="string">
-		select distinct tb_user.id
-		from tb_user left JOIN tb_skills
-		on tb_user.id=tb_skills.id
-		left JOIN tb_edu
-		on tb_user.id=tb_edu.id
+		select id from (select distinct tb_user.id, tb_user.viewCount, rownum rnum
+		from tb_user left JOIN tb_skills on tb_user.id=tb_skills.id left JOIN tb_edu on tb_user.id=tb_edu.id 
 		<where>
 			<if test="search_param == 'all'"><!-- 전체항목검색 -->
 				<if test="exp == 'expAll'">
@@ -52,7 +49,62 @@
 				</if>
 			</if>
 		</where>
-
+		ORDER BY viewCount DESC)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		</select>
+	
+	
+	
+	
+		<select id="getCount" parameterType="SearchDto"
+		resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0) from (select distinct tb_user.id, tb_user.viewCount
+		from tb_user left JOIN tb_skills on tb_user.id=tb_skills.id left JOIN tb_edu on tb_user.id=tb_edu.id 
+		<where>
+			<if test="search_param == 'all'"><!-- 전체항목검색 -->
+				<if test="exp == 'expAll'">
+					OR (skill_nm like '%'||#{keyword}||'%' or major like '%'||#{keyword}||'%')				
+				</if>
+				<if test="exp == 'expNew'"><!-- 전체항목&신입검색 -->
+					OR tb_user.id in (select distinct id from tb_exps)
+					AND (skill_nm like '%'||#{keyword}||'%' or major like '%'||#{keyword}||'%')
+				</if>
+				<if test="exp == 'expOld'"><!-- 전체항목&경력검색 -->
+					OR tb_user.id in (select id	from(select tb_edu.id eid, nvl(tb_user.id,null) id
+					from tb_user left outer join tb_edu	on tb_user.id =tb_edu.id) where eid is null)
+					AND (skill_nm like '%'||#{keyword}||'%' or major like '%'||#{keyword}||'%')
+				</if>
+			</if>
+			<if test="search_param == 'skill'"><!-- 기술항목검색 -->
+				<if test="exp == 'expAll'">
+					OR (skill_nm like '%'||#{keyword}||'%')				
+				</if>
+				<if test="exp == 'expNew'"><!-- 기술항목&신입검색 -->
+					OR tb_user.id in (select distinct id from tb_exps)
+					AND (skill_nm like '%'||#{keyword}||'%')
+				</if>
+				<if test="exp == 'expOld'"><!-- 기술항목&경력검색 -->
+					OR tb_user.id in (select id	from(select tb_edu.id eid, nvl(tb_user.id,null) id
+					from tb_user left outer join tb_edu	on tb_user.id =tb_edu.id) where eid is null)
+					AND (skill_nm like '%'||#{keyword}||'%')
+				</if>
+			</if>
+			<if test="search_param == 'edu'"><!-- 교육항목검색 -->
+				<if test="exp == 'expAll'">
+					OR (major like '%'||#{keyword}||'%')				
+				</if>
+				<if test="exp == 'expNew'"><!-- 교육항목&신입검색 -->
+					OR tb_user.id in (select distinct id from tb_exps)
+					AND (major like '%'||#{keyword}||'%')
+				</if>
+				<if test="exp == 'expOld'"><!-- 교육항목&경력검색 -->
+					OR tb_user.id in (select id	from(select tb_edu.id eid, nvl(tb_user.id,null) id
+					from tb_user left outer join tb_edu	on tb_user.id =tb_edu.id) where eid is null)
+					AND (major like '%'||#{keyword}||'%')
+				</if>
+			</if>
+		</where>
+		)
 	</select>
 	
 	

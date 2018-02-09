@@ -378,8 +378,8 @@ public class UsersController {
 	
 
 	@RequestMapping("/search")
-	public ModelAndView search(@RequestParam Map<String, String> params) {
-		List<UsersDto> searchList = new ArrayList<>();
+	public ModelAndView search(@RequestParam Map<String, String> params, HttpServletRequest request) {
+		
 		SearchDto dto = new SearchDto();
 		//셋중에 하나만 가능--all/skill/edu
 		String sp = params.get("search_param");
@@ -393,13 +393,8 @@ public class UsersController {
 		dto.setExp(exp);
 		dto.setKeyword(keyword.toLowerCase());
 		dto.setSearch_param(sp);
-		List<String> idList = searchService.search(dto);
-		for(String id : idList) {
-			UsersDto usersDto =usersService.getData(id);
-			searchList.add(usersDto);
-		}
-		ModelAndView mView = new ModelAndView();
-		mView.addObject("searchList", searchList);
+		
+		ModelAndView mView = searchService.search(dto, request);
 		mView.addObject("keyword", keyword);
 		mView.addObject("search_param", sp);
 		mView.addObject("exp", exp);
