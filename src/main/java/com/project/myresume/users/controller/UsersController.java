@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -108,9 +108,15 @@ public class UsersController {
 	
 	// 구글 Callback호출 메소드
 	@RequestMapping(value = "/users/oauth2callback", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView googleCallback(ModelAndView mv, @RequestParam String code, HttpServletRequest request) throws IOException {
+	public ModelAndView googleCallback(ModelAndView mv, @RequestParam Map<String, String> param, HttpServletRequest request) throws IOException {
 		System.out.println("여기는 googleCallback");
-
+		String code=param.get("code");
+		String error=param.get("error");
+		if(error.equals("access_denied")) {
+			mv.setViewName("redirect:/users/loginform.do");
+			return mv;
+		}
+		System.out.println(param.get("error"));
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, googleOAuth2Parameters.getRedirectUri(), null);
 		String accessToken = accessGrant.getAccessToken();
@@ -124,7 +130,11 @@ public class UsersController {
 		String id=person.getId();
 		String name=person.getDisplayName();
 		String email = person.getAccountEmail();
-		
+
+		System.out.println(id);
+		System.out.println("이름은"+name);
+		System.out.println(email);
+
 		if(usersService.canUseId(id)) {//계정에 아이디 없으면 회원가입
 			UsersDto dto = new UsersDto();
 			dto.setName(name);

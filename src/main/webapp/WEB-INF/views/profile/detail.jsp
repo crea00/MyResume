@@ -15,7 +15,13 @@
     td{
      text-align:center;
     }
+    
+    <!-- 버튼 오른쪽 정렬 -->
+    a{
+    	float:right;
+    }
     </style>
+   
 </head>
 
 <body class="theme-red">
