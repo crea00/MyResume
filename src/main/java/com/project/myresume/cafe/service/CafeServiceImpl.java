@@ -17,10 +17,7 @@ public class CafeServiceImpl implements CafeService {
 
 	@Autowired
 	private CafeDao cafeDao;
-	
-	@Autowired
-	private UsersDao userDao;
-	
+
 	// 한 페이지에 나타낼 로우의 갯수
 	private static final int PAGE_ROW_COUNT = 5;
 	private static final int PAGE_DISPLAY_COUNT = 5;
