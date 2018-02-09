@@ -56,8 +56,7 @@
 	                          			<li><a href="javascript:set('nodeJS')">nodeJS</a></li>
 	                          			<li><a href="javascript:set('Python')">Python</a></li>
 		                          		<li><a href="javascript:set('C')">C</a></li>
-	                          			
-	                      		    </ul>
+									</ul>
 	                       		</div>
 	                       		<!-- Split button -->
                           	    	

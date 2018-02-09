@@ -177,7 +177,7 @@
 			<br />
 
 			<div class="row">
-				<c:forEach var="tmp" items="${userList}">
+				<c:forEach var="tmp" items="${userList}" begin="0" end="5">
 					<div class="col-sm-4">
 						<div class="team-member">
 							<c:if test="${not empty tmp.saveFileName }">
@@ -194,7 +194,7 @@
 								<a href="profile/resume.do?id=${tmp.id }">${tmp.name }</a>
 							</h4>
 							<p class="text-muted">${tmp.email }</p>
-							<p class="text-muted">${tmp.viewCount }</p>
+							<p class="text-muted">조회수 : ${tmp.viewCount }</p>
 						</div>
 					</div>
 				</c:forEach>

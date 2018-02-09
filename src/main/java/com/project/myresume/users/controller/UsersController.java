@@ -124,7 +124,9 @@ public class UsersController {
 		String id=person.getId();
 		String name=person.getDisplayName();
 		String email = person.getAccountEmail();
-		
+		System.out.println(id);
+		System.out.println("이름은"+name);
+		System.out.println(email);
 		if(usersService.canUseId(id)) {//계정에 아이디 없으면 회원가입
 			UsersDto dto = new UsersDto();
 			dto.setName(name);
