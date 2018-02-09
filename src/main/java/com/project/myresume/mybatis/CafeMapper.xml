@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cafe">
+
+	<!-- 자주 사용하는 sql문을 미리 정의 -->
+	<sql id="cafeColumns">
+		num, writer, title, content, viewCount,
+		TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+	</sql>
+	
+	<!-- 글 입력 -->
+	<insert id="insert" parameterType="CafeDto">
+		INSERT INTO tb_board_cafe
+		(num, writer, title, content, viewCount, regdate)
+		VALUES(tb_board_cafe_seq.NEXTVAL, 
+		#{writer}, #{title}, #{content}, #{viewCount}, SYSDATE)
+	</insert>
+	
+	<!-- 글 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM tb_board_cafe
+		WHERE num = #{num}
+	</delete>
+	
+	<!-- 글 목록보기 -->
+	<select id="getList" parameterType="CafeDto" resultType="CafeDto">
+		SELECT <include refid="cafeColumns" />
+		FROM tb_board_cafe
+		ORDER BY num DESC
+	</select>
+	
+	<!-- 글 자세히보기 -->
+	<select id="getData" parameterType="int" resultType="CafeDto">
+		SELECT <include refid="cafeColumns" />
+		FROM tb_board_cafe
+		WHERE num = #{num} 
+	</select>
+	
+	<!-- 글 조회수출력 -->
+	<select id="getCount" parameterType="CafeDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM tb_board_cafe
+		<where>
+			<if test="writer != null">
+				OR writer LIKE '%'||#{writer}||'%'
+			</if>
+			<if test="title != null">
+				OR title LIKE '%'||#{title}||'%'
+			</if>
+			<if test="content != null">
+				OR title LIKE '%'||#{content}||'%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- 글 수정 -->
+	<update id="update" parameterType="CafeDto">
+		UPDATE tb_board_cafe
+		SET title = #{title}, content = #{content}
+		WHERE num = #{num}
+	</update>
+	
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
