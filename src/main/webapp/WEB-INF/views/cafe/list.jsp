@@ -6,10 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Jquery DataTable | Bootstrap Based Admin Template - Material Design</title>
+    <title>채용공고입니다.</title>
 <jsp:include page="/resources/resource.jsp"></jsp:include>
 
-<title>cafe/list.jsp</title>
 	<style>
 		th{
 			text-align:center;
@@ -35,7 +34,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
 						<div class="header">
-							<h3>게시판 목록입니다.</h3>
+							<h3>채용공고 게시판입니다.</h3>
 								<c:if test="${id eq 'admin'}">
 									<a class="btn btn-primary btn-xs" href="insertform.do"><i class="glyphicon glyphicon-pencil"></i>새글 작성</a>
 								</c:if>
@@ -123,11 +122,10 @@
 										<div class="input-group">
 											<div class="input-group-btn">
 												<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-													<span id="conditionBtn">제목 + 내용</span>
+													<span id="conditionBtn">제목 </span>
 													<span class="caret"></span>
 												</button>
 												<ul class="dropdown-menu">
-													<li><a href="javascript:set('titlecontent')">제목 + 내용</a></li>
 													<li><a href="javascript:set('title')">제목</a></li>
 													<li><a href="javascript:set('content')">내용</a></li>
 												</ul>
@@ -141,10 +139,6 @@
 												<span class="glyphicon glyphicon-search"></span>
 											</button>
 											</span>
-											
-											
-	
-											
 										</div>
 									</form>
 								</div>
@@ -162,12 +156,10 @@
 set("${condition}");
 
 	function set(condition){
-		if(condition == "titlecontent" || condition == ""){
-			$("#conditionBtn").text("제목+파일명");
-		}else if(condition=="title"){
+		if(condition == "title" || condition == ""){
 			$("#conditionBtn").text("제목");
-		}else if(condition=="writer"){
-			$("#conditionBtn").text("작성자");
+		}else if(condition=="content"){
+			$("#conditionBtn").text("내용");
 		}
 		$("#condition").val(condition);
 	}

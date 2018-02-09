@@ -102,12 +102,34 @@ public class CafeServiceImpl implements CafeService {
 	// 글 자세히보기
 	@Override
 	public ModelAndView detail(HttpServletRequest request) {
+		// 검색과 관련된 파라미터를 읽어온다.
+		String keyword = request.getParameter("keyword");
+		String condition = request.getParameter("condition");
+		System.out.println("keyword, condition" + keyword + condition);
 		
+		String msg = null;
+		ModelAndView mv = new ModelAndView();
 		CafeDto dto = new CafeDto();
+		
+		// 검색어가 전달된 경우
+		if(keyword != null){
+			// 제목 검색
+			if(condition.equals("title")){
+				dto.setTitle(keyword);
+				msg = "키워드 : " + keyword + "에 대한 제목 검색결과";
+				// 내용 검색
+			} else if(condition.equals("content")){
+				dto.setContent(keyword);
+				msg = "키워드 : " + keyword + "에 대한 내용 검색결과";
+			}
+		}
+		mv.addObject("condition", condition);
+		mv.addObject("keyword", keyword);
+		mv.addObject("msg", msg);
 		
 		// 파라미터로 전달되는 글번호를 읽어와서
 		int num = Integer.parseInt(request.getParameter("num"));
-		// dto에 담고 
+		// dto에 담고
 		dto.setNum(num);
 		// 글의 조회수를 1 올린다	
 		cafeDao.increaseViewCount(num);
@@ -116,7 +138,6 @@ public class CafeServiceImpl implements CafeService {
 		// 글번호에 해당하는 글정보 읽어온다.
 		CafeDto resultDto = cafeDao.getData(dto);
 		
-		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto", resultDto);
 		return mv;
 	}

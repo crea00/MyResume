@@ -90,9 +90,6 @@
 			  FROM (SELECT <include refid="cafeColumns"/>
 			  		FROM tb_board_cafe 
 			  		<where>
-						<if test="writer != null">
-							OR writer LIKE '%'||#{writer}||'%'
-						</if>
 						<if test="title != null">
 							OR title LIKE '%'||#{title}||'%'
 						</if>
