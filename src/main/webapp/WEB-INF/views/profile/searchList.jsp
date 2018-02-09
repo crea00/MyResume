@@ -20,16 +20,23 @@
 	font-size: 0.9rem;
 	text-align: left;
 }
-#pn a{
-	color: black;
 
-}
 #pn {
 	text-align: center;	
 }
 
-.button {
+.pagination {
+    display: inline-block;
+}
 
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.pagination li.active a{
+	color: #fed136;
 }
 </style>
 
@@ -228,9 +235,8 @@
 				</c:forEach>
 
 			</div>
-		<div class="row">
-		<div id="pn" class="container">
-		<ul class="pagination">
+		<div class="row" style="text-align: center;">
+		<ul class="pagination" style="margin:0 auto;">
 		<c:choose>
 			<c:when test="${startPageNum ne 1 }">
 				<li>
@@ -267,7 +273,7 @@
 				</c:otherwise>
 			</c:choose>
 		</ul>
-			</div>
+			
 			</div>
 			</div>
 	</section>
