@@ -20,10 +20,19 @@
 	font-size: 0.9rem;
 	text-align: left;
 }
-
-.button {
+#pn a{
+	color: black;
 
 }
+#pn {
+	text-align: center;	
+}
+
+.h4 > a{
+	color:black;
+}
+
+
 </style>
 
 <!-- Bootstrap core CSS -->
@@ -84,7 +93,7 @@
 							</c:when>
 							<c:otherwise>
 								<li class="nav-item"><a class="nav-link js-scroll-trigger"
-									href="profile/detail.do"><strong>${id }</strong>님 Login</a></li>
+									href="profile/detail.do"><strong>${id }</strong>님</a></li>
 								<li class="nav-item"><a class="nav-link js-scroll-trigger"
 									href="users/logout.do">로그아웃</a></li>
 							</c:otherwise>
@@ -108,7 +117,7 @@
 			<br />
 			<br />
 			<!-- 검색창 -->
-
+<div class="container">
 			<form action="search.do" method="post">
 				<div class="row">
 					<div class="col-lg-8 container">
@@ -212,7 +221,7 @@
 									src="${pageContext.request.contextPath}/resources/img/team/2.jpg"
 									alt="">
 							</c:if>
-							<h4>
+							<h4 class="h4">
 								<a href="profile/resume.do?id=${tmp.id }">${tmp.name }</a>
 							</h4>
 							<p class="text-muted">${tmp.email }</p>
@@ -221,7 +230,45 @@
 				</c:forEach>
 
 			</div>
-		</div>
+			<ul class="pagination">
+		<c:choose>
+			<c:when test="${startPageNum ne 1 }">
+				<li>
+					<a href="search.do?pageNum=${startPageNum-1 }&search_param=${search_param}&keyword=${keyword}&exp=${exp}">&laquo;</a>
+				</li>
+			</c:when>
+			<c:otherwise>
+				<li class="disabled">
+					<a href="javascript:">&laquo;</a>
+				</li>
+			</c:otherwise>
+			</c:choose>
+			<c:forEach var="i" begin="${startPageNum }" 
+					end="${endPageNum }">	
+				<c:choose>
+					<c:when test="${i eq pageNum }">
+							<li class="active"><a href="search.do?pageNum=${i }&search_param=${search_param}&keyword=${keyword}&exp=${exp}">${i }</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="search.do?pageNum=${i }&search_param=${search_param}&keyword=${keyword}&exp=${exp}">${i }</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${endPageNum lt totalPageCount }">
+					<li>
+						<a href="search.do?pageNum=${endPageNum+1 }&search_param=${search_param}&keyword=${keyword}&exp=${exp}">&raquo;</a>
+					</li>
+				</c:when>
+				<c:otherwise>
+					<li class="disabled">
+						<a href="javascript:">&raquo;</a>
+					</li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+</div>
+		
 	</section>
 	<!-- Footer -->
 	<footer>
