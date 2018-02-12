@@ -10,5 +10,4 @@ import com.project.myresume.search.dto.SearchDto;
 
 public interface SearchService {
 	public ModelAndView search(SearchDto dto, HttpServletRequest request);
-	public List<String> idList(SearchDto dto);
 }

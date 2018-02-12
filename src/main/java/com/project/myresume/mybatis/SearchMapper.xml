@@ -2,9 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="search">
 	<!-- 전체 검색하기 -->
+	
+	
 	<select id="s" parameterType="SearchDto" resultType="string">
-		select id from (select distinct tb_user.id, tb_user.viewCount, rownum rnum
-		from tb_user left JOIN tb_skills on tb_user.id=tb_skills.id left JOIN tb_edu on tb_user.id=tb_edu.id 
+		select id from (select id, rownum r from (select distinct tb_user.id
+		from tb_user left JOIN tb_skills on tb_user.id=tb_skills.id left JOIN tb_edu on tb_user.id=tb_edu.id
 		<where>
 			<if test="search_param == 'all'"><!-- 전체항목검색 -->
 				<if test="exp == 'expAll'">
@@ -49,8 +51,7 @@
 				</if>
 			</if>
 		</where>
-		ORDER BY viewCount DESC)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		))WHERE r BETWEEN #{startRowNum} AND #{endRowNum}
 		</select>
 	
 	

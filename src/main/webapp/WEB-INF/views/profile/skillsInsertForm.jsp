@@ -9,7 +9,6 @@
     <title>Jquery DataTable | Bootstrap Based Admin Template - Material Design</title>
  <jsp:include page="/resources/resource.jsp"></jsp:include>
 </head>
-
 <body class="theme-red">
  <!-- nav -->
 <jsp:include page="/resources/nav.jsp"></jsp:include>  

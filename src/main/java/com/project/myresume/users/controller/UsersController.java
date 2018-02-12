@@ -108,15 +108,15 @@ public class UsersController {
 	
 	// 구글 Callback호출 메소드
 	@RequestMapping(value = "/users/oauth2callback", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView googleCallback(ModelAndView mv, @RequestParam Map<String, String> param, HttpServletRequest request) throws IOException {
+	public ModelAndView googleCallback(ModelAndView mv, @RequestParam String code, HttpServletRequest request) throws IOException {
 		System.out.println("여기는 googleCallback");
-		String code=param.get("code");
+/*		String code=param.get("code");
 		String error=param.get("error");
 		if(error.equals("access_denied")) {
 			mv.setViewName("redirect:/users/loginform.do");
 			return mv;
 		}
-		System.out.println(param.get("error"));
+		System.out.println(param.get("error"));*/
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, googleOAuth2Parameters.getRedirectUri(), null);
 		String accessToken = accessGrant.getAccessToken();
@@ -269,124 +269,6 @@ public class UsersController {
 		
 	}
 	
-	@RequestMapping("/search2")
-	public ModelAndView search2(@RequestParam Map<String, String> params) {
-		ModelAndView mView = new ModelAndView();
-		List<UsersDto> searchDto = new ArrayList<>();
-		//셋중에 하나만 가능--all/skill/edu
-		String sp = params.get("search_param");
-		//무조건 존재--expAll/new/old
-		String exp = params.get("exp");
-		//keyword
-		String keyword = params.get("keyword");
-		List<String> oldList =expsService.oldSearch();//경력자 아이디 리스트
-		List<String> newList =expsService.newSearch();//신입 아이디 리스트
-		List<String> idList = new ArrayList<>();
-		
-		if(sp.equals("all")) {
-			idList =usersService.search(keyword);
-			if(exp.equals("all")) {
-				//전체검색
-			}else if(exp.equals("new")) {
-				//신입검색
-				for(Iterator<String> it = idList.iterator() ; it.hasNext() ; ){
-					String value = it.next();
-					for(String str : oldList) {						
-						if(value.equals(str)){
-							it.remove();
-						}
-						
-					}
-				}
-			}else if(exp.equals("old")) {
-				//경력검색
-				for(Iterator<String> it = idList.iterator(); it.hasNext() ; ){
-					String value = it.next();
-					for(String str : newList) {						
-						if(value.equals(str)){
-							it.remove();
-						}
-						
-					}
-				}
-				
-			}
-		}else if(sp.equals("skill")) {//skill에서 검색
-			idList =skillsService.search(keyword);
-			if(exp.equals("all")) {
-				//전체검색
-			}else if(exp.equals("new")) {
-				//신입검색
-				for(Iterator<String> it = idList.iterator(); it.hasNext(); ){
-					String value = it.next();
-					for(String str : oldList) {						
-						if(value.equals(str)){
-							it.remove();
-						}
-						
-					}
-				}
-			}else if(exp.equals("old")) {
-				//경력검색
-				for(Iterator<String> it = idList.iterator(); it.hasNext(); ){
-					String value = it.next();
-					for(String str : newList) {						
-						if(value.equals(str)){
-							it.remove();
-						}
-						
-					}
-				}
-				
-			}
-			
-
-		}else if(sp.equals("edu")) {//검색어가 edu단이면
-			idList =eduService.search(keyword);
-			if(exp.equals("all")) {
-				//전체검색
-			}else if(exp.equals("new")) {
-				//신입검색
-				for(Iterator<String> it = idList.iterator(); it.hasNext(); ){
-					String value = it.next();
-					for(String str : oldList) {						
-						if(value.equals(str)){
-							it.remove();
-						}
-						
-					}
-				}
-			}else if(exp.equals("old")) {
-				//경력검색
-				for(Iterator<String> it = idList.iterator(); it.hasNext(); ){
-					String value = it.next();
-					for(String str : newList) {						
-						if(value.equals(str)){
-							it.remove();
-						}
-						
-					}
-				}
-				
-			}
-			
-		}
-		
-		for(String str: idList) {//경력자 또는 신입 또는 전체 중에서
-			UsersDto dto=usersService.getData(str);
-			searchDto.add(dto);
-		}
-		mView.addObject("searchList", searchDto);
-		mView.setViewName("profile/searchList");
-		
-		//
-		System.out.println(keyword);
-		System.out.println(sp);
-		System.out.println(exp);
-		return mView;
-	}
-	
-
 	@RequestMapping("/search")
 	public ModelAndView search(@RequestParam Map<String, String> params, HttpServletRequest request) {
 		

@@ -37,7 +37,7 @@
 }
 .pagination li.active a{
 	color: #fed136;
->>>>>>> branch 'master' of https://github.com/dev-nicelee/spring_project.git
+
 }
 
 
@@ -205,16 +205,11 @@
 
 	<!-- Resume -->
 	<section class="bg-light" id="resume">
-
-
-
-
-
-
-
+<div class="container">
 			<div class="row">
 			<br />
 			<br />
+			<c:if test="${not empty searchList}">
 				<c:forEach var="tmp" items="${searchList}">
 					<div class="col-sm-4">
 						<div class="team-member">
@@ -235,48 +230,53 @@
 						</div>
 					</div>
 				</c:forEach>
-
-			</div>
-
-		<div class="row" style="text-align: center;">
-		<ul class="pagination" style="margin:0 auto;">
-		<c:choose>
+				</div>
+		<div class="row">
+		<ul class="pagination" style="margin:0 auto; display: inline-block;">
+			<c:choose>
 			<c:when test="${startPageNum ne 1 }">
-				<li>
-					<a href="search.do?pageNum=${startPageNum-1 }&search_param=${search_param}&keyword=${keyword}&exp=${exp}">&laquo;</a>
-				</li>
+				
+					<a href="search.do?pageNum=${startPageNum-1 }&search_param=${search_param}&keyword=${keyword}&exp=${exp}"><li>&laquo;</li></a>
+				
 			</c:when>
 			<c:otherwise>
-				<li class="disabled">
-					<a href="javascript:">&laquo;</a>
-				</li>
+				
+					<a href="javascript:"><li class="disabled">&laquo;</li></a>
+				
 			</c:otherwise>
 			</c:choose>
 			<c:forEach var="i" begin="${startPageNum }" 
 					end="${endPageNum }">	
 				<c:choose>
 					<c:when test="${i eq pageNum }">
-							<li class="active"><a href="search.do?pageNum=${i }&search_param=${search_param}&keyword=${keyword}&exp=${exp}">${i }</a></li>
+						<a href="search.do?pageNum=${i }&search_param=${search_param}&keyword=${keyword}&exp=${exp}"><li class="active">${i }</li></a>
 					</c:when>
 					<c:otherwise>
-						<li><a href="search.do?pageNum=${i }&search_param=${search_param}&keyword=${keyword}&exp=${exp}">${i }</a></li>
+						<a href="search.do?pageNum=${i }&search_param=${search_param}&keyword=${keyword}&exp=${exp}"><li>${i }</li></a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:choose>
 				<c:when test="${endPageNum lt totalPageCount }">
-					<li>
-						<a href="search.do?pageNum=${endPageNum+1 }&search_param=${search_param}&keyword=${keyword}&exp=${exp}">&raquo;</a>
-					</li>
+					
+						<a href="search.do?pageNum=${endPageNum+1 }&search_param=${search_param}&keyword=${keyword}&exp=${exp}"><li>&raquo;</li></a>
+					
 				</c:when>
 				<c:otherwise>
-					<li class="disabled">
-						<a href="javascript:">&raquo;</a>
-					</li>
+					
+						<a href="javascript:"><li class="disabled">&raquo;</li></a>
+					
 				</c:otherwise>
 			</c:choose>
 		</ul>
 			
+		</div>			
+		</c:if>
+				<c:if test="${empty searchList}">
+				<div class="container">
+				<p class="bg-warning" align="center">검색 조건에 해당하는 결과가 없습니다.</p>
+				</div>
+				</c:if>
 			</div>
 
 	</section>
