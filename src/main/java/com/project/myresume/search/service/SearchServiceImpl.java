@@ -89,13 +89,6 @@ public class SearchServiceImpl implements SearchService{
 		return mView;
 	}
 
-	@Override
-	public List<String> idList(SearchDto dto) {
 
-		List<String> list=dao.search(dto);
-		System.out.println(list);
-		System.out.println("길이는"+list.size());
-		return list;
-	}
 
 }
