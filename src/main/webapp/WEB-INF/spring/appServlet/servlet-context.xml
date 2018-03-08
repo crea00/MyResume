@@ -25,6 +25,7 @@
 		<beans:property name="username" value="${username}" />
 		<beans:property name="password" value="${password}" />
 	</beans:bean>
+	
 	<!-- SqlSessionFactory 객체 -->
 	<beans:bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
@@ -32,20 +33,19 @@
 			value="classpath:com/project/myresume/mybatis/Configuration.xml" />
 	</beans:bean>
 
-
 	<!-- Dao 에 주입해줄 SqlSession 인터페이스를 구현한 SqlSessionTemplate 객체 -->
 	<beans:bean class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg name="sqlSessionFactory"
 			ref="sessionFactory" />
 	</beans:bean>
 
-	<!-- 1월 30일 Transcation Manager 설정 -->
+	<!-- Transcation Manager 설정 -->
 	<beans:bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
 
-	<!-- 1월30일 어노테이션으로 트렌젝션 처리 하도록 설정 -->
+	<!-- 어노테이션으로 트렌젝션 처리 하도록 설정 -->
 	<tx:annotation-driven transaction-manager="txManager" />
 
 	<!-- Enables the Spring MVC @Controller programming model -->

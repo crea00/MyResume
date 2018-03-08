@@ -55,7 +55,7 @@
                             <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" required>     	
                         </div> 	
                     </div>
-                     <div class="g-recaptcha" data-sitekey="6Le780MUAAAAAAEstmgpleGJGu0uKopxAfZhNb84"></div>
+                     <!-- <div class="g-recaptcha" data-sitekey="6Le780MUAAAAAAEstmgpleGJGu0uKopxAfZhNb84"></div> -->
                     <br/>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
