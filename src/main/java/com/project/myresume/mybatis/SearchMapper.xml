@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="search">
+
 	<!-- 전체 검색하기 -->
-	
-	
-	<select id="s" parameterType="SearchDto" resultType="string">
-		select id from (select id, rownum r from (select distinct tb_user.id
-		from tb_user left JOIN tb_skills on tb_user.id=tb_skills.id left JOIN tb_edu on tb_user.id=tb_edu.id
+	<select id="searchAll" parameterType="SearchDto" resultType="string">
+		SELECT id FROM (SELECT id, rownum r FROM (SELECT distinct tb_user.id
+		FROM tb_user LEFT JOIN tb_skills ON tb_user.id=tb_skills.id LEFT JOIN tb_edu ON tb_user.id=tb_edu.id
 		<where>
-			<if test="search_param == 'all'"><!-- 전체항목검색 -->
+			<!-- 전체항목 검색 -->
+			<if test="search_param == 'all'">
 				<if test="exp == 'expAll'">
-					OR (skill_nm like '%'||#{keyword}||'%' or major like '%'||#{keyword}||'%')				
+					<!-- LIKE 연산자를 사용하면 내용중에 해당 단어만 있으면 바로 검색 가능 -->
+					<!-- DB에서 skill table의 skill_nm이나 edu table의 major 중에서 임의의 자리에 keyword가 들어있는 값을 찾아준다. -->
+					OR (skill_nm LIKE '%'||#{keyword}||'%' OR major LIKE '%'||#{keyword}||'%')				
 				</if>
-				<if test="exp == 'expNew'"><!-- 전체항목&신입검색 -->
-					OR tb_user.id in (select distinct id from tb_exps)
-					AND (skill_nm like '%'||#{keyword}||'%' or major like '%'||#{keyword}||'%')
+				<!-- 전체항목 & 신입검색 -->
+				<if test="exp == 'expNew'">
+					<!-- select distinct id 는 중복을 제거해서 id를 출력, IN은 다수의 OR조건을 줄여서 표현 -->
+					OR tb_user.id IN (select distinct id from tb_exps)
+					<!-- DB에서 skill table의 skill_nm이나 edu table의 major 중에서 임의의 자리에 keyword가 들어있는 값을 찾아준다. -->
+					AND (skill_nm LIKE '%'||#{keyword}||'%' OR major LIKE '%'||#{keyword}||'%')
 				</if>
-				<if test="exp == 'expOld'"><!-- 전체항목&경력검색 -->
-					OR tb_user.id in (select id	from(select tb_edu.id eid, nvl(tb_user.id,null) id
-					from tb_user left outer join tb_edu	on tb_user.id =tb_edu.id) where eid is null)
-					AND (skill_nm like '%'||#{keyword}||'%' or major like '%'||#{keyword}||'%')
+				<!-- 전체항목 & 경력검색 -->
+				<if test="exp == 'expOld'">ㄴ
+					OR tb_user.id IN (SELECT id	FROM(SELECT tb_edu.id eid, nvl(tb_user.id,null) id
+					FROM tb_user left OUTER JOIN tb_edu	ON tb_user.id = tb_edu.id) WHERE eid is null)
+					AND (skill_nm LIKE '%'||#{keyword}||'%' OR major LIKE '%'||#{keyword}||'%')
 				</if>
 			</if>
 			<if test="search_param == 'skill'"><!-- 기술항목검색 -->

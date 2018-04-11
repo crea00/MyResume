@@ -41,7 +41,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디(3~10글자)" autofocus/>                  	
+                            <input type="text" class="form-control" id="id" name="id" placeholder="아이디(3~10글자로 입력해주세요)" autofocus/>                  	
                         </div>
                         <span id="checkResult"></span>                            
                     </div>
@@ -69,7 +69,7 @@
                             <i class="material-icons">phone</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="phone_no" placeholder="전화번호" digits="10" required>
+                            <input type="text" class="form-control" name="phone_no" placeholder="전화번호(번호만 입력해주세요)" digits="10" required>
                         </div>
                     </div>
                     <div class="input-group">

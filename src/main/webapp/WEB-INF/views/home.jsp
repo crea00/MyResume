@@ -145,7 +145,7 @@
 								</button>
 								<ul class="dropdown-menu" role="menu">
 									<li><a style="color: black;" href="#all">전체</a></li>
-									<li><a style="color: black;" href="#skill">기술</a></li>
+									<li><a style="color: black;" href="#skill">경력</a></li>
 									<li><a style="color: black;" href="#edu">교육</a></li>
 								</ul>
 							</div>

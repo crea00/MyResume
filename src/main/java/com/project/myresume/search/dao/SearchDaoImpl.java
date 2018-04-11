@@ -16,7 +16,7 @@ public class SearchDaoImpl implements SearchDao{
 	@Override//검색기능
 	public List<String> search(SearchDto dto) {
 		// TODO Auto-generated method stub
-		return session.selectList("search.s",dto);
+		return session.selectList("search.searchAll",dto);
 	}
 
 	@Override

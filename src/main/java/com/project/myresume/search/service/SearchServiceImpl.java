@@ -62,12 +62,13 @@ public class SearchServiceImpl implements SearchService{
 				
 				dto.setStartRowNum(startRowNum);
 				dto.setEndRowNum(endRowNum);
+				
 				System.out.println("써치"+dao.search(dto));
 				List<String> list = dao.search(dto);
 				List<UsersDto> searchList = new ArrayList<>();
 				UsersDto usersDto = new UsersDto();
 				for(String id : list) {
-					usersDto =usersDao.getData(id);
+					usersDto = usersDao.getData(id);
 					searchList.add(usersDto);
 				}
 				

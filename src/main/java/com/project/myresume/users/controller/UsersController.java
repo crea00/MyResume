@@ -83,11 +83,11 @@ public class UsersController {
 	@RequestMapping(value = "/users/loginform", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView loginform(ModelAndView mv, HttpServletRequest request) {
 		
-		
 		/* 구글code 발행 */
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String google_url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
 		
+		// mv객체에 구글code를 담는다
 		mv.addObject("google_url", google_url);
 		
 		// url이라는 파라미터로 전달된 문자열 읽어오기
@@ -271,17 +271,19 @@ public class UsersController {
 	
 	@RequestMapping("/search")
 	public ModelAndView search(@RequestParam Map<String, String> params, HttpServletRequest request) {
-		
 		SearchDto dto = new SearchDto();
-		//셋중에 하나만 가능--all/skill/edu
+		// 전체 / 기술 / 교육 3가지 항목으로 검색 가능
 		String sp = params.get("search_param");
-		//무조건 존재--expAll/new/old
+		// 신입인지 경력인지 여부
 		String exp = params.get("exp");
-		//keyword
+		// 검색 keyword
 		String keyword = params.get("keyword");
-		System.out.println(sp);
-		System.out.println(exp);
-		System.out.println(keyword.toLowerCase());
+		// 검색조건 출력
+		System.out.println("검색조건 : " + sp);
+		// 신입인지 경력인지 여부 출력
+		System.out.println("신입 or 경력 ? : " + exp);
+		// 기술종류 소문자로 바꿔서 출력
+		System.out.println("기술종류 : " + keyword.toLowerCase());
 		dto.setExp(exp);
 		dto.setKeyword(keyword.toLowerCase());
 		dto.setSearch_param(sp);

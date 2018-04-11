@@ -20,7 +20,8 @@ public interface UsersService {
 	public UsersDto getData(String id);
 
 	public void increaseViewCount(String id);
-
+	
+	// keyword를 받아와서 검색을 하고 List type으로 리턴해준다
 	public List<String> search(String keyword);
 	
 	public boolean canUseEmail(String email);

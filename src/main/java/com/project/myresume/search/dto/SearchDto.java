@@ -1,11 +1,11 @@
 package com.project.myresume.search.dto;
 
 public class SearchDto {
-	private String id;//아이디
-	private String skill_nm;//기술명
-	private String major;//교육, 전공
+	private String id;				//아이디
+	private String skill_nm;		//기술명
+	private String major;			//교육, 전공
 	private int num;
-	private String keyword;//검색어
+	private String keyword;			//검색어
 	private String search_param;
 	private String exp;
 	

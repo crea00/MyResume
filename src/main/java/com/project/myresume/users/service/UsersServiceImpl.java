@@ -149,7 +149,6 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public ModelAndView socialSignup(UsersDto dto) {
 		
-		
 		usersDao.socialInsert(dto);
 
 		// id를 ModelAndView객체에 담아서 리턴한다.
